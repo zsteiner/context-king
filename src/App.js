@@ -1,26 +1,49 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import styles from './App.module.scss';
+import React, { Component } from "react";
+
+import axios from "axios";
+
+import CardList from "./components/CardList/CardList";
+
+import styles from "./styles/App.module.scss";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      members: []
+    };
+  }
+
+  componentDidMount() {
+    this.getMembers();
+  }
+
+  getMembers = () => {
+    const apiToken =
+      "xoxp-3360794059-324357511009-331680175990-6fff8ab91a18c1c9f743870cd510af46";
+    const api = `https://slack.com/api/users.list?token=${apiToken}&include_locale=true&presence=true&pretty=1`;
+
+    axios
+      .get(api)
+      .then(response => {
+        this.setState({
+          members: response.data.members
+        });
+      })
+      .catch(e => {
+        console.error(e);
+      });
+  };
+
   render() {
     return (
-      <div className={styles.app}>
-        <header className={styles.header}>
-          <img src={logo} className={styles.logo} alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className={styles.link}
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+      <main className={styles.app}>
+        <header className={styles.appHeader}>
+          <h1>Slouck</h1>
+          <CardList members={this.state.members} />
         </header>
-      </div>
+      </main>
     );
   }
 }
