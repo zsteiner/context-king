@@ -3,4 +3,19 @@
 .card {
   border: $border;
   padding: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  width: 100%;
+  background: $white;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: rotate(3deg);
+  }
+
+  &Name {
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
 }

@@ -1,0 +1,15 @@
+@import "../../styles/variables";
+
+.avatar {
+  border-radius: 50%;
+  width: $avatar-size;
+  height: $avatar-size;
+  overflow: hidden;
+  margin: 0 1rem 0 0;
+  flex: 0 0 auto;
+
+  &Img {
+    width: 100%;
+    height: 100%;
+  }
+}
