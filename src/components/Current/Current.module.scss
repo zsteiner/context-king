@@ -1,5 +1,72 @@
 @import "../../styles/variables";
 
+$current-meter: 4rem;
+$current-border: $border-width * 2;
+$current-size: 0.75rem;
+
+:root {
+  --current-percentage: 0;
+  --current-position: 0;
+}
+
 .current {
-  color: black;
+  width: $current-meter * 2;
+  height: $current-meter * 2;
+  position: relative;
+  text-align: center;
+
+  &Track {
+    width: $current-meter * 2;
+    height: $current-meter;
+    border: $current-size solid $grey;
+    border-bottom: 0;
+    border-top-left-radius: $current-meter * 2;
+    border-top-right-radius: $current-meter * 2;
+  }
+
+  $rot: 180;
+
+  &::after {
+    position: absolute;
+    content: "";
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform:
+      rotate(var(--current-position))
+      translate($current-meter - ($current-size / 2));
+    height: $current-size;
+    width: $current-size;
+    margin: -($current-size / 2);
+    border-radius: 50%;
+    background: $green;
+    border: $current-border solid $white;
+    z-index: 1;
+  }
+
+  &Temperature {
+    position: relative;
+    font-size: 2rem;
+    font-weight: 900;
+    top: -2.25rem;
+  }
+
+  &Label {
+    position: absolute;
+    bottom: 2.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+
+    &:first-of-type {
+      left: -($current-size / 2);
+    }
+
+    &:last-of-type {
+      right: -($current-size / 2);
+    }
+  }
+
+  sup {
+    font-size: 0.75em;
+  }
 }
