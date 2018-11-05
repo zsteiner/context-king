@@ -1,51 +1,64 @@
 import React, { Component } from 'react';
 
-import axios from 'axios';
-import CardList from './components/CardList/CardList';
+import jsonp from 'jsonp';
+
+import Current from './components/Current/Current';
 
 import styles from './styles/App.module.scss';
+
+const mockForecast = require('./mockData/mockForecast.json');
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      members: []
+      forecast: {},
+      currently: {},
+      daily: {},
+      today: {}
     };
   }
 
   componentDidMount() {
-    this.getMembers();
+    // this.getForecast();
+
+    this.setState({
+      forecast: mockForecast,
+      currently: mockForecast.currently,
+      daily: mockForecast.daily,
+      today: mockForecast.daily.data[0]
+    });
   }
 
-  getMembers = () => {
-    const apiToken =
-      'xoxp-3360794059-324357511009-331680175990-6fff8ab91a18c1c9f743870cd510af46';
-    const apiLimit = 10;
-    const api = `https://slack.com/api/users.list?token=${apiToken}&include_locale=true&presence=true&pretty=1&limit=${apiLimit}`;
+  getForecast = () => {
+    const apiToken = '16eb53a912c674ef3028c1c421473d5e';
+    const lat = 39.752394749115744;
+    const long = -105.00245891387033;
+    const api = `https://api.darksky.net/forecast/${apiToken}/${lat},${long}`;
 
-    axios
-      .get(api)
-      .then(response => {
+    jsonp(api, null, (error, response) => {
+      if (error) {
+        console.error(error.message);
+      } else {
         this.setState({
-          members: response.data.members
+          forecast: response
         });
-      })
-      .catch(e => {
-        console.error(e);
-      });
+      }
+    });
   };
 
   render() {
+    const state = this.state;
+
     return (
-      <main className={styles.app}>
-        <header className={styles.appHeader}>
-          <h1>Slouck</h1>
-        </header>
-        <article>
-          <CardList members={this.state.members} />
-        </article>
-      </main>
+      <article className={styles.app}>
+        <Current
+          temperature={state.currently.temperature}
+          temperatureHigh={state.today.temperatureHigh}
+          temperatureLow={state.today.temperatureLow}
+        />
+      </article>
     );
   }
 }
