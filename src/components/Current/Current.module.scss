@@ -2,10 +2,9 @@
 
 $current-meter: 4rem;
 $current-border: $border-width * 2;
-$current-size: 0.75rem;
+$current-size: 0.875rem;
 
 :root {
-  --current-percentage: 0;
   --current-position: 0;
 }
 
@@ -14,6 +13,12 @@ $current-size: 0.75rem;
   height: $current-meter * 2;
   position: relative;
   text-align: center;
+
+  &Container {
+    padding: 0 0.5rem;
+    max-height: $current-meter + 2rem;
+    overflow: hidden;
+  }
 
   &Track {
     width: $current-meter * 2;

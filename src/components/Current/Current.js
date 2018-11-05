@@ -10,24 +10,25 @@ const Current = ({ temperature, temperatureHigh, temperatureLow }) => {
   const currentAngle = currentPercentage * 180 - 180;
 
   let root = document.documentElement;
-  root.style.setProperty('--current-percentage', `${currentPercentage * 100}%`);
   root.style.setProperty('--current-position', `${currentAngle}deg`);
 
   return (
-    <div className={styles.current}>
-      <div className={styles.currentTrack} />
-      <label className={styles.currentLabel}>
-        {Math.round(temperatureLow)}
-        <sup>&deg;</sup>
-      </label>
-      <span className={styles.currentTemperature}>
-        {Math.round(temperature)}
-        <sup>&deg;</sup>
-      </span>
-      <label className={styles.currentLabel}>
-        {Math.round(temperatureHigh)}
-        <sup>&deg;</sup>
-      </label>
+    <div className={styles.currentContainer}>
+      <div className={styles.current}>
+        <div className={styles.currentTrack} />
+        <label className={styles.currentLabel}>
+          {Math.round(temperatureLow)}
+          <sup>&deg;</sup>
+        </label>
+        <span className={styles.currentTemperature}>
+          {Math.round(temperature)}
+          <sup>&deg;</sup>
+        </span>
+        <label className={styles.currentLabel}>
+          {Math.round(temperatureHigh)}
+          <sup>&deg;</sup>
+        </label>
+      </div>
     </div>
   );
 };
