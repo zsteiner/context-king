@@ -1,11 +1,8 @@
 import colorValue from './colorValue';
 
 export default function temperatureColors(temperatureHigh, temperatureLow) {
-  let colorLow = 209;
-  let colorHigh = 12;
-
-  colorLow = colorValue(temperatureLow);
-  colorHigh = colorValue(temperatureHigh);
+  const colorLow = colorValue(temperatureLow);
+  const colorHigh = colorValue(temperatureHigh);
 
   let root = document.documentElement;
   root.style.setProperty('--temp-low', `hsl(${colorLow}, 85%, 50%)`);
