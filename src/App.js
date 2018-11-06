@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 
 import jsonp from 'jsonp';
-import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
 
+import Location from './components/Location/Location';
 import Current from './components/Current/Current';
+
+import { CoordinateContext } from './contexts/CoordinateContext';
 
 import styles from './styles/App.module.scss';
 
 const mockForecast = require('./mockData/mockForecast.json');
 
-const apiKeyMapbox =
-  'pk.eyJ1IjoienN0ZWluZXIiLCJhIjoiTXR4U0tyayJ9.6BxBAjPyMHbt1YfD5HWGXA';
 const apiToken = '16eb53a912c674ef3028c1c421473d5e';
-
-const geocodingClient = mbxGeocoding({ accessToken: apiKeyMapbox });
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      coordinates: [],
       currently: {},
       daily: {},
       fetchingForecast: true,
@@ -51,35 +50,22 @@ class App extends Component {
     });
   };
 
-  lookUpLocation = (lat, lon) => {
-    geocodingClient
-      .reverseGeocode({
-        query: [lat, lon],
-        limit: 5
-      })
-      .send()
-      .then(response => {
-        const match = response.body;
-        console.log('lookup', match);
-        this.setState({
-          location: match,
-          fetchingLocation: false
-        });
-      });
-  };
-
   getLocation = () => {
     navigator.geolocation.getCurrentPosition(
       position => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        this.lookUpLocation(lat, lon);
         this.getForecast(lat, lon);
+
+        this.setState({
+          coordinates: [lat, lon]
+        });
       },
       error => alert(error.message),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
+    console.log('getLocation');
   };
 
   render() {
@@ -87,7 +73,9 @@ class App extends Component {
 
     return (
       <article className={styles.app}>
-        <h2>{state.address}</h2>
+        <CoordinateContext.Provider value={this.state.coordinates}>
+          <Location getLocation={this.getLocation} />
+        </CoordinateContext.Provider>
         {state.fetchingForecast ? (
           <p>Getting Forecast</p>
         ) : (
