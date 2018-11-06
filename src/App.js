@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-// import jsonp from 'jsonp';
+import jsonp from 'jsonp';
 import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
 
 import Current from './components/Current/Current';
@@ -11,7 +11,7 @@ const mockForecast = require('./mockData/mockForecast.json');
 
 const apiKeyMapbox =
   'pk.eyJ1IjoienN0ZWluZXIiLCJhIjoiTXR4U0tyayJ9.6BxBAjPyMHbt1YfD5HWGXA';
-// const apiToken = '16eb53a912c674ef3028c1c421473d5e';
+const apiToken = '16eb53a912c674ef3028c1c421473d5e';
 
 const geocodingClient = mbxGeocoding({ accessToken: apiKeyMapbox });
 
@@ -23,55 +23,32 @@ class App extends Component {
       currently: {},
       daily: {},
       fetchingForecast: true,
-      forecast: {},
+      forecast: mockForecast,
       location: {},
       today: {}
     };
   }
 
   componentDidMount() {
-    // this.getForecast();
     this.getLocation();
   }
 
   getForecast = (lat, lon) => {
-    // const api = `https://api.darksky.net/forecast/${apiToken}/${lat},${lon}`;
+    const api = `https://api.darksky.net/forecast/${apiToken}/${lat},${lon}`;
 
-    // jsonp(api, null, (error, response) => {
-    //   if (error) {
-    //     console.error(error.message);
-    //   } else {
-    //     this.setState({
-    //       forecast: response,
-    //       fetchingForecast: false,
-    //       currently: response.currently,
-    //       daily: response.daily,
-    //       today: response.daily.data[0]
-    //     });
-    //   }
-    // });
-
-    this.setState({
-      forecast: mockForecast,
-      fetchingForecast: false,
-      currently: mockForecast.currently,
-      daily: mockForecast.daily,
-      today: mockForecast.daily.data[0]
+    jsonp(api, null, (error, response) => {
+      if (error) {
+        console.error(error.message);
+      } else {
+        this.setState({
+          forecast: response,
+          fetchingForecast: false,
+          currently: response.currently,
+          daily: response.daily,
+          today: response.daily.data[0]
+        });
+      }
     });
-  };
-
-  getLocation = () => {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-
-        this.lookUpLocation(lat, lon);
-        this.getForecast(lat, lon);
-      },
-      error => alert(error.message),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
   };
 
   lookUpLocation = (lat, lon) => {
@@ -89,6 +66,20 @@ class App extends Component {
           fetchingLocation: false
         });
       });
+  };
+
+  getLocation = () => {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        this.lookUpLocation(lat, lon);
+        this.getForecast(lat, lon);
+      },
+      error => alert(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
   };
 
   render() {

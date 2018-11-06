@@ -2,7 +2,7 @@
 
 $current-meter: 6rem;
 $current-border: $border-width * 2;
-$current-size: 0.875rem;
+$current-size: 1rem;
 
 :root {
   --current-position: 180deg;
@@ -63,27 +63,27 @@ $current-size: 0.875rem;
 
   &Temperature {
     position: relative;
-    font-size: $current-meter / 2;
+    font-size: $current-meter / 1.75;
     font-weight: 900;
-    top: -1.25em;
+    top: -1em;
   }
 
   &Label {
     position: absolute;
-    bottom: $current-meter - $current-size - 0.5rem;
-    font-size: 0.875rem;
+    bottom: $current-meter - $current-size - 1rem;
+    font-size: 1.25em;
     font-weight: 600;
 
     &:first-of-type {
-      left: -($current-size / 2);
+      left: -0.5em;
     }
 
     &:last-of-type {
-      right: -($current-size / 2);
+      right: -0.5em;
     }
   }
 
   sup {
-    font-size: 0.75em;
+    font-size: 0.625em;
   }
 }
