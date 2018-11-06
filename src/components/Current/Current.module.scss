@@ -1,11 +1,13 @@
 @import "../../styles/variables";
 
-$current-meter: 4rem;
+$current-meter: 6rem;
 $current-border: $border-width * 2;
 $current-size: 0.875rem;
 
 :root {
-  --current-position: 0;
+  --current-position: 180deg;
+  --temp-low: hsl(209, 85%, 50%);
+  --temp-high: hsl(12, 85%, 50%);
 }
 
 .current {
@@ -21,15 +23,26 @@ $current-size: 0.875rem;
   }
 
   &Track {
+    position: relative;
     width: $current-meter * 2;
     height: $current-meter;
-    border: $current-size solid $grey;
-    border-bottom: 0;
+    background: $grey;
+    background: linear-gradient(to right, var(--temp-low), var(--temp-high));
     border-top-left-radius: $current-meter * 2;
     border-top-right-radius: $current-meter * 2;
-  }
 
-  $rot: 180;
+    &::after {
+      position: absolute;
+      content: "";
+      left: $current-size;
+      top: $current-size;
+      width: ($current-meter * 2) - ($current-size * 2);
+      height: $current-meter - $current-size;
+      border-top-left-radius: $current-meter * 2;
+      border-top-right-radius: $current-meter * 2;
+      background: $white;
+    }
+  }
 
   &::after {
     position: absolute;
@@ -44,21 +57,20 @@ $current-size: 0.875rem;
     width: $current-size;
     margin: -($current-size / 2);
     border-radius: 50%;
-    background: $green;
     border: $current-border solid $white;
     z-index: 1;
   }
 
   &Temperature {
     position: relative;
-    font-size: 2rem;
+    font-size: $current-meter / 2;
     font-weight: 900;
-    top: -2.25rem;
+    top: -1.25em;
   }
 
   &Label {
     position: absolute;
-    bottom: 2.5rem;
+    bottom: $current-meter - $current-size - 0.5rem;
     font-size: 0.875rem;
     font-weight: 600;
 

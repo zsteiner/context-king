@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import temperaturePosition from '../../utils/temperaturePosition';
+import temperatureColor from '../../utils/temperatureColor';
+
 import styles from './Current.module.scss';
 
 const Current = ({ temperature, temperatureHigh, temperatureLow }) => {
-  const currentRange = temperatureHigh - temperatureLow;
-  const currentDifference = temperature - temperatureLow;
-  let currentPercentage = currentDifference / currentRange;
-  const currentAngle = currentPercentage * 180 - 180;
-
-  let root = document.documentElement;
-  root.style.setProperty('--current-position', `${currentAngle}deg`);
+  temperaturePosition(temperature, temperatureHigh, temperatureLow);
+  temperatureColor(temperatureHigh, temperatureLow);
 
   return (
     <div className={styles.currentContainer}>
