@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 
 import jsonp from 'jsonp';
+import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
 
 import Location from './components/Location/Location';
 import Current from './components/Current/Current';
 
-import { CoordinateContext } from './contexts/CoordinateContext';
+import { LocationContext } from './contexts/LocationContext';
 
 import styles from './styles/App.module.scss';
 
+const apiKeyMapbox =
+  'pk.eyJ1IjoienN0ZWluZXIiLCJhIjoiTXR4U0tyayJ9.6BxBAjPyMHbt1YfD5HWGXA';
+const geocodingClient = mbxGeocoding({ accessToken: apiKeyMapbox });
 const mockForecast = require('./mockData/mockForecast.json');
-
-const apiToken = '16eb53a912c674ef3028c1c421473d5e';
+const apiDarkskyToken = '16eb53a912c674ef3028c1c421473d5e';
 
 class App extends Component {
   constructor(props) {
@@ -23,8 +26,13 @@ class App extends Component {
       daily: {},
       fetchingForecast: true,
       forecast: mockForecast,
+      getLocation: this.getLocation,
       location: {},
-      today: {}
+      locationName: '',
+      enteredLocation: '',
+      today: {},
+      updateLocation: this.updateLocation,
+      updateLocationName: this.updateLocationName
     };
   }
 
@@ -33,7 +41,7 @@ class App extends Component {
   }
 
   getForecast = (lat, lon) => {
-    const api = `https://api.darksky.net/forecast/${apiToken}/${lat},${lon}`;
+    const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}`;
 
     jsonp(api, null, (error, response) => {
       if (error) {
@@ -50,12 +58,33 @@ class App extends Component {
     });
   };
 
+  reverseLookup = (lat, lon) => {
+    geocodingClient
+      .reverseGeocode({
+        query: [lon, lat],
+        limit: 2,
+        types: ['place']
+      })
+      .send()
+      .then(response => {
+        // match is a GeoJSON document with geocoding matches
+        const name = response.body.features[0].text;
+
+        this.setState({
+          locationName: name,
+          enteredLocation: name,
+          fetchingLocation: false
+        });
+      });
+  };
+
   getLocation = () => {
     navigator.geolocation.getCurrentPosition(
       position => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
+        this.reverseLookup(lat, lon);
         this.getForecast(lat, lon);
 
         this.setState({
@@ -65,7 +94,32 @@ class App extends Component {
       error => alert(error.message),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
     );
-    console.log('getLocation');
+  };
+
+  updateLocation = event => {
+    event.preventDefault();
+
+    geocodingClient
+      .forwardGeocode({
+        query: this.state.enteredLocation,
+        types: ['place']
+      })
+      .send()
+      .then(response => {
+        this.setState({
+          coordinates: response.body.features[0].center,
+          locationName: response.body.features[0].text,
+          fetchingLocation: false
+        });
+        const coordinates = this.state.coordinates;
+        this.getForecast(coordinates[1], coordinates[0]);
+      });
+  };
+
+  updateLocationName = event => {
+    this.setState({
+      enteredLocation: event.target.value
+    });
   };
 
   render() {
@@ -73,9 +127,13 @@ class App extends Component {
 
     return (
       <article className={styles.app}>
-        <CoordinateContext.Provider value={this.state.coordinates}>
-          <Location getLocation={this.getLocation} />
-        </CoordinateContext.Provider>
+        <LocationContext.Provider value={this.state}>
+          <Location
+            coordinates={state.coordinates}
+            getLocation={this.getLocation}
+            locationName={this.state.locationName}
+          />
+        </LocationContext.Provider>
         {state.fetchingForecast ? (
           <p>Getting Forecast</p>
         ) : (
