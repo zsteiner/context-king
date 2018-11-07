@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 import { LocationContext } from '../../contexts/LocationContext';
 
+import Input from '../Input/Input';
+import LocationButton from '../LocationButton/LocationButton';
+
 import styles from './Location.module.scss';
 
 class Location extends Component {
@@ -31,17 +34,17 @@ class Location extends Component {
       <LocationContext.Consumer>
         {context => (
           <section className={styles.location}>
-            <form onSubmit={context.updateLocation}>
-              <input
+            <div className={styles.row}>
+              <Input
                 placeholder="Enter Location"
+                onSubmit={context.updateLocation}
                 value={this.state.locationName}
                 onChange={this.handleChange}
               />
-            </form>
-            <button onClick={this.props.getLocation}>
-              use current location
-            </button>
-            <p>{context.locationName}</p>
+              <LocationButton onClick={context.getLocation} />
+            </div>
+
+            <h1 className={styles.locationName}>{context.locationName}</h1>
             <small>
               {context.coordinates[0]}, {context.coordinates[1]}
             </small>
