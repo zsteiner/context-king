@@ -1,6 +1,9 @@
+@import "../../styles/variables";
+
 .input {
   padding: 0.5em;
   font-size: 1.125em;
+  border: $border;
 
   &Form {
     margin-right: 1rem;

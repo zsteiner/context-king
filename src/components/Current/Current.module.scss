@@ -57,6 +57,7 @@ $current-size: 1rem;
     height: $current-size;
     width: $current-size;
     margin: -($current-size / 2);
+    background-color: var(--temp-high);
     border-radius: 50%;
     border: $current-border solid $white;
   }
