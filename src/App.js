@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import jsonp from 'jsonp';
 import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
 
+import Loading from './components/Loading/Loading';
 import Location from './components/Location/Location';
 import Current from './components/Current/Current';
 
@@ -22,7 +23,7 @@ class App extends Component {
 
     this.state = {
       coordinates: [],
-      fetchingForecast: false,
+      fetchingForecast: true,
       forecast: mockForecast,
       getLocation: this.getLocation,
       location: {},
@@ -37,8 +38,16 @@ class App extends Component {
     this.getLocation();
   }
 
+  setLoading = () => {
+    this.setState({
+      fetchingForecast: true
+    });
+  };
+
   getForecast = (lat, lon) => {
     const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely,hourly`;
+
+    this.setLoading();
 
     jsonp(api, null, (error, response) => {
       if (error) {
@@ -53,6 +62,8 @@ class App extends Component {
   };
 
   reverseLookup = (lat, lon) => {
+    this.setLoading();
+
     geocodingClient
       .reverseGeocode({
         query: [lon, lat],
@@ -68,13 +79,14 @@ class App extends Component {
         this.setState({
           location: location,
           locationName: `${name}, ${state}`,
-          enteredLocation: name,
-          fetchingLocation: false
+          enteredLocation: name
         });
       });
   };
 
   getLocation = () => {
+    this.setLoading();
+
     navigator.geolocation.getCurrentPosition(
       position => {
         const lat = position.coords.latitude;
@@ -93,6 +105,7 @@ class App extends Component {
   };
 
   updateLocation = event => {
+    this.setLoading();
     event.preventDefault();
 
     geocodingClient
@@ -109,8 +122,7 @@ class App extends Component {
         this.setState({
           coordinates: location.center,
           location: location,
-          locationName: `${name}, ${state}`,
-          fetchingLocation: false
+          locationName: `${name}, ${state}`
         });
         const coordinates = this.state.coordinates;
         this.getForecast(coordinates[1], coordinates[0]);
@@ -128,18 +140,27 @@ class App extends Component {
     const forecast = state.forecast;
     const today = forecast.daily.data[0];
 
+    const temperatureMin = today.temperatureMin;
+    const temperatureMax = today.temperatureMax;
+    const temperatureLow = today.temperatureLow;
+    const temperatureHigh = today.temperatureHigh;
+
     return (
       <article className={styles.app}>
         <LocationContext.Provider value={this.state}>
           <Location />
         </LocationContext.Provider>
         {state.fetchingForecast ? (
-          <p>Getting Forecast</p>
+          <Loading />
         ) : (
           <Current
             temperature={forecast.currently.temperature}
-            temperatureHigh={today.temperatureMax}
-            temperatureLow={today.temperatureMin}
+            temperatureHigh={
+              temperatureMax > temperatureHigh ? temperatureMax : temperatureMax
+            }
+            temperatureLow={
+              temperatureMin < temperatureLow ? temperatureMin : temperatureLow
+            }
           />
         )}
       </article>
