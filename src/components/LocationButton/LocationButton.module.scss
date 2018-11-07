@@ -1,0 +1,18 @@
+@import "../../styles/variables";
+
+.button {
+  background: none;
+  border: 0;
+  font-size: 1rem;
+  color: $blue;
+}
+
+.icon {
+  position: relative;
+  height: 1em;
+  width: 1em;
+  margin-right: 0.5rem;
+  fill: currentColor;
+  vertical-align: baseline;
+  bottom: -0.125em;
+}

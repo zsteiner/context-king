@@ -1,0 +1,13 @@
+.location {
+  margin-bottom: 1.5rem;
+
+  &Name {
+    font-size: 2rem;
+    font-weight: 900;
+    margin: 0.5em 0;
+  }
+}
+
+.row {
+  display: flex;
+}
