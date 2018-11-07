@@ -7,8 +7,10 @@ import temperatureColor from '../../utils/temperatureColor';
 import styles from './Current.module.scss';
 
 const Current = ({ temperature, temperatureHigh, temperatureLow }) => {
-  temperaturePosition(temperature, temperatureHigh, temperatureLow);
-  temperatureColor(temperatureHigh, temperatureLow);
+  if (temperature) {
+    temperaturePosition(temperature, temperatureHigh, temperatureLow);
+    temperatureColor(temperature, temperatureHigh, temperatureLow);
+  }
 
   return (
     <div className={styles.currentContainer}>

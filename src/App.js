@@ -22,15 +22,12 @@ class App extends Component {
 
     this.state = {
       coordinates: [],
-      currently: {},
-      daily: {},
-      fetchingForecast: true,
+      fetchingForecast: false,
       forecast: mockForecast,
       getLocation: this.getLocation,
       location: {},
       locationName: '',
       enteredLocation: '',
-      today: {},
       updateLocation: this.updateLocation,
       updateLocationName: this.updateLocationName
     };
@@ -41,7 +38,7 @@ class App extends Component {
   }
 
   getForecast = (lat, lon) => {
-    const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}`;
+    const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely,hourly`;
 
     jsonp(api, null, (error, response) => {
       if (error) {
@@ -49,10 +46,7 @@ class App extends Component {
       } else {
         this.setState({
           forecast: response,
-          fetchingForecast: false,
-          currently: response.currently,
-          daily: response.daily,
-          today: response.daily.data[0]
+          fetchingForecast: false
         });
       }
     });
@@ -131,23 +125,21 @@ class App extends Component {
 
   render() {
     const state = this.state;
+    const forecast = state.forecast;
+    const today = forecast.daily.data[0];
 
     return (
       <article className={styles.app}>
         <LocationContext.Provider value={this.state}>
-          <Location
-            coordinates={state.coordinates}
-            getLocation={this.getLocation}
-            locationName={this.state.locationName}
-          />
+          <Location />
         </LocationContext.Provider>
         {state.fetchingForecast ? (
           <p>Getting Forecast</p>
         ) : (
           <Current
-            temperature={state.currently.temperature}
-            temperatureHigh={state.today.temperatureHigh}
-            temperatureLow={state.today.temperatureLow}
+            temperature={forecast.currently.temperature}
+            temperatureHigh={today.temperatureMax}
+            temperatureLow={today.temperatureMin}
           />
         )}
       </article>
