@@ -67,11 +67,13 @@ class App extends Component {
       })
       .send()
       .then(response => {
-        // match is a GeoJSON document with geocoding matches
-        const name = response.body.features[0].text;
+        const location = response.body.features[0];
+        const name = location.text;
+        const state = location.context[0].text;
 
         this.setState({
-          locationName: name,
+          location: location,
+          locationName: `${name}, ${state}`,
           enteredLocation: name,
           fetchingLocation: false
         });
@@ -106,9 +108,14 @@ class App extends Component {
       })
       .send()
       .then(response => {
+        const location = response.body.features[0];
+        const name = location.text;
+        const state = location.context[0].text;
+
         this.setState({
-          coordinates: response.body.features[0].center,
-          locationName: response.body.features[0].text,
+          coordinates: location.center,
+          location: location,
+          locationName: `${name}, ${state}`,
           fetchingLocation: false
         });
         const coordinates = this.state.coordinates;

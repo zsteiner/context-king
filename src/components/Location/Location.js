@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { LocationContext } from '../../contexts/LocationContext';
+
+import styles from './Location.module.scss';
 
 class Location extends Component {
   constructor(props, context) {
@@ -27,7 +30,7 @@ class Location extends Component {
     return (
       <LocationContext.Consumer>
         {context => (
-          <section>
+          <section className={styles.location}>
             <form onSubmit={context.updateLocation}>
               <input
                 placeholder="Enter Location"
@@ -38,10 +41,10 @@ class Location extends Component {
             <button onClick={this.props.getLocation}>
               use current location
             </button>
-            <p>
-              {context.coordinates[0]}, {context.coordinates[1]}
-            </p>
             <p>{context.locationName}</p>
+            <small>
+              {context.coordinates[0]}, {context.coordinates[1]}
+            </small>
           </section>
         )}
       </LocationContext.Consumer>
