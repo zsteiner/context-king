@@ -3,23 +3,23 @@ export default function colorValue(value) {
 
   const temps = {
     high: {
-      temp: 80,
+      temp: 79,
       hue: 12
     },
     medHigh: {
-      temp: 60,
+      temp: 59,
       hue: 29
     },
     medLow: {
-      temp: 40,
+      temp: 39,
       hue: 133
     },
     low: {
-      temp: 30,
+      temp: 29,
       hue: 209
     },
     exLow: {
-      temp: 29,
+      temp: 28,
       hue: 209
     }
   };
