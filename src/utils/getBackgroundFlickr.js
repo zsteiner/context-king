@@ -7,8 +7,6 @@ export default function getBackgroundFlickr(lat, lon) {
 
   let root = document.documentElement;
 
-  console.log('flickr', api);
-
   axios
     .get(api)
     .then(response => {
