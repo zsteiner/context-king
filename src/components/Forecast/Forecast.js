@@ -10,9 +10,17 @@ const Forecast = () => {
     <LocationContext.Consumer>
       {context => (
         <section className={styles.forecast}>
-          <p>{context.forecast.currently.summary}</p>
-          <p>{context.forecast.daily.summary}</p>
           <CurrentMeter forecast={context.forecast} />
+          <div className={styles.forecastInfo}>
+            <h2 className={styles.forecastConditions}>
+              {context.forecast.currently.summary}
+            </h2>
+
+            <p>
+              <strong className={styles.forecastSummary}>This week: </strong>
+              {context.forecast.daily.summary}
+            </p>
+          </div>
         </section>
       )}
     </LocationContext.Consumer>

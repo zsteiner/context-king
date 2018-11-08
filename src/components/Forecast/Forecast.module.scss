@@ -1,3 +1,13 @@
 .forecast {
   padding: 1rem 0;
+  display: flex;
+
+  &Info {
+    margin-left: 2rem;
+  }
+
+  &Conditions {
+    margin: 0 0 1.5rem;
+    font-weight: 200;
+  }
 }

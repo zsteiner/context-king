@@ -12,10 +12,10 @@ $current-size: 1rem;
   z-index: 100;
 
   &Container {
-    padding: 0 0.5rem;
+    padding: 0 1rem;
     max-height: $current-meter + 2rem;
     overflow: hidden;
-    margin: 2rem 0 0;
+    flex: 0 0 auto;
   }
 
   &Track {
