@@ -1,6 +1,9 @@
 .forecast {
   padding: 1rem 0;
-  display: flex;
+
+  &Current {
+    display: flex;
+  }
 
   &Info {
     margin-left: 2rem;

@@ -1,0 +1,32 @@
+@import "../../styles/variables";
+
+.forecastDay {
+  position: relative;
+  padding: 1rem 0;
+
+  &:not(:last-child) {
+    border-bottom: $border;
+  }
+}
+
+.day {
+  margin-right: 0.5rem;
+  font-weight: 700;
+}
+
+$temp-size: 2rem;
+
+.tempHigh {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -($temp-size / 2);
+  color: $white;
+  height: $temp-size;
+  width: $temp-size;
+  text-align: center;
+  background: var(--temp-high);
+  padding: 0.325rem 0;
+  border-radius: 50%;
+  line-height: 1.325;
+}
