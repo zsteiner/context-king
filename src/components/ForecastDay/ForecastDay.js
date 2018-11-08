@@ -16,7 +16,7 @@ const ForecastDay = ({ forecast, timezone }) => {
       <time dateTime={forecast.time} className={styles.day}>
         {formattedTime}
       </time>
-      {forecast.summary}
+      <span className={styles.summary}>{forecast.summary}</span>
       <span className={styles.tempHigh}>
         {Math.round(forecast.temperatureHigh)}
       </span>
