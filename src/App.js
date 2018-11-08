@@ -5,7 +5,7 @@ import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
 
 import Loading from './components/Loading/Loading';
 import Location from './components/Location/Location';
-import Current from './components/Current/Current';
+import Forecast from './components/Forecast/Forecast';
 
 import { LocationContext } from './contexts/LocationContext';
 
@@ -137,32 +137,13 @@ class App extends Component {
 
   render() {
     const state = this.state;
-    const forecast = state.forecast;
-    const today = forecast.daily.data[0];
-
-    const temperatureMin = today.temperatureMin;
-    const temperatureMax = today.temperatureMax;
-    const temperatureLow = today.temperatureLow;
-    const temperatureHigh = today.temperatureHigh;
 
     return (
       <article className={styles.app}>
         <LocationContext.Provider value={this.state}>
           <Location />
+          {state.fetchingForecast ? <Loading /> : <Forecast />}
         </LocationContext.Provider>
-        {state.fetchingForecast ? (
-          <Loading />
-        ) : (
-          <Current
-            temperature={forecast.currently.temperature}
-            temperatureHigh={
-              temperatureMax > temperatureHigh ? temperatureMax : temperatureMax
-            }
-            temperatureLow={
-              temperatureMin < temperatureLow ? temperatureMin : temperatureLow
-            }
-          />
-        )}
       </article>
     );
   }
