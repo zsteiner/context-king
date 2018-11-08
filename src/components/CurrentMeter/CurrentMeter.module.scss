@@ -4,13 +4,6 @@ $current-meter: 6rem;
 $current-border: $border-width * 2;
 $current-size: 1rem;
 
-:root {
-  --current-position: 180deg;
-  --temp-low: hsl(209, 85%, 50%);
-  --marker-color: var(--temp-low);
-  --temp-high: hsl(12, 85%, 50%);
-}
-
 .current {
   width: $current-meter * 2;
   height: $current-meter * 2;

@@ -1,9 +1,22 @@
-@import "variables";
+@import "./variables";
+
+:root {
+  --background-image: url(https://images.unsplash.com/photo-1423450822265-fcd97e52ecb5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3e6ed302845f2b613db01aba27abe01d&auto=format&fit=crop&w=2620&q=80);
+  --current-position: 180deg;
+  --temp-low: hsl(209, 85%, 50%);
+  --marker-color: var(--temp-low);
+  --temp-high: hsl(12, 85%, 50%);
+}
 
 *,
 *::before,
 *::after {
   box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
@@ -13,6 +26,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
+  background-image: var(--background-image);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 code {

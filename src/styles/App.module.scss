@@ -2,6 +2,10 @@
 
 .app {
   padding: 1rem;
+  margin: 3rem auto;
+  background: $white;
+  max-width: 50rem;
+  box-shadow: 0 0 1rem 0 grey;
 
   &Header {
     padding: 1rem 0;
