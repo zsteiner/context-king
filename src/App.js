@@ -10,7 +10,7 @@ import Forecast from './components/Forecast/Forecast';
 import { LocationContext } from './contexts/LocationContext';
 
 import styles from './styles/App.module.scss';
-import getBackground from './utils/getBackground';
+import getBackgroundFlickr from './utils/getBackgroundFlickr';
 
 const apiKeyMapbox =
   'pk.eyJ1IjoienN0ZWluZXIiLCJhIjoiTXR4U0tyayJ9.6BxBAjPyMHbt1YfD5HWGXA';
@@ -28,7 +28,7 @@ class App extends Component {
       forecast: mockForecast,
       getLocation: this.getLocation,
       location: {},
-      locationName: '',
+      locationName: 'Denver',
       enteredLocation: '',
       updateLocation: this.updateLocation,
       updateLocationName: this.updateLocationName
@@ -49,7 +49,7 @@ class App extends Component {
     const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely,hourly`;
 
     this.setLoading();
-    getBackground(this.state.location.text);
+    getBackgroundFlickr(lat, lon);
 
     jsonp(api, null, (error, response) => {
       if (error) {
