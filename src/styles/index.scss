@@ -1,7 +1,8 @@
 @import "./variables";
 
 :root {
-  --background-image: url(https://images.unsplash.com/photo-1423450822265-fcd97e52ecb5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3e6ed302845f2b613db01aba27abe01d&auto=format&fit=crop&w=2620&q=80);
+  --background-image: none;
+  --background-color: black;
   --current-position: 180deg;
   --temp-low: hsl(209, 85%, 50%);
   --marker-color: var(--temp-low);
@@ -21,12 +22,13 @@ body {
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 3rem 0;
   font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   background-image: var(--background-image);
+  background-color: var(--background-color);
   background-repeat: no-repeat;
   background-size: cover;
 }

@@ -10,6 +10,7 @@ import Forecast from './components/Forecast/Forecast';
 import { LocationContext } from './contexts/LocationContext';
 
 import styles from './styles/App.module.scss';
+import getBackground from './utils/getBackground';
 
 const apiKeyMapbox =
   'pk.eyJ1IjoienN0ZWluZXIiLCJhIjoiTXR4U0tyayJ9.6BxBAjPyMHbt1YfD5HWGXA';
@@ -48,6 +49,7 @@ class App extends Component {
     const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely,hourly`;
 
     this.setLoading();
+    getBackground(this.state.location.text);
 
     jsonp(api, null, (error, response) => {
       if (error) {
