@@ -25,8 +25,8 @@ const Forecast = () => {
               </h2>
 
               <p>
-                <strong className={styles.forecastSummary}>This week: </strong>
-                {context.forecast.daily.summary}
+                <strong className={styles.forecastSummary}>Today: </strong>
+                {context.forecast.daily.data[0].summary}
               </p>
             </div>
           </header>
