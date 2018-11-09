@@ -23,8 +23,8 @@ const ForecastDay = ({ forecast, timezone }) => {
       <TemperatureRange
         temperatureLow={forecast.temperatureLow}
         temperatureHigh={forecast.temperatureHigh}
-        temperatureMax={forecast.temperatureMax}
-        temperatureMin={forecast.temperatureMin}
+        temperatureMax={59}
+        temperatureMin={17}
       />
     </li>
   );

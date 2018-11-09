@@ -11,17 +11,21 @@ const TemperatureRange = ({
   temperatureMax,
   temperatureMin
 }) => {
-  const tempRange = temperatureHigh - temperatureLow;
+  const overallRange = temperatureMax - temperatureMin;
+  const tempRange = ((temperatureHigh - temperatureLow) / overallRange) * 100;
+  const position = (temperatureHigh / temperatureMax) * 100 - 100;
 
   return (
     <div className={styles.tempRange}>
-      <span className={styles.tempHigh}>
-        <Temperature temp={temperatureLow} />
-      </span>
-      <span className={styles.range} width={`${tempRange}rem`} />
-      <span className={styles.tempHigh}>
-        <Temperature temp={temperatureHigh} />
-      </span>
+      <div className={styles.tempRangeBar} style={{ left: `${position}%` }}>
+        <span className={styles.tempHigh}>
+          <Temperature temp={temperatureLow} />
+        </span>
+        <span className={styles.range} style={{ width: `${tempRange}%` }} />
+        <span className={styles.tempHigh}>
+          <Temperature temp={temperatureHigh} />
+        </span>
+      </div>
     </div>
   );
 };

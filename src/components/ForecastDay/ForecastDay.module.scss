@@ -1,7 +1,9 @@
 @import "../../styles/variables";
 
 .forecastDay {
-  display: flex;
+  display: grid;
+  grid-template-columns: 50% 1fr;
+  grid-column-gap: 1rem;
   position: relative;
   padding: 1rem 0;
 
