@@ -12,7 +12,6 @@ export default function getBackground(search) {
     .get(api)
     .then(response => {
       const data = response.data;
-      console.log('unsplash', api);
       root.style.setProperty('--background-image', `url(${data.urls.full})`);
       root.style.setProperty('--background-color', data.color);
     })

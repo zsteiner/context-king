@@ -10,7 +10,7 @@ import Forecast from './components/Forecast/Forecast';
 import { LocationContext } from './contexts/LocationContext';
 
 import styles from './styles/App.module.scss';
-import getBackgroundFlickr from './utils/getBackgroundFlickr';
+import getBackground from './utils/getBackground';
 
 const apiKeyMapbox =
   'pk.eyJ1IjoienN0ZWluZXIiLCJhIjoiTXR4U0tyayJ9.6BxBAjPyMHbt1YfD5HWGXA';
@@ -49,7 +49,6 @@ class App extends Component {
     const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely,hourly`;
 
     this.setLoading();
-    getBackgroundFlickr(lat, lon);
 
     jsonp(api, null, (error, response) => {
       if (error) {
@@ -65,7 +64,6 @@ class App extends Component {
 
   reverseLookup = (lat, lon) => {
     this.setLoading();
-
     geocodingClient
       .reverseGeocode({
         query: [lon, lat],
@@ -77,6 +75,8 @@ class App extends Component {
         const location = response.body.features[0];
         const name = location.text;
         const state = location.context[0].text;
+
+        getBackground(location.context[0].text);
 
         this.setState({
           location: location,
@@ -126,7 +126,10 @@ class App extends Component {
           location: location,
           locationName: `${name}, ${state}`
         });
+
         const coordinates = this.state.coordinates;
+
+        getBackground(location.context[0].text);
         this.getForecast(coordinates[1], coordinates[0]);
       });
   };
