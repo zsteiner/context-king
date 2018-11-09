@@ -1,0 +1,16 @@
+.tempRange {
+  display: flex;
+  flex: 1 1 50%;
+  align-items: center;
+  margin-left: 1rem;
+  justify-content: center;
+}
+
+.range {
+  display: block;
+  background: black;
+  height: 1rem;
+  min-width: 2rem;
+  border-radius: 0.5rem;
+  margin: 0 0.325rem;
+}

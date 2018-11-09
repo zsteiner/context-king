@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import temperaturePosition from '../../utils/temperaturePosition';
 import temperatureColor from '../../utils/temperatureColor';
 
+import Temperature from '../Temperature/Temperature';
+
 import styles from './CurrentMeter.module.scss';
 
 const CurrentMeter = ({ forecast }) => {
@@ -30,16 +32,13 @@ const CurrentMeter = ({ forecast }) => {
       <div className={styles.current}>
         <div className={styles.currentTrack} />
         <label className={styles.currentLabel}>
-          {Math.round(temperatureLow)}
-          <sup>&deg;</sup>
+          <Temperature temp={temperatureLow} />
         </label>
         <span className={styles.currentTemperature}>
-          {Math.round(temperature)}
-          <sup>&deg;</sup>
+          <Temperature temp={temperature} />
         </span>
         <label className={styles.currentLabel}>
-          {Math.round(temperatureHigh)}
-          <sup>&deg;</sup>
+          <Temperature temp={temperatureHigh} />
         </label>
       </div>
     </div>
