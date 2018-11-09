@@ -6,6 +6,7 @@ import CurrentMeter from '../CurrentMeter/CurrentMeter';
 import DailyForecast from '../DailyForecast/DailyForecast';
 
 import styles from './Forecast.module.scss';
+import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
 const Forecast = () => {
   return (
@@ -16,6 +17,10 @@ const Forecast = () => {
             <CurrentMeter forecast={context.forecast} />
             <div className={styles.forecastInfo}>
               <h2 className={styles.forecastConditions}>
+                <WeatherIcon
+                  conditions={context.forecast.currently.icon}
+                  className={styles.icon}
+                />
                 {context.forecast.currently.summary}
               </h2>
 

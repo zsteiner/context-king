@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './ForecastDay.module.scss';
 import TemperatureRange from '../TemperatureRange/TemperatureRange';
+import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
 const ForecastDay = ({ extremes, forecast, timezone }) => {
   const date = new Date(forecast.time * 1000);
@@ -14,6 +15,7 @@ const ForecastDay = ({ extremes, forecast, timezone }) => {
 
   return (
     <li className={styles.forecastDay}>
+      <WeatherIcon conditions={forecast.icon} className={styles.icon} />
       <div className={styles.forecastDayMeta}>
         <time dateTime={forecast.time} className={styles.day}>
           {formattedTime}
