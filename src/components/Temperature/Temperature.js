@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import styles from './Temperature.module.scss';
 
-const Temperature = ({ temp }) => {
+const Temperature = ({ temp, className }) => {
   const tempRounded = temp ? Math.round(temp) : 0;
   return (
-    <span className={styles.temp}>
+    <span className={`${styles.temp} ${className}`}>
       {tempRounded}
       <sup>&deg;</sup>
     </span>
@@ -14,6 +14,7 @@ const Temperature = ({ temp }) => {
 };
 
 Temperature.propTypes = {
+  className: PropTypes.number,
   temp: PropTypes.number
 };
 
