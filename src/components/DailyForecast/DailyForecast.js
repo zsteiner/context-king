@@ -10,7 +10,7 @@ import styles from './DailyForecast.module.scss';
 const DailyForecast = ({ daily, timezone }) => {
   const extremes = {
     max: 0,
-    min: 0
+    min: 100
   };
 
   const dailyForecast = daily.data.map((item, index) => {
