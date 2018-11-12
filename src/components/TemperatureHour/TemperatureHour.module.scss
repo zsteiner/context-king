@@ -16,20 +16,21 @@ $temp-size: 2rem;
   justify-content: center;
   align-items: center;
   margin-left: -1.5em;
+  margin-bottom: -0.25em;
   transition: all 0.3s linear;
 
   &[style] {
-    @media (max-width: $large) {
+    @media (max-width: $medium) {
       bottom: 0 !important;
     }
 
-    @include respond-to(large) {
+    @include respond-to(medium) {
       bottom: inherit;
       left: 50% !important;
     }
   }
 
-  @include respond-to(large) {
+  @include respond-to(medium) {
     left: 50%;
     margin-bottom: -1rem;
     margin-left: -1em;
