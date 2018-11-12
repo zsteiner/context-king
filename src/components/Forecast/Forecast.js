@@ -4,6 +4,7 @@ import { LocationContext } from '../../contexts/LocationContext';
 
 import CurrentMeter from '../CurrentMeter/CurrentMeter';
 import DailyForecast from '../DailyForecast/DailyForecast';
+import HourlyForecast from '../HourlyForecast/HourlyForecast';
 import Temperature from '../Temperature/Temperature';
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
@@ -39,6 +40,7 @@ const Forecast = () => {
               </p>
             </div>
           </header>
+          <HourlyForecast hourly={context.forecast.hourly} />
           <DailyForecast daily={context.forecast.daily} />
         </section>
       )}

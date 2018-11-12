@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './DailyForecast.module.scss';
+import calcExtremes from '../../utils/calcExtremes';
+
 import ForecastDay from '../ForecastDay/ForecastDay';
+
+import styles from './DailyForecast.module.scss';
 
 const DailyForecast = ({ daily, timezone }) => {
   const extremes = {
@@ -11,11 +14,7 @@ const DailyForecast = ({ daily, timezone }) => {
   };
 
   const dailyForecast = daily.data.map((item, index) => {
-    extremes.max =
-      item.temperatureMax > extremes.max ? item.temperatureMax : extremes.max;
-
-    extremes.min =
-      item.temperatureMin < extremes.min ? item.temperatureMin : extremes.min;
+    calcExtremes(extremes, item.temperatureMax, item.temperatureMin);
 
     return (
       <ForecastDay

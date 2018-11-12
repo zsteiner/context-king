@@ -46,7 +46,7 @@ class App extends Component {
   };
 
   getForecast = (lat, lon) => {
-    const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely,hourly`;
+    const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely`;
 
     this.setLoading();
 
