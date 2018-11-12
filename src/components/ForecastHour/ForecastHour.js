@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './ForecastHour.module.scss';
+import Percentage from '../Percentage/Percentage';
 import TemperatureHour from '../TemperatureHour/TemperatureHour';
+
+import styles from './ForecastHour.module.scss';
 
 const ForecastHour = ({ extremes, forecast, timezone }) => {
   const date = new Date(forecast.time * 1000);
@@ -14,10 +16,6 @@ const ForecastHour = ({ extremes, forecast, timezone }) => {
 
   return (
     <li className={styles.forecastHour}>
-      <time dateTime={forecast.time} className={styles.day}>
-        {formattedTime}
-      </time>
-      <p className={styles.summary}>{forecast.summary}</p>
       <div className={styles.temperatures}>
         <TemperatureHour
           temperature={forecast.temperature}
@@ -25,6 +23,15 @@ const ForecastHour = ({ extremes, forecast, timezone }) => {
           temperatureMin={extremes.min}
         />
       </div>
+      <time dateTime={forecast.time} className={styles.day}>
+        {formattedTime}
+      </time>
+
+      {forecast.precipProbability > 0 ? (
+        <div className={styles.precipitation}>
+          <Percentage number={forecast.precipProbability} />
+        </div>
+      ) : null}
     </li>
   );
 };

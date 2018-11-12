@@ -5,8 +5,9 @@ $temp-size: 2rem;
 .temp {
   position: absolute;
   font-size: 0.875rem;
-  margin-left: -2rem;
-  margin-top: -0.5em;
+  margin-left: -1em;
+  margin-top: -1em;
+  left: 50%;
   background: black;
   color: $white;
   border-radius: 50%;

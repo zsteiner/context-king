@@ -10,11 +10,11 @@ import styles from './HourlyForecast.module.scss';
 const HourlyForecast = ({ hourly, timezone }) => {
   const extremes = {
     max: 0,
-    min: 0
+    min: 100
   };
 
-  const hourlyForecast = hourly.data.slice(1, 24).map((item, index) => {
-    calcExtremes(extremes, item.temperature, 0);
+  const hourlyForecast = hourly.data.slice(1, 13).map((item, index) => {
+    calcExtremes(extremes, item.temperature, item.temperature);
 
     return (
       <ForecastHour

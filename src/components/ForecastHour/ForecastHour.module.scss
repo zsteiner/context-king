@@ -2,14 +2,14 @@
 
 .forecastHour {
   position: relative;
+  text-align: center;
   display: grid;
-  grid-template-columns: 4rem 1fr 50%;
-  padding: 0.75rem 0;
+  grid-template-rows: 1fr 1.5em 1.5em;
+  grid-auto-flow: dense;
 }
 
 .day {
   font-weight: 700;
-  text-align: right;
 }
 
 .summary {
@@ -20,4 +20,14 @@
 
 .temperatures {
   position: relative;
+  margin: 1rem 0;
+}
+
+.precipitation {
+  font-size: 0.875rem;
+  opacity: 0.55;
+}
+
+.icon {
+  width: 100%;
 }
