@@ -27,11 +27,11 @@ const ForecastHour = ({ extremes, forecast, timezone }) => {
         {formattedTime}
       </time>
 
-      {forecast.precipProbability > 0 ? (
-        <div className={styles.precipitation}>
+      <div className={styles.precipitation}>
+        {forecast.precipProbability > 0 ? (
           <Percentage number={forecast.precipProbability} />
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </li>
   );
 };

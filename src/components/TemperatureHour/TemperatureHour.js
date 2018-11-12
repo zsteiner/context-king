@@ -11,7 +11,10 @@ const TemperatureHour = ({ temperature, temperatureMax, temperatureMin }) => {
   const position = (temperatureOffset / temperatureRange) * 100;
 
   return (
-    <span className={styles.temp} style={{ bottom: `${position}%` }}>
+    <span
+      className={styles.temp}
+      style={{ left: `${position}%`, bottom: `${position}%` }}
+    >
       <Temperature temp={temperature} />
     </span>
   );

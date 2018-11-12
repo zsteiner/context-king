@@ -2,5 +2,6 @@
   "extends": "stylelint-config-standard",
   "rules": {
     "unit-whitelist": ["em", "rem", "vh", "vw", "deg", "%", "s", "fr"],
+    "at-rule-no-unknown": [true, "ignoreAtRules": ['mixin', 'include']]
   }
 }

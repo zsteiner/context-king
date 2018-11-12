@@ -2,14 +2,30 @@
 
 .forecastHour {
   position: relative;
-  text-align: center;
-  display: grid;
-  grid-template-rows: 1fr 1.5em 1.5em;
-  grid-auto-flow: dense;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+
+  @include respond-to(large) {
+    display: grid;
+    grid-template-rows: 1fr 1.5em 1.5em;
+    text-align: center;
+    padding: 0;
+  }
 }
 
 .day {
   font-weight: 700;
+  font-size: 0.875rem;
+  flex: 0 0 3rem;
+  margin-right: 1rem;
+  text-align: right;
+
+  @include respond-to(large) {
+    font-size: 1rem;
+    margin: 0;
+    text-align: center;
+  }
 }
 
 .summary {
@@ -20,12 +36,30 @@
 
 .temperatures {
   position: relative;
-  margin: 1rem 0;
+  order: 3;
+  min-height: 1.5rem;
+  flex: 1 1 50%;
+  text-align: right;
+  margin: 0 1rem;
+
+  @include respond-to(large) {
+    text-align: center;
+    height: calc(100% - 2rem);
+    margin: 0;
+    margin-bottom: 2rem;
+    order: 0;
+  }
 }
 
 .precipitation {
   font-size: 0.875rem;
   opacity: 0.55;
+  flex: 0 0 3rem;
+  margin-right: 1rem;
+
+  @include respond-to(large) {
+    margin: 0;
+  }
 }
 
 .icon {

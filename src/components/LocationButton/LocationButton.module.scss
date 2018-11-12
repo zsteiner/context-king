@@ -5,6 +5,11 @@
   border: 0;
   font-size: 1rem;
   color: $blue;
+  margin-top: 1rem;
+
+  @include respond-to(medium) {
+    margin: 0;
+  }
 }
 
 .icon {

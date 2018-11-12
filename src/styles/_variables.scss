@@ -17,3 +17,9 @@ $font-family: -apple-system, BlinkMacSystemFont, system-ui, Roboto, Segoe UI,
   Helvetica Neue, Lucida Grande, Helvetica, Arial, sans-serif;
 $font-family-mono: source-code-pro, Menlo, Monaco, Consolas, Courier New,
   monospace;
+
+$small: 24rem;
+$medium: 36rem;
+$large: 50rem;
+
+@import "./mixins";

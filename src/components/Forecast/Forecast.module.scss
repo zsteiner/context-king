@@ -1,13 +1,23 @@
+@import "../../styles/variables";
+
 .forecast {
   padding: 1rem 0;
 
   &Current {
-    display: flex;
     margin-bottom: 3rem;
+
+    @include respond-to(medium) {
+      display: flex;
+    }
   }
 
   &Info {
-    margin-left: 2rem;
+    margin-top: 2rem;
+
+    @include respond-to(medium) {
+      margin-top: 0;
+      margin-left: 2rem;
+    }
   }
 
   &Conditions {

@@ -22,19 +22,22 @@ body {
 
 body {
   margin: 0;
-  padding: 3rem 0;
   font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  background-image: var(--background-image);
-  background-color: var(--background-color);
   background-color: white;
   background-repeat: no-repeat;
   background-size: cover;
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
+
+  @include respond-to(large) {
+    background-image: var(--background-image);
+    background-color: var(--background-color);
+    padding: 3rem 0;
+  }
 }
 
 code {

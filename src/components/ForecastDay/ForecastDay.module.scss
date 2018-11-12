@@ -2,10 +2,14 @@
 
 .forecastDay {
   display: grid;
-  grid-template-columns: 2.5rem 50% 1fr;
+  grid-template-columns: 1.5rem 8rem 1fr;
   grid-column-gap: 1rem;
   position: relative;
   padding: 1rem 0;
+
+  @include respond-to(medium) {
+    grid-template-columns: 2.5rem 30% 1fr;
+  }
 
   &:not(:last-child) {
     border-bottom: $border;
