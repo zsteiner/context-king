@@ -1,6 +1,6 @@
 @import "../../styles/variables";
 
-$label-size: 1.75rem;
+$label-size: 2rem;
 
 .tempRange {
   position: relative;
@@ -31,10 +31,10 @@ $label-size: 1.75rem;
   top: 0;
 
   &:first-child {
-    left: -$label-size;
+    left: -($label-size - 0.25rem);
   }
 
   &:last-child {
-    right: -$label-size;
+    right: -($label-size - 0.25rem);
   }
 }
