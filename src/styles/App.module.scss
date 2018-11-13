@@ -1,9 +1,10 @@
 @import "./variables";
 
 .app {
+  position: relative;
   padding: 1rem;
   margin: auto;
-  background: $white;
+  background: var(--background-color);
   max-width: $large;
 
   &Header {

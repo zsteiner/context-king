@@ -26,18 +26,9 @@ $current-size: 1rem;
     background: linear-gradient(to right, var(--temp-low), var(--temp-high));
     border-top-left-radius: $current-meter * 2;
     border-top-right-radius: $current-meter * 2;
-
-    &::after {
-      position: absolute;
-      content: "";
-      left: $current-size;
-      top: $current-size;
-      width: ($current-meter * 2) - ($current-size * 2);
-      height: $current-meter - $current-size;
-      border-top-left-radius: $current-meter * 2;
-      border-top-right-radius: $current-meter * 2;
-      background: $white;
-    }
+    mask: url("/images/meter.svg") 0 0;
+    mask-repeat: no-repeat;
+    mask-size: cover;
   }
 
   &::after {

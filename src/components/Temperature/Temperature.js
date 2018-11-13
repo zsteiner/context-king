@@ -14,7 +14,7 @@ const Temperature = ({ temp, className }) => {
 };
 
 Temperature.propTypes = {
-  className: PropTypes.number,
+  className: PropTypes.string,
   temp: PropTypes.number
 };
 
