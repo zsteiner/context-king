@@ -21,10 +21,6 @@ export default function getBackground(search) {
 
       root.style.setProperty('--background-image', `url(${data.urls.full})`);
       root.style.setProperty('--background-color', calcColor);
-
-      const backgroundImage = data;
-      console.log('backgroundImage', backgroundImage);
-      return backgroundImage;
     })
     .catch(err => {
       console.log('Error happened during fetching!', err);

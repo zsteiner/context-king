@@ -80,6 +80,8 @@ class App extends Component {
         const state = location.context[0].text;
         const backgroundImage = getBackground(location.context[0].text);
 
+        console.log('App backgroundImage', backgroundImage);
+
         this.setState({
           location: location,
           locationName: `${name}, ${state}`,
@@ -125,7 +127,9 @@ class App extends Component {
         const state = location.context[0].text;
         const backgroundImage = getBackground(location.context[0].text);
         const coordinates = this.state.coordinates;
+
         this.getForecast(coordinates[1], coordinates[0]);
+        console.log('App Location backgroundImage', backgroundImage);
 
         this.setState({
           coordinates: location.center,

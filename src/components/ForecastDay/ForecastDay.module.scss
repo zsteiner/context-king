@@ -2,11 +2,11 @@
 
 .forecastDay {
   display: grid;
+  position: relative;
+  max-width: 100%;
+  padding: 1rem 0;
   grid-template-columns: 1.5rem 6rem 1fr;
   grid-column-gap: 1rem;
-  position: relative;
-  padding: 1rem 0;
-  max-width: 100%;
   overflow: hidden;
 
   @include respond-to(small) {
@@ -22,8 +22,8 @@
   }
 
   &Meta {
-    flex: 0 0 45%;
     margin-right: 1rem;
+    flex: 0 0 45%;
   }
 }
 
