@@ -1,11 +1,11 @@
 @import "../../styles/variables";
 
 .button {
-  background: none;
-  border: 0;
-  font-size: 1rem;
-  color: $blue;
   margin-top: 1rem;
+  background: none;
+  color: $blue;
+  font-size: 1rem;
+  border: 0;
 
   @include respond-to(medium) {
     margin: 0;
@@ -16,8 +16,8 @@
   position: relative;
   height: 1em;
   width: 1em;
+  bottom: -0.125em;
   margin-right: 0.5rem;
   fill: currentColor;
   vertical-align: baseline;
-  bottom: -0.125em;
 }

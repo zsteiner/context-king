@@ -3,21 +3,21 @@
 $temp-size: 2rem;
 
 .temp {
+  display: inline-flex;
   position: absolute;
-  font-size: 0.875rem;
-  background: black;
-  color: $white;
-  border-radius: 50%;
-  padding: 0.25rem 0;
-  text-align: center;
   height: $temp-size;
   width: $temp-size;
-  display: inline-flex;
+  margin-bottom: -0.25em;
+  margin-left: -1.5em;
+  padding: 0.25rem 0;
+  background: black;
+  color: $white;
+  font-size: 0.875rem;
+  text-align: center;
+  border-radius: 50%;
+  transition: all 0.3s linear;
   justify-content: center;
   align-items: center;
-  margin-left: -1.5em;
-  margin-bottom: -0.25em;
-  transition: all 0.3s linear;
 
   &[style] {
     @media (max-width: $medium) {

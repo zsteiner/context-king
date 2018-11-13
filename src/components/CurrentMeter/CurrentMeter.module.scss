@@ -5,9 +5,9 @@ $current-border: $border-width * 2;
 $current-size: 1rem;
 
 .current {
-  width: $current-meter * 2;
-  height: $current-meter * 2;
   position: relative;
+  height: $current-meter * 2;
+  width: $current-meter * 2;
   text-align: center;
   z-index: 100;
 
@@ -20,8 +20,8 @@ $current-size: 1rem;
 
   &Track {
     position: relative;
-    width: $current-meter * 2;
     height: $current-meter;
+    width: $current-meter * 2;
     background: $grey;
     background: linear-gradient(to right, var(--temp-low), var(--temp-high));
     border-top-left-radius: $current-meter * 2;
@@ -32,27 +32,27 @@ $current-size: 1rem;
   }
 
   &::after {
+    display: block;
     position: absolute;
     content: "";
-    display: block;
+    height: $current-size;
+    width: $current-size;
     top: 50%;
     left: 50%;
+    margin: -($current-size / 2);
+    background-color: var(--marker-color);
+    border: $current-border solid $white;
+    border-radius: 50%;
     transform:
       rotate(var(--current-position))
       translate($current-meter - ($current-size / 2));
-    height: $current-size;
-    width: $current-size;
-    margin: -($current-size / 2);
-    background-color: var(--marker-color);
-    border-radius: 50%;
-    border: $current-border solid $white;
   }
 
   &Temperature {
     position: relative;
+    top: -1em;
     font-size: $current-meter / 1.75;
     font-weight: 900;
-    top: -1em;
   }
 
   &Label {

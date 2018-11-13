@@ -32,11 +32,14 @@
         "properties": [
           "display",
           "position",
+          "content",
           "box-sizing",
           "height",
           "min-height",
+          "max-height",
           "width",
           "min-width",
+          "max-width",
           "top",
           "right",
           "bottom",
@@ -59,7 +62,14 @@
           "background-attachment",
           "background-repeat",
           "color",
-          "font-size"
+          "font-size",
+          "font-weight",
+          "text-align",
+          "border",
+          "border-radius",
+          "transform",
+          "transition",
+          "animation"
         ]
       }
     ]

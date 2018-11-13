@@ -1,25 +1,25 @@
 @import "../../styles/variables";
 
 .forecastHour {
-  position: relative;
   display: flex;
-  align-items: center;
+  position: relative;
   padding: 0.625rem 0;
+  align-items: center;
 
   @include respond-to(medium) {
     display: grid;
-    grid-template-rows: 1fr 1.5em 1.5em;
-    text-align: center;
     padding: 0;
+    text-align: center;
+    grid-template-rows: 1fr 1.5em 1.5em;
   }
 }
 
 .day {
-  font-weight: 700;
-  font-size: 0.875rem;
-  flex: 0 0 3rem;
   margin-right: 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
   text-align: right;
+  flex: 0 0 3rem;
 
   @include respond-to(medium) {
     margin: 0;
@@ -32,33 +32,33 @@
 }
 
 .summary {
+  margin: 0 1rem;
   font-size: 0.75rem;
   opacity: 0.85;
-  margin: 0 1rem;
 }
 
 .temperatures {
   position: relative;
-  order: 3;
   min-height: 1.5rem;
-  flex: 1 1 50%;
-  text-align: right;
   margin: 0 1rem;
+  text-align: right;
+  order: 3;
+  flex: 1 1 50%;
 
   @include respond-to(medium) {
-    text-align: center;
     height: calc(100% - 2rem);
     margin: 0;
     margin-bottom: 2rem;
+    text-align: center;
     order: 0;
   }
 }
 
 .precipitation {
-  font-size: 0.875rem;
-  color: $blue;
-  flex: 0 0 3rem;
   margin-right: 1rem;
+  color: $blue;
+  font-size: 0.875rem;
+  flex: 0 0 3rem;
 
   @include respond-to(medium) {
     margin: 0;
