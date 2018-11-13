@@ -14,9 +14,12 @@ export default function getBackground(search) {
     .then(response => {
       const data = response.data;
 
-      const calcColor = Color.rgb(data.color)
-        .mix(Color('white'), 0.85)
-        .fade(0.1);
+      const color = Color(data.color);
+
+      const calcColor = color
+        .mix(Color('white'), 0.75)
+        .fade(0.15)
+        .string();
       console.log('calcColor', calcColor);
 
       root.style.setProperty('--background-image', `url(${data.urls.full})`);
