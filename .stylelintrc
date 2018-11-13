@@ -1,7 +1,67 @@
 {
   "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-order"
+  ],
   "rules": {
-    "unit-whitelist": ["em", "rem", "vh", "vw", "deg", "%", "s", "fr"],
-    "at-rule-no-unknown": [true, "ignoreAtRules": ['mixin', 'include']]
+    "unit-whitelist": [
+      "em",
+      "rem",
+      "vh",
+      "vw",
+      "deg",
+      "%",
+      "s",
+      "fr"
+    ],
+    "at-rule-no-unknown": [
+      true,
+      "ignoreAtRules": [
+        "mixin",
+        "include"
+      ]
+    ],
+    "order/order": [
+      "custom-properties",
+      "declarations",
+      "rules"
+    ],
+    "order/properties-order": [
+      {
+        "unspecified": "bottomAlphabetical",
+        "properties": [
+          "display",
+          "position",
+          "box-sizing",
+          "height",
+          "min-height",
+          "width",
+          "min-width",
+          "top",
+          "right",
+          "bottom",
+          "left",
+          "margin",
+          "margin-top",
+          "margin-right",
+          "margin-bottom",
+          "margin-left",
+          "padding",
+          "padding-top",
+          "padding-right",
+          "padding-bottom",
+          "padding-left",
+          "background",
+          "background-color",
+          "background-image",
+          "background-position",
+          "background-size",
+          "background-attachment",
+          "background-repeat",
+          "color",
+          "font-size"
+        ]
+      }
+    ]
   }
 }

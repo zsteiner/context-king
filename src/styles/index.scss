@@ -25,19 +25,19 @@ html {
 }
 
 body {
+  box-sizing: border-box;
+  min-height: 100%;
   margin: 0;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100%;
-  box-sizing: border-box;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
 
   @include respond-to(large) {
+    padding: 2rem 0;
     background-image: var(--background-image);
-    padding: 3rem 0;
   }
 }
 
@@ -64,9 +64,9 @@ a {
 }
 
 .svg-icon {
-  fill: currentColor;
-  width: auto;
   height: 1em;
-  vertical-align: middle;
+  width: auto;
   margin-right: 0.25em;
+  fill: currentColor;
+  vertical-align: middle;
 }

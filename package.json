@@ -33,6 +33,7 @@
   ],
   "devDependencies": {
     "stylelint": "^9.7.1",
-    "stylelint-config-standard": "^18.2.0"
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-order": "^1.0.0"
   }
 }

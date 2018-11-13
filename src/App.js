@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import jsonp from 'jsonp';
 import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
 
+import Attribution from './components/Attribution/Attribution';
 import Loading from './components/Loading/Loading';
 import Location from './components/Location/Location';
 import Forecast from './components/Forecast/Forecast';
@@ -16,6 +17,7 @@ const apiKeyMapbox =
   'pk.eyJ1IjoienN0ZWluZXIiLCJhIjoiTXR4U0tyayJ9.6BxBAjPyMHbt1YfD5HWGXA';
 const geocodingClient = mbxGeocoding({ accessToken: apiKeyMapbox });
 const mockForecast = require('./mockData/mockForecast.json');
+const mockImage = require('./mockData/mockImage.json');
 const apiDarkskyToken = '16eb53a912c674ef3028c1c421473d5e';
 
 class App extends Component {
@@ -23,6 +25,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      backgroundImage: mockImage,
       coordinates: [],
       fetchingForecast: true,
       forecast: mockForecast,
@@ -75,13 +78,13 @@ class App extends Component {
         const location = response.body.features[0];
         const name = location.text;
         const state = location.context[0].text;
-
-        getBackground(location.context[0].text);
+        const backgroundImage = getBackground(location.context[0].text);
 
         this.setState({
           location: location,
           locationName: `${name}, ${state}`,
-          enteredLocation: name
+          enteredLocation: name,
+          backgroundImage: backgroundImage
         });
       });
   };
@@ -120,17 +123,16 @@ class App extends Component {
         const location = response.body.features[0];
         const name = location.text;
         const state = location.context[0].text;
+        const backgroundImage = getBackground(location.context[0].text);
+        const coordinates = this.state.coordinates;
+        this.getForecast(coordinates[1], coordinates[0]);
 
         this.setState({
           coordinates: location.center,
           location: location,
-          locationName: `${name}, ${state}`
+          locationName: `${name}, ${state}`,
+          backgroundImage: backgroundImage
         });
-
-        const coordinates = this.state.coordinates;
-
-        getBackground(location.context[0].text);
-        this.getForecast(coordinates[1], coordinates[0]);
       });
   };
 
@@ -148,6 +150,7 @@ class App extends Component {
         <LocationContext.Provider value={this.state}>
           <Location />
           {state.fetchingForecast ? <Loading /> : <Forecast />}
+          <Attribution user={mockImage.user} />
         </LocationContext.Provider>
       </article>
     );

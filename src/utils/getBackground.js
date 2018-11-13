@@ -13,17 +13,18 @@ export default function getBackground(search) {
     .get(api)
     .then(response => {
       const data = response.data;
-
       const color = Color(data.color);
-
       const calcColor = color
         .mix(Color('white'), 0.75)
         .fade(0.12)
         .string();
-      console.log('calcColor', calcColor);
 
       root.style.setProperty('--background-image', `url(${data.urls.full})`);
       root.style.setProperty('--background-color', calcColor);
+
+      const backgroundImage = data;
+      console.log('backgroundImage', backgroundImage);
+      return backgroundImage;
     })
     .catch(err => {
       console.log('Error happened during fetching!', err);
