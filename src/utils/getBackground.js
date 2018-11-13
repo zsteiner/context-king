@@ -18,7 +18,7 @@ export default function getBackground(search) {
 
       const calcColor = color
         .mix(Color('white'), 0.75)
-        .fade(0.15)
+        .fade(0.12)
         .string();
       console.log('calcColor', calcColor);
 
