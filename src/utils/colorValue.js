@@ -20,7 +20,7 @@ export default function colorValue(value) {
     },
     exLow: {
       temp: 28,
-      hue: 209
+      hue: 190
     }
   };
 

@@ -46,7 +46,7 @@ class Location extends Component {
 
             <h1 className={styles.locationName}>{context.locationName}</h1>
             <small>
-              {context
+              {context.coordinates !== undefined
                 ? `${context.coordinates[0]}, ${context.coordinates[1]}`
                 : null}
             </small>
