@@ -54,17 +54,6 @@
   }
 }
 
-.precipitation {
-  margin-right: 1rem;
-  color: $blue;
-  font-size: 0.875rem;
-  flex: 0 0 3rem;
-
-  @include respond-to(medium) {
-    margin: 0;
-  }
-}
-
 .icon {
   width: 100%;
 }

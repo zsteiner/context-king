@@ -7,6 +7,7 @@ import Attribution from './components/Attribution/Attribution';
 import Loading from './components/Loading/Loading';
 import Location from './components/Location/Location';
 import Forecast from './components/Forecast/Forecast';
+import { ReactComponent as IconSet } from './assets/WeatherIcons.svg';
 
 import { LocationContext } from './contexts/LocationContext';
 
@@ -149,15 +150,16 @@ class App extends Component {
   render() {
     const state = this.state;
 
-    return (
-      <article className={styles.app}>
+    return [
+      <IconSet key={0} />,
+      <article key={1} className={styles.app}>
         <LocationContext.Provider value={this.state}>
           <Location />
           {state.fetchingForecast ? <Loading /> : <Forecast />}
           <Attribution user={mockImage.user} />
         </LocationContext.Provider>
       </article>
-    );
+    ];
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Percentage from '../Percentage/Percentage';
+import Precipitation from '../Precipitation/Precipitation';
 import TemperatureHour from '../TemperatureHour/TemperatureHour';
 
 import styles from './ForecastHour.module.scss';
@@ -27,11 +27,12 @@ const ForecastHour = ({ extremes, forecast, timezone }) => {
         {formattedTime}
       </time>
 
-      <div className={styles.precipitation}>
-        {forecast.precipProbability > 0 ? (
-          <Percentage number={forecast.precipProbability} />
-        ) : null}
-      </div>
+      {forecast.precipProbability > 0 ? (
+        <Precipitation
+          precipProbability={forecast.precipProbability}
+          temperature={forecast.temperature}
+        />
+      ) : null}
     </li>
   );
 };

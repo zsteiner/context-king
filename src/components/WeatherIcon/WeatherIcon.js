@@ -1,22 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './WeatherIcon.module.scss';
+import mapIcon from '../../utils/mapIcon';
 
-const WeatherIcon = ({ conditions, alt, className }) => {
+const WeatherIcon = ({ conditions, className, icon }) => {
+  const iconMapped = conditions ? mapIcon(conditions) : icon;
+
   return (
-    <img
-      src={`https://darksky.net/images/weather-icons/${conditions}.png`}
-      alt={alt ? alt : conditions}
-      className={`${styles.icon} ${className}`}
-    />
+    <React.Fragment>
+      <svg className={`${className} svg-icon`}>
+        <use xlinkHref={`#${iconMapped}`} />
+      </svg>
+    </React.Fragment>
   );
 };
 
 WeatherIcon.propTypes = {
-  alt: PropTypes.string,
   className: PropTypes.string,
-  conditions: PropTypes.string
+  conditions: PropTypes.string,
+  icon: PropTypes.string
 };
 
 export default WeatherIcon;

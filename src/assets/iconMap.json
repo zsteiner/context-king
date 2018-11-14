@@ -1,0 +1,15 @@
+{
+  "clear-day": "Sun",
+  "clear-night": "Moon",
+  "rain": "CloudRain",
+  "snow": "CloudSnow",
+  "sleet": "CloudMoon",
+  "wind": "Wind",
+  "fog": "CloudFog",
+  "cloudy": "Cloud",
+  "partly-cloudy-day": "CloudSun",
+  "partly-cloudy-night": "CloudMoon",
+  "hail": "CloudHail",
+  "thunderstorm": "CloudLightning",
+  "tornado": "Tornado"
+}
