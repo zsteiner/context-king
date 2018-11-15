@@ -4,15 +4,12 @@
   "private": true,
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.4.1",
-    "apollo-client": "^2.4.5",
     "axios": "^0.18.0",
+    "axios-jsonp-pro": "^1.1.4",
     "color": "^3.1.0",
-    "graphql": "^14.0.2",
-    "graphql-tag": "^2.10.0",
     "jsonp": "^0.2.1",
     "node-sass": "^4.9.4",
     "react": "^16.6.0",
-    "react-apollo": "^2.2.4",
     "react-dom": "^16.6.0",
     "react-scripts": "2.1.1"
   },

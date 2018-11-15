@@ -16,10 +16,10 @@ export default function temperatureColors(
 
   let markerColor = 'transparent';
 
-  if (temperature >= temperatureHigh - 1) {
-    markerColor = colorLow;
-  } else if (temperature <= temperatureLow + 1) {
+  if (temperature >= temperatureHigh - 0.5) {
     markerColor = colorHigh;
+  } else if (temperature <= temperatureLow + 0.5) {
+    markerColor = colorLow;
   }
 
   let root = document.documentElement;

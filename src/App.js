@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import jsonp from 'jsonp';
+import axios from 'axios-jsonp-pro';
 import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
+import getBackground from './utils/getBackground';
 
 import Attribution from './components/Attribution/Attribution';
 import Loading from './components/Loading/Loading';
@@ -12,7 +13,6 @@ import { ReactComponent as IconSet } from './assets/WeatherIcons.svg';
 import { LocationContext } from './contexts/LocationContext';
 
 import styles from './styles/App.module.scss';
-import getBackground from './utils/getBackground';
 
 const apiKeyMapbox =
   'pk.eyJ1IjoienN0ZWluZXIiLCJhIjoiTXR4U0tyayJ9.6BxBAjPyMHbt1YfD5HWGXA';
@@ -49,21 +49,22 @@ class App extends Component {
     });
   };
 
-  getForecast = (lat, lon) => {
+  getForecast = (lon, lat) => {
     const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely`;
 
     this.setLoading();
 
-    jsonp(api, null, (error, response) => {
-      if (error) {
-        console.error(error.message);
-      } else {
+    axios
+      .jsonp(api, {
+        timeout: 5000
+      })
+      .then(response => {
         this.setState({
           forecast: response,
           fetchingForecast: false
         });
-      }
-    });
+      })
+      .catch(error => console.log(error));
   };
 
   reverseLookup = (lat, lon) => {
@@ -80,8 +81,6 @@ class App extends Component {
         const name = location.text;
         const state = location.context[0].text;
         const backgroundImage = getBackground(location.context[0].text);
-
-        console.log('App backgroundImage', backgroundImage);
 
         this.setState({
           location: location,
@@ -101,7 +100,7 @@ class App extends Component {
         const lon = position.coords.longitude;
 
         this.reverseLookup(lat, lon);
-        this.getForecast(lat, lon);
+        this.getForecast(lon, lat);
 
         this.setState({
           coordinates: [lat, lon]
@@ -126,17 +125,16 @@ class App extends Component {
         const location = response.body.features[0];
         const name = location.text;
         const state = location.context[0].text;
-        const backgroundImage = getBackground(location.context[0].text);
-        const coordinates = this.state.coordinates;
+        const coordinates = location.center;
 
-        this.getForecast(coordinates[1], coordinates[0]);
-        console.log('App Location backgroundImage', backgroundImage);
+        getBackground(location.context[0].text);
+
+        this.getForecast(coordinates[0], coordinates[1]);
 
         this.setState({
-          coordinates: location.center,
+          coordinates: coordinates,
           location: location,
-          locationName: `${name}, ${state}`,
-          backgroundImage: backgroundImage
+          locationName: `${name}, ${state}`
         });
       });
   };
