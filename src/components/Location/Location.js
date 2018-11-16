@@ -92,7 +92,7 @@ class Location extends Component {
     geocodingClient
       .forwardGeocode({
         query: this.state.enteredLocation,
-        types: ['place']
+        types: ['place', 'neighborhood', 'postcode', 'address', 'poi']
       })
       .send()
       .then(response => {});
@@ -102,7 +102,7 @@ class Location extends Component {
     geocodingClient
       .forwardGeocode({
         query: query,
-        types: ['place']
+        types: ['place', 'neighborhood', 'postcode', 'address', 'poi']
       })
       .send()
       .then(response => {
