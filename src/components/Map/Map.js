@@ -16,7 +16,7 @@ class Map extends Component {
       container: this.refs.map,
       center: this.props.coordinates,
       zoom: 8,
-      style: 'mapbox://styles/mapbox/outdoors-v9'
+      style: 'mapbox://styles/mapbox/outdoors-v10'
     });
   }
 
