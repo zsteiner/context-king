@@ -22,7 +22,6 @@ class App extends Component {
       coordinates: [],
       fetchingForecast: true,
       forecast: mockForecast,
-      getForecast: this.getForecast,
       location: {},
       locationName: '',
       setLoading: this.setLoading,
@@ -37,17 +36,20 @@ class App extends Component {
   };
 
   setLocation = (location, coordinates) => {
+    this.getForecast(coordinates);
+
     this.setState({
       location: location,
       coordinates: coordinates
     });
   };
 
-  getForecast = (lon, lat) => {
+  getForecast = coordinates => {
+    const lon = coordinates[0];
+    const lat = coordinates[1];
     const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely`;
 
     this.setLoading();
-
     axios
       .jsonp(api, {
         timeout: 5000

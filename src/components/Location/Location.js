@@ -74,7 +74,6 @@ class Location extends Component {
         const lon = position.coords.longitude;
 
         this.reverseLookup(lat, lon);
-        this.context.getForecast(lon, lat);
 
         this.setState({
           coordinates: [lon, lat]
@@ -133,10 +132,23 @@ class Location extends Component {
 
     getBackground(`${state} ${name}`);
     this.context.setLocation(location, coordinates);
-    this.context.getForecast(coordinates[0], coordinates[1]);
 
     this.setState({
       location: location,
+      locationName: `${name}, ${state}`,
+      resultsVisible: false
+    });
+  };
+
+  submitLocation = event => {
+    event.preventDefault();
+    const location = this.state.results[0];
+    const name = location.text;
+    const state = location.context[0].text;
+
+    this.context.setLocation(location, location.center);
+
+    this.setState({
       locationName: `${name}, ${state}`,
       resultsVisible: false
     });
@@ -156,7 +168,7 @@ class Location extends Component {
               <div className={styles.typeahead}>
                 <Input
                   placeholder="Enter Location"
-                  onSubmit={this.updateLocation}
+                  onSubmit={this.submitLocation}
                   value={this.state.enteredLocation}
                   onChange={this.handleChange}
                 />
