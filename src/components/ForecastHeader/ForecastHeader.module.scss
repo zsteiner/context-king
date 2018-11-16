@@ -1,0 +1,41 @@
+@import "../../styles/variables";
+
+.forecast {
+  &Current {
+    margin-bottom: 3rem;
+
+    @include respond-to(medium) {
+      display: flex;
+    }
+  }
+
+  &Info {
+    margin-top: 2rem;
+
+    @include respond-to(medium) {
+      margin-top: 0;
+      margin-left: 2rem;
+    }
+  }
+
+  &Conditions {
+    display: flex;
+    margin: 0 0 1.25rem;
+    align-items: flex-start;
+
+    h2 {
+      margin: 0 0 0.25rem;
+      font-weight: 900;
+    }
+  }
+
+  &Text {
+    margin: 0 auto 1rem;
+  }
+}
+
+.icon {
+  margin-right: 1rem;
+  font-size: 3rem;
+  opacity: 0.5;
+}

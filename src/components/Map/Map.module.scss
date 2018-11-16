@@ -1,0 +1,12 @@
+@import "../../styles/variables";
+
+.map {
+  height: 24rem;
+  width: calc(100% + 4rem);
+  margin: 0 -1rem 2rem;
+  background: $grey;
+
+  @include respond-to(large) {
+    margin: 0 -2rem 2rem;
+  }
+}

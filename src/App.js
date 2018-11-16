@@ -103,7 +103,7 @@ class App extends Component {
         this.getForecast(lon, lat);
 
         this.setState({
-          coordinates: [lat, lon]
+          coordinates: [lon, lat]
         });
       },
       error => alert(error.message),
