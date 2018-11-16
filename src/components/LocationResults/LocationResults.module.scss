@@ -1,0 +1,15 @@
+@import "../../styles/variables";
+
+.results {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background: transparentize($white, 0.05);
+  border: $border;
+
+  &Item {
+    margin-bottom: 0.5rem;
+  }
+}

@@ -8,6 +8,7 @@ import { LocationContext } from '../../contexts/LocationContext';
 
 import Input from '../Input/Input';
 import LocationButton from '../LocationButton/LocationButton';
+import LocationName from '../LocationName/LocationName';
 import LocationResults from '../LocationResults/LocationResults';
 
 import styles from './Location.module.scss';
@@ -25,7 +26,7 @@ class Location extends Component {
       locationName: context.locationName,
       enteredLocation: context.locationName,
       results: [],
-      resultsVisible: false
+      resultsVisible: true
     };
   }
 
@@ -129,27 +130,26 @@ class Location extends Component {
     return (
       <LocationContext.Consumer>
         {context => (
-          <section className={styles.location}>
+          <header className={styles.location}>
             <div className={styles.row}>
-              <Input
-                placeholder="Enter Location"
-                onSubmit={this.updateLocation}
-                value={this.state.enteredLocation}
-                onChange={this.handleChange}
-              />
-              {this.state.resultsVisible ? (
-                <LocationResults results={this.state.results} />
-              ) : null}
+              <div className={styles.typeahead}>
+                <Input
+                  placeholder="Enter Location"
+                  onSubmit={this.updateLocation}
+                  value={this.state.enteredLocation}
+                  onChange={this.handleChange}
+                />
+                {this.state.resultsVisible ? (
+                  <LocationResults results={this.state.results} />
+                ) : null}
+              </div>
               <LocationButton onClick={this.getLocation} />
             </div>
-
-            <h1 className={styles.locationName}>{state.locationName}</h1>
-            <small>
-              {context.coordinates
-                ? `${context.coordinates[0]}, ${context.coordinates[1]}`
-                : null}
-            </small>
-          </section>
+            <LocationName
+              locationName={state.locationName}
+              coordinates={context.coordinates}
+            />
+          </header>
         )}
       </LocationContext.Consumer>
     );

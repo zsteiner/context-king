@@ -24,7 +24,7 @@ class App extends Component {
       forecast: mockForecast,
       getForecast: this.getForecast,
       location: {},
-      locationName: 'Denver',
+      locationName: '',
       setLoading: this.setLoading,
       setLocation: this.setLocation
     };
