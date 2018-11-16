@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
+import debounce from 'lodash/debounce';
+
 import getBackground from '../../utils/getBackground';
 
 import { LocationContext } from '../../contexts/LocationContext';
@@ -26,7 +28,7 @@ class Location extends Component {
       locationName: context.locationName,
       enteredLocation: context.locationName,
       results: [],
-      resultsVisible: true
+      resultsVisible: false
     };
   }
 
@@ -93,32 +95,51 @@ class Location extends Component {
         types: ['place']
       })
       .send()
+      .then(response => {});
+  };
+
+  updateLocationName = debounce(query => {
+    geocodingClient
+      .forwardGeocode({
+        query: query,
+        types: ['place']
+      })
+      .send()
       .then(response => {
-        const location = response.body.features[0];
-        const name = location.text;
-        const state = location.context[0].text;
-        const coordinates = location.center;
-
-        getBackground(`${state} ${name}`);
-        this.context.setLocation(location, coordinates);
-        this.context.getForecast(coordinates[0], coordinates[1]);
-
         this.setState({
-          location: location,
-          locationName: `${name}, ${state}`
+          results: response.body.features,
+          resultsVisible: true
         });
       });
-  };
-
-  updateLocationName = event => {
-    this.setState({
-      enteredLocation: event.target.value
-    });
-  };
+  }, 500);
 
   handleChange = event => {
-    this.setState({ enteredLocation: event.target.value });
-    this.updateLocationName(event);
+    const query = event.target.value;
+    this.setState({ enteredLocation: query });
+
+    if (query) {
+      this.updateLocationName(query);
+    } else {
+      this.setState({
+        resultsVisible: false
+      });
+    }
+  };
+
+  selectLocation = location => {
+    const name = location.text;
+    const state = location.context[0].text;
+    const coordinates = location.center;
+
+    getBackground(`${state} ${name}`);
+    this.context.setLocation(location, coordinates);
+    this.context.getForecast(coordinates[0], coordinates[1]);
+
+    this.setState({
+      location: location,
+      locationName: `${name}, ${state}`,
+      resultsVisible: false
+    });
   };
 
   componentDidMount() {
@@ -140,7 +161,10 @@ class Location extends Component {
                   onChange={this.handleChange}
                 />
                 {this.state.resultsVisible ? (
-                  <LocationResults results={this.state.results} />
+                  <LocationResults
+                    results={this.state.results}
+                    selectLocation={this.selectLocation}
+                  />
                 ) : null}
               </div>
               <LocationButton onClick={this.getLocation} />

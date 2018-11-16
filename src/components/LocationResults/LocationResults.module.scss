@@ -2,14 +2,26 @@
 
 .results {
   position: absolute;
-  bottom: -100%;
+  top: 100%;
   left: 0;
-  width: 100%;
+  width: 20rem;
+  min-width: 100%;
+  margin-top: -$border-width;
   padding: 1rem;
   background: transparentize($white, 0.05);
   border: $border;
+  z-index: 1000;
 
   &Item {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      color: $blue;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
