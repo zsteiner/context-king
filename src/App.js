@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
 import axios from 'axios-jsonp-pro';
-import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
-import getBackground from './utils/getBackground';
 
-import Attribution from './components/Attribution/Attribution';
 import Loading from './components/Loading/Loading';
 import Location from './components/Location/Location';
 import Forecast from './components/Forecast/Forecast';
@@ -14,11 +11,7 @@ import { LocationContext } from './contexts/LocationContext';
 
 import styles from './styles/App.module.scss';
 
-const apiKeyMapbox =
-  'pk.eyJ1IjoienN0ZWluZXIiLCJhIjoiTXR4U0tyayJ9.6BxBAjPyMHbt1YfD5HWGXA';
-const geocodingClient = mbxGeocoding({ accessToken: apiKeyMapbox });
 const mockForecast = require('./mockData/mockForecast.json');
-const mockImage = require('./mockData/mockImage.json');
 const apiDarkskyToken = '16eb53a912c674ef3028c1c421473d5e';
 
 class App extends Component {
@@ -26,26 +19,27 @@ class App extends Component {
     super(props);
 
     this.state = {
-      backgroundImage: mockImage,
       coordinates: [],
       fetchingForecast: true,
       forecast: mockForecast,
-      getLocation: this.getLocation,
+      getForecast: this.getForecast,
       location: {},
       locationName: 'Denver',
-      enteredLocation: '',
-      updateLocation: this.updateLocation,
-      updateLocationName: this.updateLocationName
+      setLoading: this.setLoading,
+      setLocation: this.setLocation
     };
-  }
-
-  componentDidMount() {
-    this.getLocation();
   }
 
   setLoading = () => {
     this.setState({
       fetchingForecast: true
+    });
+  };
+
+  setLocation = (location, coordinates) => {
+    this.setState({
+      location: location,
+      coordinates: coordinates
     });
   };
 
@@ -67,84 +61,6 @@ class App extends Component {
       .catch(error => console.log(error));
   };
 
-  reverseLookup = (lat, lon) => {
-    this.setLoading();
-    geocodingClient
-      .reverseGeocode({
-        query: [lon, lat],
-        limit: 2,
-        types: ['place']
-      })
-      .send()
-      .then(response => {
-        const location = response.body.features[0];
-        const name = location.text;
-        const state = location.context[0].text;
-        const backgroundImage = getBackground(location.context[0].text);
-
-        this.setState({
-          location: location,
-          locationName: `${name}, ${state}`,
-          enteredLocation: name,
-          backgroundImage: backgroundImage
-        });
-      });
-  };
-
-  getLocation = () => {
-    this.setLoading();
-
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-
-        this.reverseLookup(lat, lon);
-        this.getForecast(lon, lat);
-
-        this.setState({
-          coordinates: [lon, lat]
-        });
-      },
-      error => alert(error.message),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
-  };
-
-  updateLocation = event => {
-    this.setLoading();
-    event.preventDefault();
-
-    geocodingClient
-      .forwardGeocode({
-        query: this.state.enteredLocation,
-        types: ['place']
-      })
-      .send()
-      .then(response => {
-        const location = response.body.features[0];
-        const name = location.text;
-        const state = location.context[0].text;
-        const coordinates = location.center;
-
-        getBackground(location.context[0].text);
-
-        this.getForecast(coordinates[0], coordinates[1]);
-
-        this.setState({
-          coordinates: coordinates,
-          location: location,
-          locationName: `${name}, ${state}`
-        });
-      });
-  };
-
-  updateLocationName = event => {
-    this.setState({
-      enteredLocation: event.target.value
-    });
-  };
-
   render() {
     const state = this.state;
 
@@ -154,7 +70,6 @@ class App extends Component {
         <LocationContext.Provider value={this.state}>
           <Location />
           {state.fetchingForecast ? <Loading /> : <Forecast />}
-          <Attribution user={mockImage.user} />
         </LocationContext.Provider>
       </article>
     ];
