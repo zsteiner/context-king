@@ -16,7 +16,11 @@ const LocationResults = ({ results, selectLocation }) => {
     );
   });
 
-  return <ul className={`${styles.results} list-clear`}>{resultItems}</ul>;
+  return (
+    <ul className={`${styles.results} list-clear`}>
+      {results.length > 0 ? resultItems : <li>Couldn't find that location</li>}
+    </ul>
+  );
 };
 
 LocationResults.propTypes = {
