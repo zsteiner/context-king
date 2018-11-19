@@ -27,12 +27,10 @@ const ForecastHour = ({ extremes, forecast, timezone }) => {
         {formattedTime}
       </time>
 
-      {forecast.precipProbability > 0 ? (
-        <Precipitation
-          precipProbability={forecast.precipProbability}
-          temperature={forecast.temperature}
-        />
-      ) : null}
+      <Precipitation
+        precipProbability={forecast.precipProbability}
+        temperature={forecast.temperature}
+      />
     </li>
   );
 };
