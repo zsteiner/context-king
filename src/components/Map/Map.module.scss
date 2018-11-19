@@ -4,7 +4,7 @@
   height: 24rem;
   width: calc(100% + 2rem);
   margin: 0 -1rem 2rem;
-  background: $grey;
+  background: $grey-light;
 
   @include respond-to(large) {
     width: calc(100% + 4rem);

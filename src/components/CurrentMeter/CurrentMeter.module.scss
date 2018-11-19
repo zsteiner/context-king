@@ -22,7 +22,7 @@ $current-size: 1rem;
     position: relative;
     height: $current-meter;
     width: $current-meter * 2;
-    background: $grey;
+    background: $grey-light;
     background: linear-gradient(to right, var(--temp-low), var(--temp-high));
     border-top-left-radius: $current-meter * 2;
     border-top-right-radius: $current-meter * 2;

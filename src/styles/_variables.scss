@@ -1,7 +1,11 @@
+$black: hsl(0, 0%, 0%);
+$grey: hsl(0, 0%, 25%);
+$grey-medium: hsl(0, 0%, 50%);
+$grey-light: hsl(0, 0%, 85%);
+$white: hsl(0, 0%, 100%);
+
 $blue: #1678c2;
 $green: #28a745;
-$grey: #cfcfcf;
-$white: #fff;
 
 $temp-ex-low: hsl(170, 85%, 80%);
 $temp-low: hsl(209, 85%, 50%);
@@ -12,7 +16,7 @@ $temp-high: hsl(12, 85%, 50%);
 $avatar-size: 8rem;
 
 $border-width: 0.0625rem;
-$border: 0.0625rem solid $grey;
+$border: 0.0625rem solid $grey-light;
 $font-family: -apple-system, BlinkMacSystemFont, system-ui, Roboto, Segoe UI,
   Helvetica Neue, Lucida Grande, Helvetica, Arial, sans-serif;
 $font-family-mono: source-code-pro, Menlo, Monaco, Consolas, Courier New,

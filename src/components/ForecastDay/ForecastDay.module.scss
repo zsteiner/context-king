@@ -8,6 +8,7 @@
   grid-template-columns: 1.5rem 4rem 1fr;
   grid-column-gap: 0.75rem;
   overflow: hidden;
+  align-items: center;
 
   @include respond-to(small) {
     grid-template-columns: 2.5rem 8rem 1fr;
@@ -51,7 +52,7 @@
 }
 
 .icon {
-  opacity: 0.5;
+  color: $grey-medium;
   font-size: 1.325rem;
 
   @include respond-to(small) {

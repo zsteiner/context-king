@@ -80,7 +80,7 @@ class Location extends Component {
         });
       },
       error => alert(error.message),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      { enableHighAccuracy: true, timeout: 40000, maximumAge: 1000 }
     );
   };
 
