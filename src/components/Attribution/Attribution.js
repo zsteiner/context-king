@@ -6,7 +6,10 @@ import styles from './Attribution.module.scss';
 const Attribution = ({ user }) => {
   return (
     <span className={styles.attribution}>
-      Image Credit: <a href={user.links.html}>{user.name} on Unsplash</a>
+      Image Credit:{' '}
+      <a href={`${user.links.html}?utm_source=forecast&utm_medium=referral`}>
+        {user.name} on Unsplash
+      </a>
     </span>
   );
 };

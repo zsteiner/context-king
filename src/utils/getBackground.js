@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Color from 'color';
 
-export default function getBackground(search) {
+export default function getBackground(search, setBackgroundImage) {
   const unsplashAccessKey =
     'da0c3c38dee4d331d700bdaa28239c63527295291b54765ff0612841fd9a8f5c';
 
@@ -19,9 +19,10 @@ export default function getBackground(search) {
         .fade(0.06)
         .string();
 
+      setBackgroundImage(data);
+
       root.style.setProperty('--background-image', `url(${data.urls.full})`);
       root.style.setProperty('--background-color', calcColor);
-      return data;
     })
     .catch(err => {
       console.log('Error happened during fetching!', err);

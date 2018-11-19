@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
 import axios from 'axios-jsonp-pro';
+import getBackground from './utils/getBackground';
 
+import Attribution from './components/Attribution/Attribution';
 import Loading from './components/Loading/Loading';
 import Location from './components/Location/Location';
 import Forecast from './components/Forecast/Forecast';
@@ -19,11 +21,12 @@ class App extends Component {
     super(props);
 
     this.state = {
+      backgroundImage: {},
       coordinates: [],
       fetchingForecast: true,
       forecast: mockForecast,
       location: {},
-      locationName: '',
+      setBackgroundImage: this.setBackgroundImage,
       setLoading: this.setLoading,
       setLocation: this.setLocation
     };
@@ -35,12 +38,19 @@ class App extends Component {
     });
   };
 
-  setLocation = (location, coordinates) => {
+  setLocation = (location, locationName, coordinates) => {
+    getBackground(locationName, this.setBackgroundImage);
     this.getForecast(coordinates);
 
     this.setState({
       location: location,
       coordinates: coordinates
+    });
+  };
+
+  setBackgroundImage = backgroundImage => {
+    this.setState({
+      backgroundImage: backgroundImage
     });
   };
 
@@ -73,6 +83,9 @@ class App extends Component {
           <Location />
           {state.fetchingForecast ? <Loading /> : <Forecast />}
         </LocationContext.Provider>
+        {state.backgroundImage.user ? (
+          <Attribution user={state.backgroundImage.user} />
+        ) : null}
       </article>
     ];
   }

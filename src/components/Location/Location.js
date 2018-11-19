@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
 import debounce from 'lodash/debounce';
 
-import getBackground from '../../utils/getBackground';
-
 import { LocationContext } from '../../contexts/LocationContext';
 
 import Input from '../Input/Input';
@@ -26,7 +24,7 @@ class Location extends Component {
     this.state = {
       coordinates: [],
       locationName: context.locationName,
-      enteredLocation: context.locationName,
+      enteredLocation: '',
       results: [],
       resultsVisible: false
     };
@@ -39,7 +37,7 @@ class Location extends Component {
     getLocation: PropTypes.func
   };
 
-  reverseLookup = (lat, lon) => {
+  reverseLookup = (lon, lat) => {
     this.context.setLoading();
     geocodingClient
       .reverseGeocode({
@@ -50,18 +48,7 @@ class Location extends Component {
       .send()
       .then(response => {
         const location = response.body.features[0];
-        const name = location.text;
-        const state = location.context[0].text;
-        const coordinates = [lon, lat];
-
-        this.context.setLocation(location, coordinates);
-        getBackground(`${state} ${name}`);
-
-        this.setState({
-          location: location,
-          locationName: `${name}, ${state}`,
-          enteredLocation: `${name}, ${state}`
-        });
+        this.selectLocation(location);
       });
   };
 
@@ -73,28 +60,11 @@ class Location extends Component {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        this.reverseLookup(lat, lon);
-
-        this.setState({
-          coordinates: [lon, lat]
-        });
+        this.reverseLookup(lon, lat);
       },
       error => alert(error.message),
       { enableHighAccuracy: true, timeout: 40000, maximumAge: 1000 }
     );
-  };
-
-  updateLocation = event => {
-    this.context.setLoading();
-    event.preventDefault();
-
-    geocodingClient
-      .forwardGeocode({
-        query: this.state.enteredLocation,
-        types: ['place', 'neighborhood', 'postcode', 'address', 'poi']
-      })
-      .send()
-      .then(response => {});
   };
 
   updateLocationName = debounce(query => {
@@ -125,33 +95,27 @@ class Location extends Component {
     }
   };
 
+  submitLocation = event => {
+    event.preventDefault();
+    this.selectLocation(this.state.results[0]);
+  };
+
   selectLocation = location => {
     const name = location.text;
     const state = location.context[0].text;
-    const coordinates = location.center;
+    const locationName = `${name}, ${state}`;
 
-    getBackground(`${state} ${name}`);
-    this.context.setLocation(location, coordinates);
+    this.context.setLocation(location, locationName, location.center);
 
     this.setState({
-      location: location,
-      locationName: `${name}, ${state}`,
+      enteredLocation: locationName,
+      locationName: locationName,
       resultsVisible: false
     });
   };
 
-  submitLocation = event => {
-    event.preventDefault();
-    const location = this.state.results[0];
-    const name = location.text;
-    const state = location.context[0].text;
-
-    this.context.setLocation(location, location.center);
-
-    this.setState({
-      locationName: `${name}, ${state}`,
-      resultsVisible: false
-    });
+  clearText = event => {
+    event.target.value = '';
   };
 
   componentDidMount() {
@@ -171,6 +135,7 @@ class Location extends Component {
                   onSubmit={this.submitLocation}
                   value={this.state.enteredLocation}
                   onChange={this.handleChange}
+                  onFocus={this.clearText}
                 />
                 {this.state.resultsVisible ? (
                   <LocationResults
