@@ -4,6 +4,7 @@ $label-size: 2rem;
 
 .tempRange {
   position: relative;
+  height: 1em;
   margin: 0 $label-size;
 
   &Bar {
@@ -22,7 +23,7 @@ $label-size: 2rem;
   height: 1rem;
   min-width: 2%;
   margin: 0 0.325rem;
-  background: black;
+  background: $grey;
   border-radius: 0.5rem;
 }
 
