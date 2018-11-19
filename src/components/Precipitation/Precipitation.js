@@ -11,8 +11,12 @@ const Precipitation = ({ precipProbability, temperature }) => {
 
   return (
     <div className={styles.precipitation}>
-      <WeatherIcon icon={icon} />
-      <Percentage number={precipProbability} />
+      {precipProbability > 0.005 ? (
+        <React.Fragment>
+          <WeatherIcon icon={icon} />
+          <Percentage number={precipProbability} />
+        </React.Fragment>
+      ) : null}
     </div>
   );
 };
