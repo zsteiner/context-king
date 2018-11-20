@@ -10,7 +10,7 @@
     display: grid;
     padding: 0;
     text-align: center;
-    grid-template-rows: 1fr 1.5em 1.5em;
+    grid-template-rows: 1fr 2rem 1.5em 1.5em;
   }
 }
 
@@ -48,7 +48,7 @@
   @include respond-to(medium) {
     height: calc(100% - 2rem);
     margin: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     text-align: center;
     order: 0;
   }

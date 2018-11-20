@@ -1,0 +1,30 @@
+@import "../../styles/variables";
+
+.condition {
+  height: 0.5rem;
+  width: 100%;
+
+  &Rain {
+    background: $blue;
+  }
+
+  &Snow {
+    background: $white;
+  }
+
+  &Sleet {
+    background: mix($white, $blue, 50%);
+  }
+
+  &Clear {
+    background: darken($grey-light, 5%);
+  }
+
+  &Overcast {
+    background: darken($grey-medium, 5%);
+  }
+
+  &PartlyCloudy {
+    background: lighten($grey-medium, 20%);
+  }
+}
