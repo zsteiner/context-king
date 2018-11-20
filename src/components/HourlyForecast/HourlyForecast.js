@@ -13,18 +13,21 @@ const HourlyForecast = ({ hourly, timezone }) => {
     min: 100
   };
 
-  const hourlyForecast = hourly.data.slice(1, 13).map((item, index) => {
-    calcExtremes(extremes, item.temperature, item.temperature);
+  const hourlyForecast = hourly.data
+    .filter((item, index) => index % 2 === 0)
+    .slice(1, 13)
+    .map((item, index) => {
+      calcExtremes(extremes, item.temperature, item.temperature);
 
-    return (
-      <ForecastHour
-        key={index}
-        forecast={item}
-        timezone={timezone}
-        extremes={extremes}
-      />
-    );
-  });
+      return (
+        <ForecastHour
+          key={index}
+          forecast={item}
+          timezone={timezone}
+          extremes={extremes}
+        />
+      );
+    });
 
   return (
     <React.Fragment>
