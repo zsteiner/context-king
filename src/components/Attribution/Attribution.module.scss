@@ -1,3 +1,9 @@
+@import "../../styles/variables";
+
 .attribution {
-  font-size: 1.125rem;
+  font-size: 0.875rem;
+
+  @include respond-to(medium) {
+    font-size: 1.125rem;
+  }
 }

@@ -6,8 +6,19 @@ import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
 import styles from './Precipitation.module.scss';
 
-const Precipitation = ({ precipProbability, temperature }) => {
-  const icon = temperature >= 32 ? 'CloudRain' : 'CloudSnow';
+const Precipitation = ({ precipProbability, precipType }) => {
+  let icon;
+
+  switch (precipType) {
+    case 'snow':
+      icon = 'CloudSnowAlt';
+      break;
+    case 'sleet':
+      icon = 'CloudHail';
+      break;
+    default:
+      icon = 'CloudRain';
+  }
 
   return (
     <div className={styles.precipitation}>
@@ -23,6 +34,7 @@ const Precipitation = ({ precipProbability, temperature }) => {
 
 Precipitation.propTypes = {
   precipProbability: PropTypes.number,
+  precipType: PropTypes.string,
   temperature: PropTypes.number
 };
 

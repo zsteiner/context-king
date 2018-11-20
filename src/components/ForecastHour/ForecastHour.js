@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ConditionBar from '../ConditionBar/ConditionBar';
 import Precipitation from '../Precipitation/Precipitation';
 import TemperatureHour from '../TemperatureHour/TemperatureHour';
 
@@ -23,13 +24,14 @@ const ForecastHour = ({ extremes, forecast, timezone }) => {
           temperatureMin={extremes.min}
         />
       </div>
+      <ConditionBar forecast={forecast} />
       <time dateTime={forecast.time} className={styles.day}>
         {formattedTime}
       </time>
 
       <Precipitation
         precipProbability={forecast.precipProbability}
-        temperature={forecast.temperature}
+        precipType={forecast.precipType}
       />
     </li>
   );
