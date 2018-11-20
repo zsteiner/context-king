@@ -2,9 +2,14 @@
 
 .map {
   height: 24rem;
-  width: calc(100% + 2rem);
-  margin: 0 -1rem 2rem;
+  width: calc(100% + 1rem);
+  margin: 0 -0.5rem 2rem;
   background: $grey-light;
+
+  @include respond-to(medium) {
+    width: calc(100% + 2rem);
+    margin: 0 -1rem 2rem;
+  }
 
   @include respond-to(large) {
     width: calc(100% + 4rem);

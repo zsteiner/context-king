@@ -6,6 +6,7 @@ $label-size: 2rem;
   position: relative;
   height: 1em;
   margin: 0 $label-size;
+  align-self: center;
 
   &Bar {
     display: flex;

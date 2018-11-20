@@ -1,20 +1,20 @@
-export default function conditions(cloudCover, precipProbability, precipType) {
+export default function conditions(cloudCover, precipIntensity, precipType) {
   let condition;
-
+  const precip = 0.002;
   switch (true) {
-    case cloudCover > 0 && cloudCover < 0.5 && precipProbability <= 0:
+    case cloudCover > 0 && !precipType:
       condition = 'Partly Cloudy';
       break;
-    case cloudCover > 0.5 && precipProbability <= 0:
+    case cloudCover > 0.5 && !precipType:
       condition = 'Overcast';
       break;
-    case precipType === 'rain':
+    case cloudCover > 0 && precipType === 'rain' && precipIntensity > precip:
       condition = 'Rain';
       break;
-    case precipType === 'snow':
+    case cloudCover > 0 && precipType === 'snow' && precipIntensity > precip:
       condition = 'Snow';
       break;
-    case precipType === 'sleet':
+    case cloudCover > 0 && precipType === 'sleet' && precipIntensity > precip:
       condition = 'Sleet';
       break;
     default:
