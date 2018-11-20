@@ -97,7 +97,10 @@ class Location extends Component {
 
   submitLocation = event => {
     event.preventDefault();
-    this.selectLocation(this.state.results[0]);
+
+    if (this.state.results.length > 0) {
+      this.selectLocation(this.state.results[0]);
+    }
   };
 
   selectLocation = location => {
