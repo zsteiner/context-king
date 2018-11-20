@@ -60,7 +60,13 @@ class Location extends Component {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        this.reverseLookup(lon, lat);
+        const currentLocation = this.context.coordinates;
+
+        if (currentLocation[0] === lon) {
+          this.selectLocation(this.context.location);
+        } else {
+          this.reverseLookup(lon, lat);
+        }
       },
       error => alert(error.message),
       { enableHighAccuracy: true, timeout: 40000, maximumAge: 1000 }

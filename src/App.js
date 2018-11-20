@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import axios from 'axios-jsonp-pro';
+import moment from 'moment';
+
 import getBackground from './utils/getBackground';
 
 import Attribution from './components/Attribution/Attribution';
@@ -28,7 +30,8 @@ class App extends Component {
       location: {},
       setBackgroundImage: this.setBackgroundImage,
       setLoading: this.setLoading,
-      setLocation: this.setLocation
+      setLocation: this.setLocation,
+      updateDate: {}
     };
   }
 
@@ -39,13 +42,32 @@ class App extends Component {
   };
 
   setLocation = (location, locationName, coordinates) => {
-    getBackground(locationName, this.setBackgroundImage);
-    this.getForecast(coordinates);
+    const currentDate = moment();
+    const updateDate = moment(new Date(this.state.updateDate).toISOString());
+    const sinceUpdate = updateDate.diff(currentDate, 'minutes');
 
-    this.setState({
-      location: location,
-      coordinates: coordinates
-    });
+    const storedCoordinates = this.state.coordinates;
+
+    if (sinceUpdate < 30 && coordinates[0] === storedCoordinates[0]) {
+      this.setState({
+        fetchingForecast: false
+      });
+    } else {
+      const updateDate = new Date();
+
+      localStorage.setItem('storedCoordinates', coordinates[0]);
+      localStorage.setItem('storedLocation', JSON.stringify(location));
+      localStorage.setItem('updateDate', updateDate);
+
+      getBackground(locationName, this.setBackgroundImage);
+
+      this.getForecast(coordinates);
+
+      this.setState({
+        location: location,
+        coordinates: coordinates
+      });
+    }
   };
 
   setBackgroundImage = backgroundImage => {
@@ -57,14 +79,22 @@ class App extends Component {
   getForecast = coordinates => {
     const lon = coordinates[0];
     const lat = coordinates[1];
-    const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely`;
+    const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely,alerts,flags`;
 
     this.setLoading();
+
     axios
       .jsonp(api, {
-        timeout: 5000
+        timeout: 5000,
+        headers: {
+          'Accept-Encoding': 'gzip,compress'
+        }
       })
       .then(response => {
+        localStorage.setItem('storedForecast', JSON.stringify(response));
+
+        console.log('New Forcecast');
+
         this.setState({
           forecast: response,
           fetchingForecast: false
@@ -72,6 +102,24 @@ class App extends Component {
       })
       .catch(error => console.log(error));
   };
+
+  componentDidMount() {
+    const updateDate = localStorage.hasOwnProperty('updateDate')
+      ? localStorage.getItem('updateDate')
+      : new Date();
+
+    const storedCoordinates = localStorage.hasOwnProperty('storedCoordinates')
+      ? JSON.parse(localStorage.getItem('storedCoordinates'))
+      : [];
+
+    const storedLocation = JSON.parse(localStorage.getItem('storedLocation'));
+
+    this.setState({
+      coordinates: storedCoordinates,
+      location: storedLocation,
+      updateDate: updateDate
+    });
+  }
 
   render() {
     const state = this.state;

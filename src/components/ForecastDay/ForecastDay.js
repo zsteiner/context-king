@@ -16,24 +16,26 @@ const ForecastDay = ({ extremes, forecast, timezone }) => {
   const formattedTime = date.toLocaleDateString('en-us', dateOptions);
 
   return (
-    <li className={styles.forecastDay}>
-      <WeatherIcon conditions={forecast.icon} className={styles.icon} />
-      <div className={styles.forecastDayMeta}>
-        <time dateTime={forecast.time} className={styles.day}>
-          {formattedTime}
-        </time>
-        <p className={styles.summary}>{forecast.summary}</p>
-        <Precipitation
-          precipProbability={forecast.precipProbability}
-          precipType={forecast.precipType}
+    <li>
+      <section className={styles.forecastDay}>
+        <WeatherIcon conditions={forecast.icon} className={styles.icon} />
+        <div className={styles.forecastDayMeta}>
+          <time dateTime={forecast.time} className={styles.day}>
+            {formattedTime}
+          </time>
+          <p className={styles.summary}>{forecast.summary}</p>
+          <Precipitation
+            precipProbability={forecast.precipProbability}
+            precipType={forecast.precipType}
+          />
+        </div>
+        <TemperatureRange
+          temperatureLow={forecast.temperatureLow}
+          temperatureHigh={forecast.temperatureHigh}
+          temperatureMax={extremes.max}
+          temperatureMin={extremes.min}
         />
-      </div>
-      <TemperatureRange
-        temperatureLow={forecast.temperatureLow}
-        temperatureHigh={forecast.temperatureHigh}
-        temperatureMax={extremes.max}
-        temperatureMin={extremes.min}
-      />
+      </section>
     </li>
   );
 };
