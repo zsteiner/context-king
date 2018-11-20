@@ -2,7 +2,7 @@ export default function conditions(cloudCover, precipIntensity, precipType) {
   let condition;
   const precip = 0.002;
   switch (true) {
-    case cloudCover > 0 && !precipType:
+    case cloudCover > 0 && cloudCover < 0.5 && !precipType:
       condition = 'Partly Cloudy';
       break;
     case cloudCover > 0.5 && !precipType:
