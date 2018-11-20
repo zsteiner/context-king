@@ -1,8 +1,12 @@
 @import "../../styles/variables";
 
 .condition {
-  height: 0.5rem;
+  height: 100%;
   width: 100%;
+
+  @include respond-to(medium) {
+    height: 0.5rem;
+  }
 
   &Rain {
     background: $blue;

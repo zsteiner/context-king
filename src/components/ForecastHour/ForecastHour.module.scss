@@ -1,28 +1,29 @@
 @import "../../styles/variables";
 
 .forecastHour {
-  display: flex;
+  display: grid;
   position: relative;
-  padding: 0.625rem 0;
   align-items: center;
+  grid-template-columns: 0.5rem 4.5rem 5rem 1fr;
 
   @include respond-to(medium) {
     display: grid;
-    padding: 0;
     text-align: center;
+    grid-template-columns: auto;
     grid-template-rows: 1fr 2rem 1.5em 1.5em;
   }
 }
 
 .day {
   margin-right: 1rem;
+  padding: 0.625rem 0;
   font-size: 0.875rem;
   font-weight: 700;
   text-align: right;
-  flex: 0 0 2.75rem;
 
   @include respond-to(medium) {
     margin: 0;
+    padding: 0;
     text-align: center;
   }
 
@@ -43,7 +44,6 @@
   margin: 0 1rem;
   text-align: right;
   order: 3;
-  flex: 1 1 50%;
 
   @include respond-to(medium) {
     height: calc(100% - 2rem);
