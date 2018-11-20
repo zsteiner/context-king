@@ -8,7 +8,7 @@
   grid-template-columns: 1.5rem 4rem 1fr;
   grid-column-gap: 0.75rem;
   overflow: hidden;
-  align-items: center;
+  // align-items: center;
 
   @include respond-to(small) {
     grid-template-columns: 2.5rem 8rem 1fr;
@@ -41,11 +41,11 @@
 
 .summary {
   display: none;
-  margin: 0;
+  margin: 0 0 0.5rem;
   font-size: 0.75rem;
   opacity: 0.85;
 
-  @include respond-to(small) {
+  @include respond-to(medium) {
     display: block;
     font-size: 1rem;
   }
@@ -54,6 +54,7 @@
 .icon {
   color: $grey-medium;
   font-size: 1.325rem;
+  align-self: top;
 
   @include respond-to(small) {
     font-size: 2.5rem;

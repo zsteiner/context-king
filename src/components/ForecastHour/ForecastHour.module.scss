@@ -4,7 +4,7 @@
   display: grid;
   position: relative;
   align-items: center;
-  grid-template-columns: 0.5rem 4.5rem 5rem 1fr;
+  grid-template-columns: 0.75rem 4.5rem 5rem 1fr;
 
   @include respond-to(medium) {
     display: grid;

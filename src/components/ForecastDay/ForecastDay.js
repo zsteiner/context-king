@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './ForecastDay.module.scss';
+
+import Precipitation from '../Precipitation/Precipitation';
 import TemperatureRange from '../TemperatureRange/TemperatureRange';
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
@@ -21,6 +23,10 @@ const ForecastDay = ({ extremes, forecast, timezone }) => {
           {formattedTime}
         </time>
         <p className={styles.summary}>{forecast.summary}</p>
+        <Precipitation
+          precipProbability={forecast.precipProbability}
+          precipType={forecast.precipType}
+        />
       </div>
       <TemperatureRange
         temperatureLow={forecast.temperatureLow}

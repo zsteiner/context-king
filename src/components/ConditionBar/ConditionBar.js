@@ -6,12 +6,8 @@ import conditions from '../../utils/conditions';
 
 import styles from './ConditionBar.module.scss';
 
-const ConditionBar = ({ forecast }) => {
-  const condition = conditions(
-    forecast.cloudCover,
-    forecast.precipProbability,
-    forecast.precipType
-  );
+const ConditionBar = ({ cloudCover, precipIntensity, precipType }) => {
+  const condition = conditions(cloudCover, precipIntensity, precipType);
 
   const conditionClassName = condition.replace(/\s/g, '');
 
@@ -24,11 +20,9 @@ const ConditionBar = ({ forecast }) => {
 };
 
 ConditionBar.propTypes = {
-  forecast: PropTypes.shape({
-    cloudCover: PropTypes.number,
-    precipProbability: PropTypes.number,
-    precipType: PropTypes.string
-  })
+  cloudCover: PropTypes.number,
+  precipIntensity: PropTypes.number,
+  precipType: PropTypes.string
 };
 
 export default ConditionBar;

@@ -24,7 +24,11 @@ const ForecastHour = ({ extremes, forecast, timezone }) => {
           temperatureMin={extremes.min}
         />
       </div>
-      <ConditionBar forecast={forecast} />
+      <ConditionBar
+        cloudCover={forecast.cloudCover}
+        precipIntensity={forecast.precipIntensity}
+        precipType={forecast.precipType}
+      />
       <time dateTime={forecast.time} className={styles.day}>
         {formattedTime}
       </time>
