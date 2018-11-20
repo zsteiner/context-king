@@ -14,8 +14,8 @@ const HourlyForecast = ({ hourly, timezone }) => {
   };
 
   const hourlyForecast = hourly.data
+    .slice(1, 25)
     .filter((item, index) => index % 2 === 0)
-    .slice(1, 13)
     .map((item, index) => {
       calcExtremes(extremes, item.temperature, item.temperature);
 
