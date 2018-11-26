@@ -18,8 +18,7 @@ class ForecastDay extends Component {
     };
   }
 
-  toggleBreakout = event => {
-    console.log('Open sesame');
+  toggleBreakout = () => {
     this.setState({
       breakoutOpen: !this.state.breakoutOpen
     });

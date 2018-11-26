@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import calcExtremes from '../../utils/calcExtremes';
+import getDay from '../../utils/getDay';
 
 import ForecastDay from '../ForecastDay/ForecastDay';
 
@@ -25,9 +26,9 @@ const DailyForecast = ({ daily, hourly, timezone }) => {
         : item.temperatureHigh;
 
     extremes = calcExtremes(extremes, high, low);
-    const hours = 24;
-    const dayOffset = index * hours;
-    const hourlyForecast = hourly.slice(dayOffset, dayOffset + hours);
+    const day = getDay(item.time);
+    const hourlyForecast = hourly.filter(item => getDay(item.time) === day);
+
     return (
       <ForecastDay
         key={index}
