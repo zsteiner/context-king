@@ -40,7 +40,11 @@ const ForecastHour = ({ extremes, forecast, showTemperatures, timezone }) => {
       <time dateTime={forecast.time} className={styles.day}>
         {formattedTime}
       </time>
-      {!showTemperatures ? <Temperature temp={forecast.temperature} /> : null}
+      {!showTemperatures ? (
+        <div className={styles.secondaryTemperature}>
+          <Temperature temp={forecast.temperature} />
+        </div>
+      ) : null}
       <Precipitation
         precipProbability={forecast.precipProbability}
         precipType={forecast.precipType}
