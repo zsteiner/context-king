@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import getWeekday from '../../utils/getWeekday';
+
 import styles from './ForecastDay.module.scss';
 
 import HourlyForecast from '../HourlyForecast/HourlyForecast';
@@ -8,6 +10,7 @@ import Precipitation from '../Precipitation/Precipitation';
 import TemperatureRange from '../TemperatureRange/TemperatureRange';
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 import OpenButton from '../OpenButton/OpenButton';
+import ForecastDayStats from '../ForecastDayStats/ForecastDayStats';
 
 class ForecastDay extends Component {
   constructor(props) {
@@ -26,12 +29,7 @@ class ForecastDay extends Component {
 
   render() {
     const { extremes, forecast, hourly, timezone } = this.props;
-    const date = new Date(forecast.time * 1000);
-    const dateOptions = {
-      weekday: 'long',
-      timeZone: timezone
-    };
-    const formattedTime = date.toLocaleDateString('en-us', dateOptions);
+    const formattedTime = getWeekday(forecast.time, timezone);
 
     return (
       <li>
@@ -61,6 +59,7 @@ class ForecastDay extends Component {
         </section>
         {this.state.breakoutOpen ? (
           <section className={styles.hourBreakout}>
+            <ForecastDayStats forecast={forecast} timezone={timezone} />
             <HourlyForecast hourly={hourly} timezone={timezone} />
           </section>
         ) : null}

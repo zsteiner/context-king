@@ -1,0 +1,25 @@
+@import "../../styles/variables";
+
+.stats {
+  margin-top: 1rem;
+
+  @include respond-to(medium) {
+    display: flex;
+  }
+
+  &Item {
+    margin-right: 3rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.sun {
+  color: orange;
+  font-size: 1.5rem;
+
+  &Item {
+    display: inline-block;
+    margin-right: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
