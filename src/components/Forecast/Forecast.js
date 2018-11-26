@@ -15,9 +15,22 @@ const Forecast = () => {
       {context => (
         <section className={styles.forecast}>
           <ForecastHeader forecast={context.forecast} />
-          <Map coordinates={context.coordinates} />
-          <HourlyForecast hourly={context.forecast.hourly} />
-          <DailyForecast daily={context.forecast.daily} />
+          <div className={styles.forecastSection}>
+            <Map coordinates={context.coordinates} />
+          </div>
+          <div className={styles.forecastSection}>
+            <HourlyForecast
+              hourly={context.forecast.hourly.data.slice(1, 25)}
+              showTitle={true}
+              showTemperatures={true}
+            />
+          </div>
+          <div className={styles.forecastSection}>
+            <DailyForecast
+              daily={context.forecast.daily}
+              hourly={context.forecast.hourly.data}
+            />
+          </div>
         </section>
       )}
     </LocationContext.Consumer>

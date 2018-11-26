@@ -10,4 +10,16 @@
   &Coordinates {
     opacity: 0.75;
   }
+
+  &Refresh {
+    display: inline-block;
+    opacity: 0.75;
+    margin-left: 0.5rem;
+
+    &::before {
+      display: inline-block;
+      content: "\2022";
+      margin-right: 0.5rem;
+    }
+  }
 }

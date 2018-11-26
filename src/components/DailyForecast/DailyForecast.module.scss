@@ -1,6 +1,14 @@
+@import "../../styles/variables";
+
 .dailyForecast {
   max-width: 100%;
   margin: 1rem 0 0;
+
+  > li:not(:last-child) {
+    border-bottom: $border;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
 }
 
 .forecastSummary {
