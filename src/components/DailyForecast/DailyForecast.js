@@ -7,7 +7,7 @@ import ForecastDay from '../ForecastDay/ForecastDay';
 
 import styles from './DailyForecast.module.scss';
 
-const DailyForecast = ({ daily, timezone }) => {
+const DailyForecast = ({ daily, hourly, timezone }) => {
   const extremes = {
     max: 0,
     min: 100
@@ -15,11 +15,14 @@ const DailyForecast = ({ daily, timezone }) => {
 
   const dailyForecast = daily.data.map((item, index) => {
     calcExtremes(extremes, item.temperatureMax, item.temperatureMin);
-
+    const hours = 24;
+    const dayOffset = index * hours;
+    const hourlyForecast = hourly.slice(dayOffset, dayOffset + hours);
     return (
       <ForecastDay
         key={index}
         forecast={item}
+        hourly={hourlyForecast}
         timezone={timezone}
         extremes={extremes}
       />
@@ -37,6 +40,7 @@ const DailyForecast = ({ daily, timezone }) => {
 
 DailyForecast.propTypes = {
   daily: PropTypes.object,
+  hourly: PropTypes.array,
   timezone: PropTypes.string
 };
 

@@ -15,24 +15,41 @@ import { LocationContext } from './contexts/LocationContext';
 
 import styles from './styles/App.module.scss';
 
-const mockForecast = require('./mockData/mockForecast.json');
 const apiDarkskyToken = '16eb53a912c674ef3028c1c421473d5e';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
+    const updateDate = localStorage.hasOwnProperty('updateDate')
+      ? localStorage.getItem('updateDate')
+      : new Date();
+
+    const storedCoordinates = localStorage.hasOwnProperty('storedCoordinates')
+      ? JSON.parse(localStorage.getItem('storedCoordinates'))
+      : [];
+
+    const storedLocation = JSON.parse(localStorage.getItem('storedLocation'));
+
+    const storedBackground = localStorage.hasOwnProperty('storedBackground')
+      ? JSON.parse(localStorage.getItem('storedBackground'))
+      : {};
+
+    const storedForecast = localStorage.hasOwnProperty('storedForecast')
+      ? JSON.parse(localStorage.getItem('storedForecast'))
+      : {};
+
     this.state = {
-      backgroundImage: {},
-      coordinates: [],
+      backgroundImage: storedBackground,
+      coordinates: storedCoordinates,
       fetchingForecast: true,
-      forecast: mockForecast,
+      forecast: storedForecast,
       forecastRefresh: true,
-      location: {},
+      location: storedLocation,
       setBackgroundImage: this.setBackgroundImage,
       setLoading: this.setLoading,
       setLocation: this.setLocation,
-      updateDate: {}
+      updateDate: updateDate
     };
   }
 
@@ -49,7 +66,7 @@ class App extends Component {
 
     const storedCoordinates = this.state.coordinates;
 
-    if (sinceUpdate < 30 && coordinates[0] === storedCoordinates[0]) {
+    if (sinceUpdate < 0 && coordinates[0] === storedCoordinates[0]) {
       this.setState({
         fetchingForecast: false,
         forecastRefresh: false
@@ -101,29 +118,6 @@ class App extends Component {
       })
       .catch(error => console.log(error));
   };
-
-  componentDidMount() {
-    const updateDate = localStorage.hasOwnProperty('updateDate')
-      ? localStorage.getItem('updateDate')
-      : new Date();
-
-    const storedCoordinates = localStorage.hasOwnProperty('storedCoordinates')
-      ? JSON.parse(localStorage.getItem('storedCoordinates'))
-      : [];
-
-    const storedLocation = JSON.parse(localStorage.getItem('storedLocation'));
-
-    const storedBackground = localStorage.hasOwnProperty('storedBackground')
-      ? JSON.parse(localStorage.getItem('storedBackground'))
-      : {};
-
-    this.setState({
-      coordinates: storedCoordinates,
-      location: storedLocation,
-      updateDate: updateDate,
-      backgroundImage: storedBackground
-    });
-  }
 
   render() {
     const state = this.state;

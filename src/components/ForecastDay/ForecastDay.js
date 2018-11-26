@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 
 import styles from './ForecastDay.module.scss';
 
+import HourlyForecast from '../HourlyForecast/HourlyForecast';
 import Precipitation from '../Precipitation/Precipitation';
 import TemperatureRange from '../TemperatureRange/TemperatureRange';
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
-const ForecastDay = ({ extremes, forecast, timezone }) => {
+const ForecastDay = ({ extremes, forecast, hourly, timezone }) => {
   const date = new Date(forecast.time * 1000);
   const dateOptions = {
     weekday: 'long',
@@ -36,6 +37,9 @@ const ForecastDay = ({ extremes, forecast, timezone }) => {
           temperatureMin={extremes.min}
         />
       </section>
+      <section className={styles.hourBreakout}>
+        <HourlyForecast hourly={hourly} timezone={timezone} />
+      </section>
     </li>
   );
 };
@@ -45,6 +49,7 @@ ForecastDay.propTypes = {
     max: PropTypes.number,
     min: PropTypes.number
   }),
+  hourly: PropTypes.array,
   timezone: PropTypes.string
 };
 export default ForecastDay;

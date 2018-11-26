@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import ConditionBar from '../ConditionBar/ConditionBar';
 import Precipitation from '../Precipitation/Precipitation';
+import Temperature from '../Temperature/Temperature';
 import TemperatureHour from '../TemperatureHour/TemperatureHour';
 
 import styles from './ForecastHour.module.scss';
@@ -39,7 +40,7 @@ const ForecastHour = ({ extremes, forecast, showTemperatures, timezone }) => {
       <time dateTime={forecast.time} className={styles.day}>
         {formattedTime}
       </time>
-
+      {!showTemperatures ? <Temperature temp={forecast.temperature} /> : null}
       <Precipitation
         precipProbability={forecast.precipProbability}
         precipType={forecast.precipType}

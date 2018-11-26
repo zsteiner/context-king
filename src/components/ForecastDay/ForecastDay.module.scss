@@ -4,7 +4,7 @@
   display: grid;
   position: relative;
   max-width: 100%;
-  padding: 1rem 0;
+  padding: 1rem 0 0;
   grid-template-columns: 1.5rem 4rem 1fr;
   grid-column-gap: 0.75rem;
   overflow: hidden;
@@ -16,10 +16,6 @@
 
   @include respond-to(medium) {
     grid-template-columns: 3rem 30% 1fr;
-  }
-
-  &:not(:last-child) {
-    border-bottom: $border;
   }
 
   &Meta {
@@ -58,4 +54,8 @@
   @include respond-to(small) {
     font-size: 2.75rem;
   }
+}
+
+.hourBreakout {
+  margin: 1rem 0 2rem;
 }
