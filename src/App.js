@@ -81,7 +81,7 @@ class App extends Component {
   getForecast = coordinates => {
     const lon = coordinates[0];
     const lat = coordinates[1];
-    const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely,alerts,flags`;
+    const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely,alerts,flags&extend=hourly`;
 
     this.setLoading();
 
@@ -89,7 +89,7 @@ class App extends Component {
       .jsonp(api, {
         timeout: 5000,
         headers: {
-          'Accept-Encoding': 'gzip,compress'
+          'Accept-Encoding': 'gzip'
         }
       })
       .then(response => {
