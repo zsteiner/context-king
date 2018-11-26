@@ -7,11 +7,22 @@
   grid-template-columns: 0.75rem 4.5rem 5rem 1fr;
 
   @include respond-to(medium) {
-    display: grid;
     text-align: center;
     grid-template-columns: auto;
-    grid-template-rows: 1fr 1.75rem 1.5em 1.5em;
+    grid-template-rows: 1.75rem 1.5em 1.5em;
     grid-row-gap: 0.5rem;
+  }
+
+  &Temps {
+    grid-template-columns: 0.75rem 4.5rem 5rem 1fr;
+
+    @include respond-to(medium) {
+      height: 18rem;
+      text-align: center;
+      grid-template-columns: auto;
+      grid-template-rows: 1fr 1.75rem 1.5em 1.5em;
+      grid-row-gap: 0.5rem;
+    }
   }
 }
 
@@ -47,10 +58,15 @@
   order: 3;
 
   @include respond-to(medium) {
+    display: none;
     height: calc(100% - 2rem);
     margin: 0;
     text-align: center;
     order: 0;
+  }
+
+  .forecastHourTemps & {
+    display: block;
   }
 }
 

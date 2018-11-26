@@ -25,6 +25,7 @@ const HourlyForecast = ({ hourly, timezone }) => {
           forecast={item}
           timezone={timezone}
           extremes={extremes}
+          showTemperatures={true}
         />
       );
     });

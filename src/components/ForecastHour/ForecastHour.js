@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import classNames from 'classnames';
+
 import ConditionBar from '../ConditionBar/ConditionBar';
 import Precipitation from '../Precipitation/Precipitation';
 import TemperatureHour from '../TemperatureHour/TemperatureHour';
 
 import styles from './ForecastHour.module.scss';
 
-const ForecastHour = ({ extremes, forecast, timezone }) => {
+const ForecastHour = ({ extremes, forecast, showTemperatures, timezone }) => {
   const date = new Date(forecast.time * 1000);
   const dateOptions = {
     hour: 'numeric',
@@ -15,8 +17,13 @@ const ForecastHour = ({ extremes, forecast, timezone }) => {
   };
   const formattedTime = date.toLocaleTimeString('en-us', dateOptions);
 
+  const forecastClasses = classNames({
+    [styles.forecastHour]: true,
+    [styles.forecastHourTemps]: showTemperatures
+  });
+
   return (
-    <li className={styles.forecastHour}>
+    <li className={forecastClasses}>
       <div className={styles.temperatures}>
         <TemperatureHour
           temperature={forecast.temperature}
@@ -46,6 +53,7 @@ ForecastHour.propTypes = {
     max: PropTypes.number,
     min: PropTypes.number
   }),
+  showTemperatures: PropTypes.bool,
   timezone: PropTypes.string
 };
 export default ForecastHour;
