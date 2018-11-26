@@ -82,7 +82,7 @@ class App extends Component {
       localStorage.setItem('storedLocation', JSON.stringify(location));
       localStorage.setItem('updateDate', updateDate);
 
-      getBackground(locationName, this.setBackgroundImage);
+      getBackground(locationName, this.updateBackgroundImage);
       this.getForecast(coordinates);
 
       this.setState({
