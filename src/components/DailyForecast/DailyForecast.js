@@ -8,13 +8,23 @@ import ForecastDay from '../ForecastDay/ForecastDay';
 import styles from './DailyForecast.module.scss';
 
 const DailyForecast = ({ daily, hourly, timezone }) => {
-  const extremes = {
+  let extremes = {
     max: 0,
     min: 100
   };
 
   const dailyForecast = daily.data.map((item, index) => {
-    calcExtremes(extremes, item.temperatureMax, item.temperatureMin);
+    const low =
+      item.temperatureMin < item.temperatureLow
+        ? item.temperatureMin
+        : item.temperatureLow;
+
+    const high =
+      item.temperatureMax > item.temperatureHigh
+        ? item.temperatureMax
+        : item.temperatureHigh;
+
+    extremes = calcExtremes(extremes, high, low);
     const hours = 24;
     const dayOffset = index * hours;
     const hourlyForecast = hourly.slice(dayOffset, dayOffset + hours);

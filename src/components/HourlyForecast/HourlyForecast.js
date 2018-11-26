@@ -8,7 +8,7 @@ import ForecastHour from '../ForecastHour/ForecastHour';
 import styles from './HourlyForecast.module.scss';
 
 const HourlyForecast = ({ hourly, showTemperatures, showTitle, timezone }) => {
-  const extremes = {
+  let extremes = {
     max: 0,
     min: 100
   };
@@ -16,7 +16,7 @@ const HourlyForecast = ({ hourly, showTemperatures, showTitle, timezone }) => {
   const hourlyForecast = hourly
     .filter((item, index) => index % 2 === 0)
     .map((item, index) => {
-      calcExtremes(extremes, item.temperature, item.temperature);
+      extremes = calcExtremes(extremes, item.temperature, item.temperature);
 
       return (
         <ForecastHour

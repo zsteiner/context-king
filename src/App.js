@@ -4,6 +4,7 @@ import axios from 'axios-jsonp-pro';
 import moment from 'moment';
 
 import getBackground from './utils/getBackground';
+import setBackground from './utils/setBackground';
 
 import Attribution from './components/Attribution/Attribution';
 import Loading from './components/Loading/Loading';
@@ -46,7 +47,7 @@ class App extends Component {
       forecast: storedForecast,
       forecastRefresh: true,
       location: storedLocation,
-      setBackgroundImage: this.setBackgroundImage,
+      updateBackgroundImage: this.updateBackgroundImage,
       setLoading: this.setLoading,
       setLocation: this.setLocation,
       updateDate: updateDate
@@ -67,6 +68,9 @@ class App extends Component {
     const storedCoordinates = this.state.coordinates;
 
     if (sinceUpdate < 0 && coordinates[0] === storedCoordinates[0]) {
+      const image = this.state.backgroundImage;
+      setBackground(image.urls.full, image.color);
+
       this.setState({
         fetchingForecast: false,
         forecastRefresh: false
@@ -89,7 +93,7 @@ class App extends Component {
     }
   };
 
-  setBackgroundImage = backgroundImage => {
+  updateBackgroundImage = backgroundImage => {
     this.setState({
       backgroundImage: backgroundImage
     });
