@@ -1,12 +1,10 @@
 @import "../../styles/variables";
 
 .hourlyForecast {
-  margin: 1rem 0 2rem;
+  margin: 1rem 0;
 
   @include respond-to(medium) {
     display: grid;
-    height: 16rem;
-    margin: 2rem 0 4rem;
     padding: 0;
     text-align: center;
     grid-template-columns: repeat(12, 1fr);
