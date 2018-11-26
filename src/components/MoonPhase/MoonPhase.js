@@ -12,29 +12,29 @@ const MoonPhase = ({ moonPhase }) => {
       phase = 'New';
       moonIcon = 'MoonNew';
       break;
-    case moonPhase === 0.25:
-      phase = 'First Quarter';
-      moonIcon = 'MoonFirstQuarter';
-      break;
-    case moonPhase === 0.5:
-      phase = 'Full Moon';
-      moonIcon = 'MoonFull';
-      break;
-    case moonPhase === 0.75:
-      phase = 'Last Quarter';
-      moonIcon = 'MoonLastQuarter';
-      break;
     case moonPhase > 0 && moonPhase < 0.25:
       phase = 'Waxing Crescent';
       moonIcon = 'MoonWaxingCrescent';
+      break;
+    case moonPhase === 0.25:
+      phase = 'First Quarter';
+      moonIcon = 'MoonFirstQuarter';
       break;
     case moonPhase > 0.25 && moonPhase < 0.5:
       phase = 'Waxing Gibbous';
       moonIcon = 'MoonWaxingGibbous';
       break;
+    case moonPhase === 0.5:
+      phase = 'Full Moon';
+      moonIcon = 'MoonFull';
+      break;
     case moonPhase > 0.5 && moonPhase < 0.75:
       phase = 'Waning Gibbous';
       moonIcon = 'MoonWaningGibbous';
+      break;
+    case moonPhase === 0.75:
+      phase = 'Last Quarter';
+      moonIcon = 'MoonLastQuarter';
       break;
     case moonPhase > 0.75 && moonPhase < 1:
       phase = 'Waning Crescent';
