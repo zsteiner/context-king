@@ -158,6 +158,8 @@ class Location extends Component {
             <LocationName
               locationName={state.locationName}
               coordinates={context.coordinates}
+              forecastRefresh={context.forecastRefresh}
+              updateDate={context.updateDate}
             />
           </header>
         )}

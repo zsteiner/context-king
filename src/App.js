@@ -27,6 +27,7 @@ class App extends Component {
       coordinates: [],
       fetchingForecast: true,
       forecast: mockForecast,
+      forecastRefresh: true,
       location: {},
       setBackgroundImage: this.setBackgroundImage,
       setLoading: this.setLoading,
@@ -50,20 +51,21 @@ class App extends Component {
 
     if (sinceUpdate < 30 && coordinates[0] === storedCoordinates[0]) {
       this.setState({
-        fetchingForecast: false
+        fetchingForecast: false,
+        forecastRefresh: false
       });
     } else {
       const updateDate = new Date();
 
-      localStorage.setItem('storedCoordinates', coordinates[0]);
+      localStorage.setItem('storedCoordinates', JSON.stringify(coordinates));
       localStorage.setItem('storedLocation', JSON.stringify(location));
       localStorage.setItem('updateDate', updateDate);
 
       getBackground(locationName, this.setBackgroundImage);
-
       this.getForecast(coordinates);
 
       this.setState({
+        forecastRefresh: true,
         location: location,
         coordinates: coordinates
       });
@@ -92,9 +94,6 @@ class App extends Component {
       })
       .then(response => {
         localStorage.setItem('storedForecast', JSON.stringify(response));
-
-        console.log('New Forcecast');
-
         this.setState({
           forecast: response,
           fetchingForecast: false
@@ -114,10 +113,15 @@ class App extends Component {
 
     const storedLocation = JSON.parse(localStorage.getItem('storedLocation'));
 
+    const storedBackground = localStorage.hasOwnProperty('storedBackground')
+      ? JSON.parse(localStorage.getItem('storedBackground'))
+      : {};
+
     this.setState({
       coordinates: storedCoordinates,
       location: storedLocation,
-      updateDate: updateDate
+      updateDate: updateDate,
+      backgroundImage: storedBackground
     });
   }
 

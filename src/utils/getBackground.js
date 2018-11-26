@@ -19,6 +19,7 @@ export default function getBackground(search, setBackgroundImage) {
         .fade(0.06)
         .string();
 
+      localStorage.setItem('storedBackground', JSON.stringify(data));
       setBackgroundImage(data);
 
       root.style.setProperty('--background-image', `url(${data.urls.full})`);
