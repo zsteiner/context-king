@@ -1,0 +1,20 @@
+@import "../../styles/variables";
+
+.stats {
+  display: flex;
+  margin-top: 1rem;
+
+  &Item {
+    margin-right: 3rem;
+  }
+}
+
+.sun {
+  color: orange;
+  font-size: 1.5rem;
+
+  &Item {
+    display: inline-block;
+    margin-right: 1.5rem;
+  }
+}
