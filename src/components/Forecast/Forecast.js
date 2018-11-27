@@ -23,12 +23,14 @@ const Forecast = () => {
               hourly={context.forecast.hourly.data.slice(1, 25)}
               showTitle={true}
               showTemperatures={true}
+              timezone={context.forecast.timezone}
             />
           </div>
           <div className={styles.forecastSection}>
             <DailyForecast
               daily={context.forecast.daily}
               hourly={context.forecast.hourly.data}
+              timezone={context.forecast.timezone}
             />
           </div>
         </section>
