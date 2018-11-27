@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import getFullDate from '../../utils/getFullDate';
 import getWeekday from '../../utils/getWeekday';
 
 import styles from './ForecastDay.module.scss';
@@ -30,13 +31,13 @@ class ForecastDay extends Component {
   render() {
     const { extremes, forecast, hourly, timezone } = this.props;
     const formattedTime = getWeekday(forecast.time, timezone);
-
+    const fullDate = getFullDate(forecast.time, timezone);
     return (
       <li>
         <section className={styles.forecastDay}>
           <WeatherIcon conditions={forecast.icon} className={styles.icon} />
           <div className={styles.forecastDayMeta}>
-            <time dateTime={forecast.time} className={styles.day}>
+            <time dateTime={fullDate} className={styles.day}>
               {formattedTime}
             </time>
             <p className={styles.summary}>{forecast.summary}</p>

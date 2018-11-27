@@ -1,5 +1,7 @@
 import React from 'react';
 
+import updateDateString from '../../utils/updateDateString';
+
 import styles from './LocationName.module.scss';
 
 const LocationName = ({
@@ -8,21 +10,7 @@ const LocationName = ({
   locationName,
   updateDate
 }) => {
-  const todaysDate = new Date();
-  const formatDate = new Date(updateDate);
-
-  const timeOptions = {
-    hour: 'numeric',
-    minute: 'numeric'
-  };
-  const time = formatDate.toLocaleTimeString('en-US', timeOptions);
-  let dateString;
-
-  if (formatDate.setHours(0, 0, 0, 0) === todaysDate.setHours(0, 0, 0, 0)) {
-    dateString = `Today at ${time}`;
-  } else {
-    dateString = `${formatDate.toLocaleDateString()} at ${time}`;
-  }
+  const dateString = updateDateString(updateDate);
 
   return (
     <React.Fragment>
@@ -35,7 +23,7 @@ const LocationName = ({
       <small className={styles.locationRefresh}>
         {forecastRefresh ? 'New Forecast' : 'Existing Forecast'}
       </small>
-      <small className={styles.locationRefresh}>{dateString}</small>
+      <small className={styles.locationRefresh}>Updated {dateString}</small>
     </React.Fragment>
   );
 };
