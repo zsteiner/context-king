@@ -44,7 +44,7 @@ const DailyForecast = ({ daily, hourly, timezone }) => {
 
   return (
     <React.Fragment>
-      <h3 className={styles.forecastSummaryTitle}>This Week</h3>
+      <h3 className="header--strong">This Week</h3>
       <p className={styles.forecastSummary}>{daily.summary}</p>
       <ul className={`${styles.dailyForecast} list-clear`}>{dailyForecast}</ul>
     </React.Fragment>

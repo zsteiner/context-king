@@ -111,8 +111,8 @@ class Location extends Component {
 
   selectLocation = location => {
     const name = location.text;
-    const state = location.context[0].text;
-    const locationName = `${name}, ${state}`;
+    const state = location.context ? `, ${location.context[0].text}` : '';
+    const locationName = `${name}${state}`;
 
     this.context.setLocation(location, locationName, location.center);
 
