@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import mapboxgl from 'mapbox-gl';
 
 import styles from './Map.module.scss';
 
@@ -9,19 +8,23 @@ class Map extends Component {
     coordinates: PropTypes.array
   };
 
-  componentDidMount() {
-    mapboxgl.accessToken =
-      'pk.eyJ1IjoienN0ZWluZXIiLCJhIjoiTXR4U0tyayJ9.6BxBAjPyMHbt1YfD5HWGXA';
-    this.map = new mapboxgl.Map({
-      container: this.refs.map,
-      center: this.props.coordinates,
-      zoom: 8,
-      style: 'mapbox://styles/mapbox/outdoors-v10'
-    });
-  }
-
   render() {
-    return <section className={styles.map} ref="map" />;
+    const { coordinates } = this.props;
+
+    const field = 'radar';
+    const zoom = 7;
+    const timeControl = false;
+    const fieldControl = false;
+
+    const url = `https://maps.darksky.net/@${field},${coordinates[1]},${
+      coordinates[0]
+    },${zoom}?embed=true&timeControl=${timeControl}&fieldControl=${fieldControl}&defaultField=${field}`;
+
+    return (
+      <section className={`${styles.map} embed`} ref="map">
+        <iframe frameBorder="0" title="Map" src={url} />
+      </section>
+    );
   }
 }
 
