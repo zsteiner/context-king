@@ -40,9 +40,7 @@ const HourlyForecast = ({ hourly, showTemperatures, showTitle, timezone }) => {
   console.log('itemCount', itemCount);
   return (
     <React.Fragment>
-      {showTitle ? (
-        <h3 className={styles.forecastSummaryTitle}>Today</h3>
-      ) : null}
+      {showTitle ? <h3 className="header--strong">Today</h3> : null}
       <ul className={hourlyForecastClasses}>{hourlyForecast}</ul>
     </React.Fragment>
   );
