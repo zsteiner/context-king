@@ -63,11 +63,11 @@ class App extends Component {
   setLocation = (location, locationName, coordinates) => {
     const currentDate = moment();
     const updateDate = moment(new Date(this.state.updateDate).toISOString());
-    const sinceUpdate = updateDate.diff(currentDate, 'minutes');
+    const sinceUpdate = currentDate.diff(updateDate, 'minutes');
 
     const storedCoordinates = this.state.coordinates;
-
-    if (sinceUpdate < 0 && coordinates[0] === storedCoordinates[0]) {
+    if (sinceUpdate < 30 && coordinates[0] === storedCoordinates[0]) {
+      console.log('Updated ', sinceUpdate, ' min');
       const image = this.state.backgroundImage;
       setBackground(image.urls.full, image.color);
 
@@ -88,7 +88,8 @@ class App extends Component {
       this.setState({
         forecastRefresh: true,
         location: location,
-        coordinates: coordinates
+        coordinates: coordinates,
+        updateDate: updateDate
       });
     }
   };
