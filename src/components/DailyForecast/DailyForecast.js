@@ -26,8 +26,10 @@ const DailyForecast = ({ daily, hourly, timezone }) => {
         : item.temperatureHigh;
 
     extremes = calcExtremes(extremes, high, low);
-    const day = getDay(item.time);
-    const hourlyForecast = hourly.filter(item => getDay(item.time) === day);
+    const day = getDay(item.time, timezone);
+    const hourlyForecast = hourly.filter(
+      item => getDay(item.time, timezone) === day
+    );
 
     return (
       <ForecastDay
