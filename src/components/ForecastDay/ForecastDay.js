@@ -32,6 +32,7 @@ class ForecastDay extends Component {
     const { extremes, forecast, hourly, timezone } = this.props;
     const formattedTime = getWeekday(forecast.time, timezone);
     const fullDate = getFullDate(forecast.time, timezone);
+
     return (
       <li>
         <section className={styles.forecastDay}>
