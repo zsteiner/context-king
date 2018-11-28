@@ -8,49 +8,128 @@
     "order/order": ["custom-properties", "declarations", "rules"],
     "order/properties-order": [
       {
-        "unspecified": "bottomAlphabetical",
+        "groupName": "position",
         "properties": [
           "display",
           "position",
+          "overflow",
           "content",
           "box-sizing",
           "top",
           "right",
           "bottom",
-          "left",
+          "left"
+        ]
+      },
+      {
+        "groupName": "dimensions",
+        "properties": [
           "height",
           "min-height",
           "max-height",
           "width",
           "min-width",
-          "max-width",
+          "max-width"
+        ]
+      },
+      {
+        "groupName": "margin",
+        "properties": [
           "margin",
           "margin-top",
           "margin-right",
           "margin-bottom",
-          "margin-left",
+          "margin-left"
+        ]
+      },
+      {
+        "groupName": "padding",
+        "properties": [
           "padding",
           "padding-top",
           "padding-right",
           "padding-bottom",
-          "padding-left",
+          "padding-left"
+        ]
+      },
+      {
+        "groupName": "background",
+        "emptyLineBefore": "always",
+        "properties": [
           "background",
           "background-color",
           "background-image",
           "background-position",
           "background-size",
           "background-attachment",
-          "background-repeat",
+          "background-repeat"
+        ]
+      },
+      {
+        "groupName": "font",
+        "properties": [
           "color",
           "font-size",
           "font-weight",
           "text-align",
+          "line-height",
+          "vertical-align"
+        ]
+      },
+      {
+        "groupName": "border",
+        "properties": [
           "border",
           "border-radius",
-          "transform",
-          "transition",
-          "animation"
+          "border-color",
+          "border-top",
+          "border-right",
+          "border-bottom",
+          "border-left"
         ]
+      },
+      {
+        "groupName": "flex",
+        "properties": [
+          "flex",
+          "flex-basis",
+          "flex-grow",
+          "flex-shrink",
+          "justify-content",
+          "align-items",
+          "align-self"
+        ]
+      },
+      {
+        "groupName": "grid",
+        "properties": [
+          "grid",
+          "grid-template",
+          "grid-template-areas",
+          "grid-template-columns",
+          "grid-template-row",
+          "grid-auto-columns",
+          "grid-auto-rows",
+          "grid-auto-flow",
+          "grid-gap",
+          "grid-column-gap",
+          "grid-row-gap",
+          "grid-column-gap",
+          "grid-column",
+          "grid-row",
+          "grid-row-start",
+          "grid-column-start",
+          "grid-row-end",
+          "grid-column-end"
+        ]
+      },
+      {
+        "groupName": "misc",
+        "properties": ["transform", "transition", "animation", "filter"]
+      },
+      {
+        "properties": [],
+        "unspecified": "bottomAlphabetical"
       }
     ]
   }
