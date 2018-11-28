@@ -1,0 +1,14 @@
+.nav {
+  margin: 1rem 0 4rem;
+
+  &Item {
+    display: inline-block;
+    margin-right: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.25rem solid transparent;
+  }
+}
+
+.active {
+  border-color: currentColor;
+}

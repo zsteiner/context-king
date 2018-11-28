@@ -134,10 +134,10 @@ class App extends Component {
           <Location />
           {state.fetchingForecast ? <Loading /> : <AppRouter />}
         </LocationContext.Provider>
-        {state.backgroundImage.user ? (
-          <Attribution user={state.backgroundImage.user} />
-        ) : null}
-      </article>
+      </article>,
+      state.backgroundImage.user ? (
+        <Attribution key={3} user={state.backgroundImage.user} />
+      ) : null
     ];
   }
 }
