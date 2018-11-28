@@ -3,18 +3,17 @@ import React, { Component } from 'react';
 import axios from 'axios-jsonp-pro';
 import moment from 'moment';
 
-import getBackground from './utils/getBackground';
-import setBackground from './utils/setBackground';
+import getBackground from '../utils/getBackground';
+import setBackground from '../utils/setBackground';
 
-import Attribution from './components/Attribution/Attribution';
-import Loading from './components/Loading/Loading';
-import Location from './components/Location/Location';
-import Forecast from './components/Forecast/Forecast';
-import { ReactComponent as IconSet } from './assets/WeatherIcons.svg';
+import Attribution from '../components/Attribution/Attribution';
+import Loading from '../components/Loading/Loading';
+import Location from '../components/Location/Location';
+import Forecast from '../components/Forecast/Forecast';
 
-import { LocationContext } from './contexts/LocationContext';
+import { LocationContext } from '../contexts/LocationContext';
 
-import styles from './styles/App.module.scss';
+import styles from './Pages.module.scss';
 
 const apiDarkskyToken = '16eb53a912c674ef3028c1c421473d5e';
 
@@ -127,8 +126,7 @@ class App extends Component {
   render() {
     const state = this.state;
 
-    return [
-      <IconSet key={0} />,
+    return (
       <article key={1} className={styles.app}>
         <LocationContext.Provider value={this.state}>
           <Location />
@@ -138,7 +136,7 @@ class App extends Component {
           <Attribution user={state.backgroundImage.user} />
         ) : null}
       </article>
-    ];
+    );
   }
 }
 
