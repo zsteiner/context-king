@@ -9,7 +9,7 @@ import styles from './ForecastHeader.module.scss';
 
 const ForecastHeader = ({ forecast, timezone }) => {
   return (
-    <header className={styles.forecastCurrent}>
+    <header className={styles.forecastHeader}>
       <CurrentMeter forecast={forecast} />
       <div className={styles.forecastInfo}>
         <div className={styles.forecastConditions}>

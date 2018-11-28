@@ -1,7 +1,7 @@
 @import "../../styles/variables";
 
 .forecast {
-  &Current {
+  &Header {
     margin-bottom: 3rem;
 
     @include respond-to(medium) {
