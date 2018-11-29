@@ -162,6 +162,7 @@ class Location extends Component {
               locationName={context.locationName}
               coordinates={context.coordinates}
               forecastRefresh={context.forecastRefresh}
+              fetchingForecast={context.fetchingForecast}
               updateDate={context.updateDate}
             />
           </header>
