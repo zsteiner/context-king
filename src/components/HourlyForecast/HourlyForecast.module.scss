@@ -9,7 +9,6 @@ $day-width: 1/ 12 * 100 * 1%;
     padding: 0;
     text-align: center;
     grid-template-columns: repeat(auto-fit, $day-width);
-    // grid-column-gap: 0;
   }
 
   li:first-of-type & {

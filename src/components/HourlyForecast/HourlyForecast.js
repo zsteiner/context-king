@@ -31,13 +31,11 @@ const HourlyForecast = ({ hourly, showTemperatures, showTitle, timezone }) => {
       );
     });
 
-  const itemCount = Math.round(hourly.length / 2);
-
   const hourlyForecastClasses = classNames({
     [styles.hourlyForecast]: true,
     'list-clear': true
   });
-  console.log('itemCount', itemCount);
+
   return (
     <React.Fragment>
       {showTitle ? <h3 className="header--strong">Today</h3> : null}

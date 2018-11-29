@@ -1,39 +1,38 @@
 import React from 'react';
 
-import { LocationContext } from '../../contexts/LocationContext';
+import { LocationContext } from '../contexts/LocationContext';
 
-import ForecastHeader from '../ForecastHeader/ForecastHeader';
-import DailyForecast from '../DailyForecast/DailyForecast';
-import HourlyForecast from '../HourlyForecast/HourlyForecast';
-import Map from '../Map/Map';
-
-import styles from './Forecast.module.scss';
+import ForecastHeader from '../components/ForecastHeader/ForecastHeader';
+import DailyForecast from '../components/DailyForecast/DailyForecast';
+import HourlyForecast from '../components/HourlyForecast/HourlyForecast';
+import Map from '../components/Map/Map';
+import Section from '../components/Section/Section';
 
 const Forecast = () => {
   return (
     <LocationContext.Consumer>
       {context => (
-        <section className={styles.forecast}>
+        <React.Fragment>
           <ForecastHeader forecast={context.forecast} />
-          <div className={styles.forecastSection}>
+          <Section>
             <Map coordinates={context.coordinates} />
-          </div>
-          <div className={styles.forecastSection}>
+          </Section>
+          <Section>
             <HourlyForecast
               hourly={context.forecast.hourly.data.slice(1, 25)}
               showTitle={true}
               showTemperatures={true}
               timezone={context.forecast.timezone}
             />
-          </div>
-          <div className={styles.forecastSection}>
+          </Section>
+          <Section>
             <DailyForecast
               daily={context.forecast.daily}
               hourly={context.forecast.hourly.data}
               timezone={context.forecast.timezone}
             />
-          </div>
-        </section>
+          </Section>
+        </React.Fragment>
       )}
     </LocationContext.Consumer>
   );

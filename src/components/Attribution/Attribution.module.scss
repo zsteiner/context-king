@@ -1,7 +1,17 @@
 @import "../../styles/variables";
 
 .attribution {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 0.25rem 0.5rem;
+  background: transparentize($white, 0.1);
   font-size: 0.875rem;
+  text-align: right;
+
+  a {
+    color: $grey;
+  }
 
   @include respond-to(medium) {
     font-size: 1.125rem;
