@@ -1,36 +1,31 @@
 import React, { Component } from 'react';
-import moment from 'moment';
-import 'react-dates/initialize';
 
-import { DayPickerRangeController } from 'react-dates';
-
-import 'react-dates/lib/css/_datepicker.css';
+import Datepicker from '../components/Datepicker/Datepicker';
 
 class Timemachine extends Component {
   constructor(props) {
     super(props);
 
-    const currentDate = moment();
+    const currentDate = new Date();
     this.state = {
-      startDate: currentDate,
-      endDate: null,
-      focusedInput: 'startDate'
+      date: currentDate
     };
   }
 
   render() {
+    const { date } = this.state;
+    const dateOptions = {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    };
+    const formattedDate = date.toLocaleDateString('en-us', dateOptions);
+
     return (
       <React.Fragment>
         <h1 className="header--strong">Time Machine</h1>
-        <DayPickerRangeController
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
-          onDatesChange={({ startDate, endDate }) =>
-            this.setState({ startDate, endDate })
-          }
-          focusedInput={this.state.focusedInput}
-          onFocusChange={focusedInput => this.setState({ focusedInput })}
-        />
+        <p>Selected date is {formattedDate}</p>
+        <Datepicker date={date} onChange={date => this.setState({ date })} />
       </React.Fragment>
     );
   }

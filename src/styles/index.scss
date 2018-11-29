@@ -1,4 +1,5 @@
 @import "./variables";
+@import "../../node_modules/pikaday/css/pikaday.css";
 
 :root {
   --background-image: none;
@@ -84,4 +85,8 @@ a {
     margin-bottom: 0.75rem;
     font-size: 2rem;
   }
+}
+
+.pika-day {
+  text-align: center;
 }
