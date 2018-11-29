@@ -2,9 +2,10 @@
 
 .attribution {
   position: absolute;
+  right: 0;
   bottom: 0;
-  width: 100%;
-  padding: 1rem;
+  padding: 0.25rem 0.5rem;
+  background: transparentize($white, 0.1);
   font-size: 0.875rem;
   text-align: right;
 

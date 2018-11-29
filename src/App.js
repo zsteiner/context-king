@@ -32,6 +32,8 @@ class App extends Component {
 
     const storedLocation = JSON.parse(localStorage.getItem('storedLocation'));
 
+    const storedLocationName = localStorage.getItem('storedLocationName');
+
     const storedBackground = localStorage.hasOwnProperty('storedBackground')
       ? JSON.parse(localStorage.getItem('storedBackground'))
       : {};
@@ -40,6 +42,10 @@ class App extends Component {
       ? JSON.parse(localStorage.getItem('storedForecast'))
       : {};
 
+    const currentDate = moment();
+    const updateDateFormat = moment(new Date(updateDate).toISOString());
+    const sinceUpdate = currentDate.diff(updateDateFormat, 'minutes');
+
     this.state = {
       backgroundImage: storedBackground,
       coordinates: storedCoordinates,
@@ -47,9 +53,11 @@ class App extends Component {
       forecast: storedForecast,
       forecastRefresh: true,
       location: storedLocation,
+      locationName: storedLocationName,
       updateBackgroundImage: this.updateBackgroundImage,
       setLoading: this.setLoading,
       setLocation: this.setLocation,
+      sinceUpdate: sinceUpdate,
       updateDate: updateDate
     };
   }
@@ -61,11 +69,9 @@ class App extends Component {
   };
 
   setLocation = (location, locationName, coordinates) => {
-    const currentDate = moment();
-    const updateDate = moment(new Date(this.state.updateDate).toISOString());
-    const sinceUpdate = currentDate.diff(updateDate, 'minutes');
-
+    const { sinceUpdate } = this.state;
     const storedCoordinates = this.state.coordinates;
+
     if (sinceUpdate < 30 && coordinates[0] === storedCoordinates[0]) {
       console.log('Updated ', sinceUpdate, ' min');
       const image = this.state.backgroundImage;
@@ -73,7 +79,9 @@ class App extends Component {
 
       this.setState({
         fetchingForecast: false,
-        forecastRefresh: false
+        forecastRefresh: false,
+        locationName: locationName,
+        sinceUpdate: sinceUpdate
       });
     } else {
       const updateDate = new Date();
@@ -86,9 +94,11 @@ class App extends Component {
       this.getForecast(coordinates);
 
       this.setState({
+        coordinates: coordinates,
         forecastRefresh: true,
         location: location,
-        coordinates: coordinates,
+        locationName: locationName,
+        sinceUpdate: sinceUpdate,
         updateDate: updateDate
       });
     }
