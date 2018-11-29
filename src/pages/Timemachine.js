@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios-jsonp-pro';
 
 import config from '../config/config';
+import buildConditionData from '../utils/buildConditionData';
 
 import { LocationContext } from '../contexts/LocationContext';
 
@@ -43,7 +44,25 @@ class Timemachine extends Component {
         }
       })
       .then(response => {
+        const hourlyHumdity = buildConditionData(
+          'humidity',
+          response.hourly.data
+        );
+
+        const hourlyUvIndex = buildConditionData(
+          'uvIndex',
+          response.hourly.data
+        );
+
+        const hourlyWindSpeed = buildConditionData(
+          'windSpeed',
+          response.hourly.data
+        );
+
         this.setState({
+          hourlyHumdity: hourlyHumdity,
+          hourlyUvIndex: hourlyUvIndex,
+          hourlyWindSpeed: hourlyWindSpeed,
           timemachine: response,
           timemachineLocation: this.context.location
         });
