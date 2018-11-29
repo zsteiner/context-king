@@ -1,0 +1,13 @@
+@import "../../styles/variables";
+
+.button {
+  padding: 0.5em;
+  background: $blue;
+  color: $white;
+  font-size: 1.125rem;
+  border: 0;
+
+  &:focus {
+    outline: none;
+  }
+}

@@ -13,7 +13,7 @@ const Forecast = () => {
     <LocationContext.Consumer>
       {context => (
         <React.Fragment>
-          <ForecastHeader forecast={context.forecast} />
+          <ForecastHeader forecast={context.forecast} showMeter />
           <Section>
             <Map coordinates={context.coordinates} />
           </Section>

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import CurrentMeter from '../CurrentMeter/CurrentMeter';
 import ForecastDayStats from '../ForecastDayStats/ForecastDayStats';
@@ -7,10 +8,10 @@ import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
 import styles from './ForecastHeader.module.scss';
 
-const ForecastHeader = ({ forecast, timezone }) => {
+const ForecastHeader = ({ forecast, showMeter }) => {
   return (
     <header className={styles.forecastHeader}>
-      <CurrentMeter forecast={forecast} />
+      {showMeter ? <CurrentMeter forecast={forecast} /> : null}
       <div className={styles.forecastInfo}>
         <div className={styles.forecastConditions}>
           <WeatherIcon
@@ -36,6 +37,11 @@ const ForecastHeader = ({ forecast, timezone }) => {
       </div>
     </header>
   );
+};
+
+ForecastHeader.propTypes = {
+  forecast: PropTypes.object,
+  showMeter: PropTypes.bool
 };
 
 export default ForecastHeader;
