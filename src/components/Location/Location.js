@@ -55,14 +55,16 @@ class Location extends Component {
   getLocation = () => {
     this.context.setLoading();
 
+    const sinceUpdate = this.context.sinceUpdate;
+
     navigator.geolocation.getCurrentPosition(
       position => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        const currentLocation = this.context.coordinates;
+        const storedCoordinates = this.context.coordinates;
 
-        if (currentLocation[0] === lon) {
+        if (sinceUpdate < 30 && lon === storedCoordinates[0]) {
           this.selectLocation(this.context.location);
         } else {
           this.reverseLookup(lon, lat);
@@ -114,6 +116,8 @@ class Location extends Component {
     const state = location.context ? `, ${location.context[0].text}` : '';
     const locationName = `${name}${state}`;
 
+    localStorage.setItem('storedLocationName', locationName);
+
     this.context.setLocation(location, locationName, location.center);
 
     this.setState({
@@ -132,7 +136,6 @@ class Location extends Component {
   }
 
   render() {
-    const state = this.state;
     return (
       <LocationContext.Consumer>
         {context => (
@@ -156,7 +159,7 @@ class Location extends Component {
               <LocationButton onClick={this.getLocation} />
             </div>
             <LocationName
-              locationName={state.locationName}
+              locationName={context.locationName}
               coordinates={context.coordinates}
               forecastRefresh={context.forecastRefresh}
               updateDate={context.updateDate}

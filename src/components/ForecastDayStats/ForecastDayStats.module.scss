@@ -1,15 +1,15 @@
 @import "../../styles/variables";
 
 .stats {
-  margin-top: 1rem;
+  display: grid;
 
   @include respond-to(medium) {
-    display: flex;
+    grid-template-columns: 1fr max-content max-content;
+    grid-column-gap: 1rem;
   }
 
   &Item {
-    margin-right: 3rem;
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
   }
 }
 
@@ -19,7 +19,7 @@
 
   &Item {
     display: inline-block;
-    margin-right: 1.5rem;
-    margin-bottom: 1rem;
+    padding-right: 1.5rem;
+    padding-bottom: 1rem;
   }
 }

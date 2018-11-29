@@ -11,7 +11,6 @@ export default function getBackgroundGif(search) {
     .get(api)
     .then(response => {
       const data = response.data.data;
-      console.log('giphy', api);
       root.style.setProperty(
         '--background-image',
         `url(${data.images.original.url})`

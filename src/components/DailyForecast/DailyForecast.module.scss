@@ -6,9 +6,9 @@
 
   > li {
     &:not(:last-child) {
-      border-bottom: $border;
       margin-bottom: 1rem;
       padding-bottom: 1rem;
+      border-bottom: $border;
     }
   }
 }
