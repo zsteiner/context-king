@@ -24,7 +24,7 @@ class Timemachine extends Component {
     return (
       <React.Fragment>
         <h1 className="header--strong">Time Machine</h1>
-        <p>Selected date is {formattedDate}</p>
+        <p>See weather for {formattedDate}</p>
         <Datepicker date={date} onChange={date => this.setState({ date })} />
       </React.Fragment>
     );

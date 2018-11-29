@@ -1,5 +1,4 @@
 @import "./variables";
-@import "../../node_modules/pikaday/css/pikaday.css";
 
 :root {
   --background-image: none;
@@ -87,6 +86,5 @@ a {
   }
 }
 
-.pika-day {
-  text-align: center;
-}
+@import "../../node_modules/pikaday/css/pikaday.css";
+@import "./datepicker";
