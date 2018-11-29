@@ -73,7 +73,6 @@ class App extends Component {
     const storedCoordinates = this.state.coordinates;
 
     if (sinceUpdate < 30 && coordinates[0] === storedCoordinates[0]) {
-      console.log('Updated ', sinceUpdate, ' min');
       const image = this.state.backgroundImage;
       setBackground(image.urls.full, image.color);
 
