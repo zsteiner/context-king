@@ -46,28 +46,25 @@ class Timemachine extends Component {
       })
       .then(response => {
         const hourly = response.hourly;
-        const hourlyHumdity = buildConditionData(
+
+        const conditionList = [
+          'apparentTemperature',
           'humidity',
-          hourly.data,
-          hourly.timezone
-        );
-
-        const hourlyUvIndex = buildConditionData(
+          'dewPoint',
+          'pressure',
+          'precipProbability',
           'uvIndex',
-          hourly.data,
-          hourly.timezone
-        );
+          'windSpeed'
+        ];
 
-        const hourlyWindSpeed = buildConditionData(
-          'windSpeed',
+        const hourlyConditionData = buildConditionData(
+          conditionList,
           hourly.data,
           hourly.timezone
         );
 
         this.setState({
-          hourlyHumdity: hourlyHumdity,
-          hourlyUvIndex: hourlyUvIndex,
-          hourlyWindSpeed: hourlyWindSpeed,
+          hourlyConditions: hourlyConditionData,
           timemachine: response,
           timemachineLocation: this.context.location
         });
@@ -82,7 +79,7 @@ class Timemachine extends Component {
   }
 
   render() {
-    const { date, timemachine } = this.state;
+    const { date, timemachine, hourlyConditions } = this.state;
     const dateOptions = {
       day: 'numeric',
       month: 'short',
@@ -111,21 +108,40 @@ class Timemachine extends Component {
             />
           ) : null}
         </Section>
-        <TimemachineChart
-          data={this.state.hourlyHumdity}
-          title="Humidity"
-          format="percent"
-        />
-        <TimemachineChart
-          data={this.state.hourlyUvIndex}
-          title="UV Index"
-          format="decimal"
-        />
-        <TimemachineChart
-          data={this.state.hourlyWindSpeed}
-          title="Wind Speed"
-          format="number"
-        />
+        {hourlyConditions ? (
+          <React.Fragment>
+            <TimemachineChart
+              data={hourlyConditions.apparentTemperature}
+              title="Feels like"
+              format="degrees"
+            />
+            <TimemachineChart
+              data={hourlyConditions.precipProbability}
+              title="Precipitation Probability"
+              format="percent"
+            />
+            <TimemachineChart
+              data={hourlyConditions.dewPoint}
+              title="Dew Point"
+              format="degrees"
+            />
+            <TimemachineChart
+              data={hourlyConditions.humdity}
+              title="Humidity"
+              format="percent"
+            />
+            <TimemachineChart
+              data={hourlyConditions.uvIndex}
+              title="UV Index"
+              format="decimal"
+            />
+            <TimemachineChart
+              data={hourlyConditions.windSpeed}
+              title="Wind Speed"
+              format="mph"
+            />
+          </React.Fragment>
+        ) : null}
       </React.Fragment>
     );
   }

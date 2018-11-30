@@ -1,20 +1,30 @@
 import getShortTime from './getShortTime';
 
-export default function buildConditionData(condition, hourlyData, timezone) {
-  let hourlyConditions = [];
+export default function buildConditionData(
+  conditionList,
+  hourlyData,
+  timezone
+) {
+  let hourlyConditions = {};
 
-  if (hourlyData) {
-    hourlyData.map((item, index) => {
-      const conditionValue = item[condition];
+  conditionList.map(item => {
+    let specificConditions = [];
+    const conditionKey = item;
+
+    hourlyData.map(item => {
+      const conditionValue = item[conditionKey];
       const timeValue = getShortTime(item['time'], timezone);
 
-      hourlyConditions.push({
+      specificConditions.push({
         x: timeValue,
         y: conditionValue
       });
-      return hourlyConditions;
+      return specificConditions;
     });
-  }
+
+    hourlyConditions[conditionKey] = specificConditions;
+    return hourlyConditions;
+  });
 
   return hourlyConditions;
 }

@@ -12,6 +12,12 @@ export default function formatValue(value, format) {
     case 'decimal':
       formatted = value.toFixed(2);
       break;
+    case 'mph':
+      formatted = `${value} mph`;
+      break;
+    case 'degrees':
+      formatted = `${value}\u00B0`;
+      break;
     default:
       formatted = value;
   }

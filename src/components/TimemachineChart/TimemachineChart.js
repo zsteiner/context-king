@@ -14,10 +14,11 @@ const TimemachineChart = ({ data, title, format }) => {
       <h2 className={styles.chartTitle}>{title}</h2>
       <figure className={styles.chart}>
         <VictoryChart
-          domainPadding={{ x: [20, 20], y: [20, 20] }}
+          domainPadding={{ x: [16, 16], y: [120, 16] }}
           data={data}
           height={300}
           width={1200}
+          padding={60}
           style={{
             parent: { fontSize: 16, fontFamily: 'inherit' }
           }}
@@ -56,7 +57,7 @@ const TimemachineChart = ({ data, title, format }) => {
 
 TimemachineChart.propTypes = {
   data: PropTypes.array,
-  format: PropTypes.oneOf(['percent', 'number', 'decimal']),
+  format: PropTypes.oneOf(['percent', 'number', 'decimal', 'mph', 'degrees']),
   title: PropTypes.string
 };
 
