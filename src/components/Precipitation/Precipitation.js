@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Percentage from '../Percentage/Percentage';
+import makePercent from '../../utils/makePercent';
+
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
 import styles from './Precipitation.module.scss';
@@ -25,7 +26,7 @@ const Precipitation = ({ precipProbability, precipType }) => {
       {precipProbability > 0.005 ? (
         <React.Fragment>
           <WeatherIcon icon={icon} />
-          <Percentage number={precipProbability} />
+          {makePercent(precipProbability)}
         </React.Fragment>
       ) : null}
     </div>

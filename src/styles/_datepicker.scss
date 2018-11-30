@@ -1,0 +1,21 @@
+.pika-single {
+  background: transparentize($white, 0.2);
+  border: $border;
+  font-family: $font-family;
+}
+
+.pika-day {
+  background: transparentize($grey-light, 0.7);
+  text-align: center;
+
+  &:hover {
+    background: transparentize($green, 0.2);
+    border-radius: 0;
+  }
+}
+
+.is-selected .pika-button {
+  background: transparentize($blue, 0.2);
+  border-radius: 0;
+  box-shadow: none;
+}

@@ -53,8 +53,6 @@ class Location extends Component {
   };
 
   getLocation = () => {
-    this.context.setLoading();
-
     const sinceUpdate = this.context.sinceUpdate;
 
     navigator.geolocation.getCurrentPosition(

@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import getBackground from './utils/getBackground';
 import setBackground from './utils/setBackground';
+import config from './config/config';
 
 import AppRouter from './components/AppRouter/AppRouter';
 import Attribution from './components/Attribution/Attribution';
@@ -15,8 +16,6 @@ import { ReactComponent as IconSet } from './assets/WeatherIcons.svg';
 import { LocationContext } from './contexts/LocationContext';
 
 import styles from './styles/App.module.scss';
-
-const apiDarkskyToken = '16eb53a912c674ef3028c1c421473d5e';
 
 class App extends Component {
   constructor(props) {
@@ -112,9 +111,8 @@ class App extends Component {
   getForecast = coordinates => {
     const lon = coordinates[0];
     const lat = coordinates[1];
+    const apiDarkskyToken = config.apiDarkskyToken;
     const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely,alerts,flags&extend=hourly`;
-
-    this.setLoading();
 
     axios
       .jsonp(api, {

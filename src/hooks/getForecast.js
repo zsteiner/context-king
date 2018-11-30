@@ -9,8 +9,6 @@ function getForecast(lat, lon) {
 
   const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely`;
 
-  this.setLoading();
-
   jsonp(api, null, (error, response) => {
     if (error) {
       console.error(error.message);

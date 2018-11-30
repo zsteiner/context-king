@@ -85,3 +85,6 @@ a {
     font-size: 2rem;
   }
 }
+
+@import "../../node_modules/pikaday/css/pikaday.css";
+@import "./datepicker";
