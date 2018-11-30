@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import mbxGeocoding from '@mapbox/mapbox-sdk/services/geocoding';
 import debounce from 'lodash/debounce';
+import config from '../../config/config';
 
 import { LocationContext } from '../../contexts/LocationContext';
 
@@ -13,9 +14,7 @@ import LocationResults from '../LocationResults/LocationResults';
 
 import styles from './Location.module.scss';
 
-const apiKeyMapbox =
-  'pk.eyJ1IjoienN0ZWluZXIiLCJhIjoiTXR4U0tyayJ9.6BxBAjPyMHbt1YfD5HWGXA';
-const geocodingClient = mbxGeocoding({ accessToken: apiKeyMapbox });
+const geocodingClient = mbxGeocoding({ accessToken: config.mapboxKey });
 
 class Location extends Component {
   constructor(props, context) {

@@ -111,7 +111,7 @@ class App extends Component {
   getForecast = coordinates => {
     const lon = coordinates[0];
     const lat = coordinates[1];
-    const apiDarkskyToken = config.apiDarkskyToken;
+    const apiDarkskyToken = config.darkskyKey;
     const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon}?exclude=minutely,alerts,flags&extend=hourly`;
 
     axios

@@ -12,7 +12,7 @@ import Datepicker from '../components/Datepicker/Datepicker';
 import ForecastHeader from '../components/ForecastHeader/ForecastHeader';
 import HourlyForecast from '../components/HourlyForecast/HourlyForecast';
 import Section from '../components/Section/Section';
-import TimemachineChart from '../components/TimemachineChart/TimemachineChart';
+import TimemachineHourlyCharts from '../components/TimemachineHourlyCharts/TimemachineHourlyCharts';
 
 class Timemachine extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class Timemachine extends Component {
   static contextType = LocationContext;
 
   getForecast = () => {
-    const apiDarkskyToken = config.apiDarkskyToken;
+    const apiDarkskyToken = config.darkskyKey;
     const coordinates = this.context.coordinates;
     const lon = coordinates[0];
     const lat = coordinates[1];
@@ -46,19 +46,8 @@ class Timemachine extends Component {
       })
       .then(response => {
         const hourly = response.hourly;
-
-        const conditionList = [
-          'apparentTemperature',
-          'humidity',
-          'dewPoint',
-          'pressure',
-          'precipProbability',
-          'uvIndex',
-          'windSpeed'
-        ];
-
         const hourlyConditionData = buildConditionData(
-          conditionList,
+          config.conditionList,
           hourly.data,
           hourly.timezone
         );
@@ -109,38 +98,7 @@ class Timemachine extends Component {
           ) : null}
         </Section>
         {hourlyConditions ? (
-          <React.Fragment>
-            <TimemachineChart
-              data={hourlyConditions.apparentTemperature}
-              title="Feels like"
-              format="degrees"
-            />
-            <TimemachineChart
-              data={hourlyConditions.precipProbability}
-              title="Precipitation Probability"
-              format="percent"
-            />
-            <TimemachineChart
-              data={hourlyConditions.dewPoint}
-              title="Dew Point"
-              format="degrees"
-            />
-            <TimemachineChart
-              data={hourlyConditions.humidity}
-              title="Humidity"
-              format="percent"
-            />
-            <TimemachineChart
-              data={hourlyConditions.uvIndex}
-              title="UV Index"
-              format="decimal"
-            />
-            <TimemachineChart
-              data={hourlyConditions.windSpeed}
-              title="Wind Speed"
-              format="mph"
-            />
-          </React.Fragment>
+          <TimemachineHourlyCharts hourlyConditions={hourlyConditions} />
         ) : null}
       </React.Fragment>
     );

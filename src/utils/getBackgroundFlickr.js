@@ -1,7 +1,8 @@
 import axios from 'axios';
+import config from '../config/config';
 
 export default function getBackgroundFlickr(lat, lon) {
-  const flickrAccessKey = '74385ce67a6b86ae4d7423caf1f8088d';
+  const flickrAccessKey = config.flickrKey;
 
   const api = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${flickrAccessKey}&lat=${lat}&lon=${lon}&format=json&nojsoncallback=1&accuracy=11&privacy_filter=1`;
 

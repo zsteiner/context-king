@@ -1,9 +1,10 @@
 import axios from 'axios';
+import config from '../config/config';
 
 export default function getBackgroundGif(search) {
-  const giphyAccessKey = 'yBMBCs3nUSiT9uEIygbSfchXGamjM9gv';
+  const giphyKey = config.giphyKey;
 
-  const api = `https://api.giphy.com/v1/gifs/random?tag=${search}&api_key=${giphyAccessKey}`;
+  const api = `https://api.giphy.com/v1/gifs/random?tag=${search}&api_key=${giphyKey}`;
 
   let root = document.documentElement;
 
