@@ -126,7 +126,7 @@ class Timemachine extends Component {
               format="degrees"
             />
             <TimemachineChart
-              data={hourlyConditions.humdity}
+              data={hourlyConditions.humidity}
               title="Humidity"
               format="percent"
             />
