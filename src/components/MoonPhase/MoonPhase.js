@@ -46,9 +46,9 @@ const MoonPhase = ({ moonPhase }) => {
   }
 
   return (
-    <span>
-      <WeatherIcon icon={moonIcon} className={styles.moon} /> {phase} (
-      {moonPhase})
+    <span title={`Lunation number ${moonPhase}`}>
+      <WeatherIcon icon={moonIcon} className={styles.moon} />
+      {phase}
     </span>
   );
 };
