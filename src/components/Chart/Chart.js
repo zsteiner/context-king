@@ -6,19 +6,19 @@ import formatValue from './formatValue';
 import Section from '../Section/Section';
 import { VictoryAxis, VictoryChart, VictoryLine } from 'victory';
 
-import styles from './TimemachineChart.module.scss';
+import styles from './Chart.module.scss';
 
-const TimemachineChart = ({ data, title, format }) => {
+const Chart = ({ data, title, format }) => {
   return (
     <Section>
       <h2 className={styles.chartTitle}>{title}</h2>
       <figure className={styles.chart}>
         <VictoryChart
-          domainPadding={{ x: [16, 16], y: [120, 16] }}
+          domainPadding={{ x: [16, 16], y: [80, 16] }}
           data={data}
-          height={300}
+          height={350}
           width={1200}
-          padding={60}
+          padding={80}
           style={{
             parent: { fontSize: 16, fontFamily: 'inherit' }
           }}
@@ -55,10 +55,17 @@ const TimemachineChart = ({ data, title, format }) => {
   );
 };
 
-TimemachineChart.propTypes = {
+Chart.propTypes = {
   data: PropTypes.array,
-  format: PropTypes.oneOf(['percent', 'number', 'decimal', 'mph', 'degrees']),
+  format: PropTypes.oneOf([
+    'percent',
+    'number',
+    'decimal',
+    'mph',
+    'mb',
+    'degrees'
+  ]),
   title: PropTypes.string
 };
 
-export default TimemachineChart;
+export default Chart;
