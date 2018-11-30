@@ -15,10 +15,12 @@
     "node-sass": "^4.9.4",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-pikaday-datepicker": "^3.0.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "stylelint-order": "^2.0.0",
-    "stylelint-scss": "^3.4.0"
+    "stylelint-scss": "^3.4.0",
+    "victory": "^31.0.1"
   },
   "scripts": {
     "start": "HTTPS=true react-scripts start",
