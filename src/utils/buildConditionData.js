@@ -1,14 +1,16 @@
-export default function buildConditionData(condition, hourlyData) {
+import getShortTime from './getShortTime';
+
+export default function buildConditionData(condition, hourlyData, timezone) {
   let hourlyConditions = [];
 
   if (hourlyData) {
     hourlyData.map((item, index) => {
       const conditionValue = item[condition];
-      const timeValue = item['time'];
+      const timeValue = getShortTime(item['time'], timezone);
 
       hourlyConditions.push({
-        time: timeValue,
-        condition: conditionValue
+        x: timeValue,
+        y: conditionValue
       });
       return hourlyConditions;
     });

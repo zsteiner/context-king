@@ -1,8 +1,8 @@
 import React from 'react';
 
 import getTime from '../../utils/getTime';
+import makePercent from '../../utils/makePercent';
 
-import Percentage from '../Percentage/Percentage';
 import MoonPhase from '../MoonPhase/MoonPhase';
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
@@ -28,7 +28,7 @@ const ForecastDayStats = ({ forecast, timezone }) => {
         <strong>UV Index</strong> {forecast.uvIndex}
       </div>
       <div className={styles.statsItem}>
-        <strong>Humidity</strong> <Percentage number={forecast.humidity} />
+        <strong>Humidity</strong> {makePercent(forecast.humidity)}
       </div>
     </div>
   );

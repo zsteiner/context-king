@@ -12,6 +12,7 @@ import Datepicker from '../components/Datepicker/Datepicker';
 import ForecastHeader from '../components/ForecastHeader/ForecastHeader';
 import HourlyForecast from '../components/HourlyForecast/HourlyForecast';
 import Section from '../components/Section/Section';
+import TimemachineChart from '../components/TimemachineChart/TimemachineChart';
 
 class Timemachine extends Component {
   constructor(props) {
@@ -44,19 +45,23 @@ class Timemachine extends Component {
         }
       })
       .then(response => {
+        const hourly = response.hourly;
         const hourlyHumdity = buildConditionData(
           'humidity',
-          response.hourly.data
+          hourly.data,
+          hourly.timezone
         );
 
         const hourlyUvIndex = buildConditionData(
           'uvIndex',
-          response.hourly.data
+          hourly.data,
+          hourly.timezone
         );
 
         const hourlyWindSpeed = buildConditionData(
           'windSpeed',
-          response.hourly.data
+          hourly.data,
+          hourly.timezone
         );
 
         this.setState({
@@ -106,6 +111,21 @@ class Timemachine extends Component {
             />
           ) : null}
         </Section>
+        <TimemachineChart
+          data={this.state.hourlyHumdity}
+          title="Humidity"
+          format="percent"
+        />
+        <TimemachineChart
+          data={this.state.hourlyUvIndex}
+          title="UV Index"
+          format="decimal"
+        />
+        <TimemachineChart
+          data={this.state.hourlyWindSpeed}
+          title="Wind Speed"
+          format="number"
+        />
       </React.Fragment>
     );
   }
