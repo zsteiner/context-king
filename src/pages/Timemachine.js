@@ -14,6 +14,8 @@ import HourlyForecast from '../components/HourlyForecast/HourlyForecast';
 import Section from '../components/Section/Section';
 import TimemachineHourlyCharts from '../components/TimemachineHourlyCharts/TimemachineHourlyCharts';
 
+import styles from './Pages.module.scss';
+
 class Timemachine extends Component {
   constructor(props) {
     super(props);
@@ -78,15 +80,22 @@ class Timemachine extends Component {
 
     return (
       <React.Fragment>
-        <h1 className="header--strong">Time Machine</h1>
-        <p>See weather for {formattedDate}</p>
-        <Section>
-          <Datepicker date={date} onChange={date => this.setState({ date })} />
-          <Button onClick={this.getForecast} text="Get Timemachine Forecast" />
+        <h1 className={styles.timemachineHeading}>Weather on {formattedDate}</h1>
+        <Section className={styles.timemachineHeader}>
+          <div>
+            <Datepicker
+              date={date}
+              onChange={date => this.setState({ date })}
+            />
+            <Button
+              onClick={this.getForecast}
+              text="Get Timemachine Forecast"
+            />
+          </div>
+          {timemachine.currently ? (
+            <ForecastHeader forecast={timemachine} />
+          ) : null}
         </Section>
-        {timemachine.currently ? (
-          <ForecastHeader forecast={timemachine} />
-        ) : null}
         <Section>
           {timemachine.hourly ? (
             <HourlyForecast

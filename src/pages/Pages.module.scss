@@ -1,0 +1,16 @@
+@import "../styles/variables";
+
+.timemachineHeading {
+  margin: 3rem 0 0;
+  font-weight: 900;
+}
+
+.timemachineHeader {
+  margin-top: 1.5rem;
+
+  @include respond-to(medium) {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-column-gap: 3rem;
+  }
+}
