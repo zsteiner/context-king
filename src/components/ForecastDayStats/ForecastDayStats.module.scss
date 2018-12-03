@@ -5,21 +5,12 @@
 
   @include respond-to(medium) {
     grid-template-columns: 1fr max-content max-content;
-    grid-column-gap: 1rem;
+    grid-column-gap: 1.5rem;
   }
 
-  &Item {
-    padding-bottom: 1rem;
-  }
-}
-
-.sun {
-  color: orange;
-  font-size: 1.5rem;
-
-  &Item {
-    display: inline-block;
-    padding-right: 1rem;
-    padding-bottom: 1rem;
+  &Secondary {
+    @include respond-to(medium) {
+      grid-template-columns: repeat(4, max-content);
+    }
   }
 }

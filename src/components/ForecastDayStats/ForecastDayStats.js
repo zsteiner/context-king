@@ -1,36 +1,34 @@
 import React from 'react';
 
-import getTime from '../../utils/getTime';
 import makePercent from '../../utils/makePercent';
 
-import MoonPhase from '../MoonPhase/MoonPhase';
-import WeatherIcon from '../WeatherIcon/WeatherIcon';
+import StatsItem from '../StatsItem/StatsItem';
+import SunStats from '../SunStats/SunStats';
 
 import styles from './ForecastDayStats.module.scss';
 
 const ForecastDayStats = ({ forecast, timezone }) => {
   return (
-    <div className={styles.stats}>
-      <div className={styles.statsItem}>
-        <span className={styles.sunItem}>
-          <WeatherIcon icon="Sunrise" className={styles.sun} />
-          {getTime(forecast.sunriseTime, timezone)}
-        </span>
-        <span className={styles.sunItem}>
-          <WeatherIcon icon="Sunset" className={styles.sun} />
-          {getTime(forecast.sunsetTime, timezone)}
-        </span>
-        <span className={styles.sunItem}>
-          <MoonPhase moonPhase={forecast.moonPhase} />
-        </span>
+    <React.Fragment>
+      <div className={styles.stats}>
+        <SunStats
+          sunriseTime={forecast.sunriseTime}
+          sunsetTime={forecast.sunsetTime}
+          moonPhase={forecast.moonPhase}
+          timezone={timezone}
+        />
+        <StatsItem label="UV Index" value={forecast.uvIndex} />
+        <StatsItem label="Humidity" value={makePercent(forecast.humidity)} />
       </div>
-      <div className={styles.statsItem}>
-        <strong>UV Index</strong> {forecast.uvIndex}
+      <div className={`${styles.stats} ${styles.statsSecondary}`}>
+        <StatsItem
+          label="Precipitation"
+          value={makePercent(forecast.precipProbability)}
+        />
+        <StatsItem label="Ozone" value={forecast.ozone} />
+        <StatsItem label="Wind" value={`${forecast.windSpeed} mph`} />
       </div>
-      <div className={styles.statsItem}>
-        <strong>Humidity</strong> {makePercent(forecast.humidity)}
-      </div>
-    </div>
+    </React.Fragment>
   );
 };
 

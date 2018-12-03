@@ -1,0 +1,10 @@
+.sun {
+  color: orange;
+  font-size: 1.5rem;
+
+  &Item {
+    display: inline-block;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+  }
+}
