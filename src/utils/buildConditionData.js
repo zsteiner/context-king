@@ -16,8 +16,8 @@ export default function buildConditionData(
       const timeValue = getShortTime(item['time'], timezone);
 
       specificConditions.push({
-        x: timeValue,
-        y: conditionValue
+        time: timeValue,
+        condition: conditionValue
       });
       return specificConditions;
     });

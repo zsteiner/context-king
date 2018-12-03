@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import formatValue from './formatValue';
 
 import Section from '../Section/Section';
-import { VictoryAxis, VictoryChart, VictoryLine } from 'victory';
+import {
+  VictoryAxis,
+  VictoryChart,
+  VictoryLine,
+  VictoryTooltip,
+  VictoryVoronoiContainer
+} from 'victory';
 
 import styles from './Chart.module.scss';
 
@@ -22,6 +28,9 @@ const Chart = ({ data, title, format }) => {
           style={{
             parent: { fontSize: 16, fontFamily: 'inherit' }
           }}
+          containerComponent={<VictoryVoronoiContainer />}
+          x={'time'}
+          y={'condition'}
         >
           <VictoryAxis
             fixLabelOverlap
@@ -33,21 +42,33 @@ const Chart = ({ data, title, format }) => {
             dependentAxis
             fixLabelOverlap
             domain={format === 'percent' ? [0, 1] : null}
-            tickFormat={t => `${formatValue(t, format)}`}
+            tickFormat={tick => `${formatValue(tick, format)}`}
             style={{
               tickLabels: { fontSize: 16, fontFamily: 'inherit' }
             }}
           />
           <VictoryLine
+            labels={datum =>
+              `${formatValue(datum.condition, format)} at ${datum.time}`
+            }
+            labelComponent={
+              <VictoryTooltip
+                style={{
+                  fontFamily: 'inherit'
+                }}
+                cornerRadius={0}
+              />
+            }
             data={data}
             style={{
               data: {
                 stroke: 'grey',
-                strokeWidth: 6,
-                strokeLinecap: 'round'
+                strokeWidth: 6
               }
             }}
             interpolation="natural"
+            x={'time'}
+            y={'condition'}
           />
         </VictoryChart>
       </figure>
