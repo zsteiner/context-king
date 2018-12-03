@@ -29,8 +29,8 @@ const Chart = ({ data, title, format }) => {
             parent: { fontSize: 16, fontFamily: 'inherit' }
           }}
           containerComponent={<VictoryVoronoiContainer />}
-          x={'time'}
-          y={'condition'}
+          x="time"
+          y="condition"
         >
           <VictoryAxis
             fixLabelOverlap
@@ -67,8 +67,8 @@ const Chart = ({ data, title, format }) => {
               }
             }}
             interpolation="natural"
-            x={'time'}
-            y={'condition'}
+            x="time"
+            y="condition"
           />
         </VictoryChart>
       </figure>
