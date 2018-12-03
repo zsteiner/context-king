@@ -86,5 +86,11 @@ a {
   }
 }
 
+select,
+input[type="text"],
+input[type="number"] {
+  font-size: inherit;
+}
+
 @import "../../node_modules/pikaday/css/pikaday.css";
 @import "./datepicker";
