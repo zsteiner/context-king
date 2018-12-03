@@ -14,7 +14,7 @@ const Chart = ({ data, title, format }) => {
       <h2 className={styles.chartTitle}>{title}</h2>
       <figure className={styles.chart}>
         <VictoryChart
-          domainPadding={{ x: [16, 16], y: [80, 16] }}
+          domainPadding={{ x: [32, 32], y: [100, 32] }}
           data={data}
           height={350}
           width={1200}
