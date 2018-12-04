@@ -2,42 +2,45 @@
 
 .forecast {
   &Header {
-    margin-bottom: 3rem;
+    margin: 0 0 3rem;
 
-    @include respond-to(medium) {
+    @include respond-to(large) {
       display: flex;
+      flex-wrap: wrap;
     }
   }
 
   &Info {
-    margin-top: 2rem;
+    margin: 2rem 0;
+    flex: 1 1 auto;
 
-    @include respond-to(medium) {
+    @include respond-to(large) {
       margin-top: 0;
 
       &:not(:first-child) {
-        margin-left: 2rem;
+        margin-left: 3rem;
       }
     }
   }
 
   &Conditions {
     display: flex;
-    align-items: flex-start;
+    margin-bottom: 2rem;
+    align-items: center;
 
     h2 {
-      margin: 0 0 0.25rem;
+      margin: 0 0 0.5rem;
       font-weight: 900;
     }
   }
 
   &Text {
-    margin: 0 0 2rem;
+    margin: 0 0 1rem;
   }
 }
 
 .icon {
-  margin-right: 1rem;
-  font-size: 3rem;
+  margin-right: 1.25rem;
+  font-size: 4rem;
   opacity: 0.5;
 }

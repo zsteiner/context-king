@@ -4,8 +4,8 @@ import classNames from 'classnames';
 
 import styles from './Temperature.module.scss';
 
-const Temperature = ({ temp, className }) => {
-  const tempRounded = temp ? Math.round(temp) : 0;
+const Temperature = ({ temperature, className }) => {
+  const tempRounded = temperature ? Math.round(temperature) : 0;
 
   const tempClasses = classNames({
     [styles.temp]: true,
@@ -22,7 +22,7 @@ const Temperature = ({ temp, className }) => {
 
 Temperature.propTypes = {
   className: PropTypes.string,
-  temp: PropTypes.number
+  temperature: PropTypes.number
 };
 
 export default Temperature;

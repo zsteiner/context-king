@@ -15,7 +15,7 @@ const TemperatureHour = ({ temperature, temperatureMax, temperatureMin }) => {
       className={styles.temp}
       style={{ left: `${position}%`, bottom: `${position}%` }}
     >
-      <Temperature temp={temperature} />
+      <Temperature temperature={temperature} />
     </span>
   );
 };

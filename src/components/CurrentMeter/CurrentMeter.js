@@ -32,13 +32,13 @@ const CurrentMeter = ({ forecast }) => {
       <div className={styles.current}>
         <div className={styles.currentTrack} />
         <label className={styles.currentLabel}>
-          <Temperature temp={temperatureLow} />
+          <Temperature temperature={temperatureLow} />
         </label>
         <span className={styles.currentTemperature}>
-          <Temperature temp={temperature} />
+          <Temperature temperature={temperature} />
         </span>
         <label className={styles.currentLabel}>
-          <Temperature temp={temperatureHigh} />
+          <Temperature temperature={temperatureHigh} />
         </label>
       </div>
     </div>

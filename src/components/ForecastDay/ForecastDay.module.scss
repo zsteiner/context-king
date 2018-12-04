@@ -6,7 +6,7 @@ $button-size: 2.5rem;
   position: relative;
   overflow: hidden;
   max-width: 100%;
-  padding: 1rem 0 2rem;
+  padding: 1rem 0;
   grid-template-columns: 1.25rem 5rem 1fr $button-size;
   grid-column-gap: 0.75rem;
 
@@ -59,4 +59,16 @@ $button-size: 2.5rem;
 
 .hourBreakout {
   margin: 0 0 1rem;
+
+  &Row {
+    @include respond-to(medium) {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    p {
+      position: relative;
+      top: -0.25rem;
+    }
+  }
 }
