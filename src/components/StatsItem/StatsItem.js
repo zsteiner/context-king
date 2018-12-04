@@ -10,7 +10,8 @@ const StatsItem = ({ children, label, value }) => {
         children
       ) : (
         <React.Fragment>
-          <strong>{label}</strong> {value}
+          <strong>{label}</strong>
+          {value}
         </React.Fragment>
       )}
     </div>

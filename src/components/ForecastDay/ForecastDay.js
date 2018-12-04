@@ -12,6 +12,7 @@ import TemperatureRange from '../TemperatureRange/TemperatureRange';
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 import OpenButton from '../OpenButton/OpenButton';
 import ForecastDayStats from '../ForecastDayStats/ForecastDayStats';
+import SunStats from '../SunStats/SunStats';
 
 class ForecastDay extends Component {
   constructor(props) {
@@ -61,6 +62,12 @@ class ForecastDay extends Component {
         </section>
         {this.state.breakoutOpen ? (
           <section className={styles.hourBreakout}>
+            <SunStats
+              sunriseTime={forecast.sunriseTime}
+              sunsetTime={forecast.sunsetTime}
+              moonPhase={forecast.moonPhase}
+              timezone={forecast.timezone}
+            />
             <ForecastDayStats forecast={forecast} timezone={timezone} />
             <HourlyForecast hourly={hourly} timezone={timezone} />
           </section>

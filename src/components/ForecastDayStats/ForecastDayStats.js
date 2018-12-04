@@ -1,34 +1,45 @@
 import React from 'react';
 
+import classNames from 'classnames';
+
 import makePercent from '../../utils/makePercent';
 
 import StatsItem from '../StatsItem/StatsItem';
-import SunStats from '../SunStats/SunStats';
+import Temperature from '../Temperature/Temperature';
+import UVIndex from '../UVIndex/UVIndex';
+import WindBearing from '../WindBearing/WindBearing';
 
 import styles from './ForecastDayStats.module.scss';
 
-const ForecastDayStats = ({ forecast, timezone }) => {
+const ForecastDayStats = ({ forecast, narrow }) => {
+  const statsClasses = classNames({
+    [styles.stats]: true,
+    [styles.statsNarrow]: narrow
+  });
   return (
-    <React.Fragment>
-      <div className={styles.stats}>
-        <SunStats
-          sunriseTime={forecast.sunriseTime}
-          sunsetTime={forecast.sunsetTime}
-          moonPhase={forecast.moonPhase}
-          timezone={timezone}
+    <div className={statsClasses}>
+      <StatsItem label="Humidity" value={makePercent(forecast.humidity)} />
+      <StatsItem
+        label="Precipitation"
+        value={makePercent(forecast.precipProbability)}
+      />
+      <StatsItem label="UV" value={<UVIndex uvIndex={forecast.uvIndex} />} />
+      <StatsItem
+        label="Dew Point"
+        value={<Temperature temperature={forecast.dewPoint} />}
+      />
+      <StatsItem
+        label="Ozone"
+        value={forecast.ozone ? forecast.ozone : 'N/A'}
+      />
+      <StatsItem label="Pressures" value={`${forecast.pressure} mb`} />
+      <StatsItem>
+        <WindBearing
+          windBearing={forecast.windBearing}
+          windSpeed={forecast.windSpeed}
         />
-        <StatsItem label="UV Index" value={forecast.uvIndex} />
-        <StatsItem label="Humidity" value={makePercent(forecast.humidity)} />
-      </div>
-      <div className={`${styles.stats} ${styles.statsSecondary}`}>
-        <StatsItem
-          label="Precipitation"
-          value={makePercent(forecast.precipProbability)}
-        />
-        <StatsItem label="Ozone" value={forecast.ozone} />
-        <StatsItem label="Wind" value={`${forecast.windSpeed} mph`} />
-      </div>
-    </React.Fragment>
+      </StatsItem>
+    </div>
   );
 };
 

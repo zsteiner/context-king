@@ -9,7 +9,7 @@ import { LocationContext } from '../contexts/LocationContext';
 
 import Button from '../components/Button/Button';
 import Datepicker from '../components/Datepicker/Datepicker';
-import ForecastHeader from '../components/ForecastHeader/ForecastHeader';
+import TimemachineHeader from '../components/ForecastHeader/TimemachineHeader';
 import HourlyForecast from '../components/HourlyForecast/HourlyForecast';
 import Section from '../components/Section/Section';
 import TimemachineHourlyCharts from '../components/TimemachineHourlyCharts/TimemachineHourlyCharts';
@@ -80,7 +80,9 @@ class Timemachine extends Component {
 
     return (
       <React.Fragment>
-        <h1 className={styles.timemachineHeading}>Weather on {formattedDate}</h1>
+        <h1 className={styles.timemachineHeading}>
+          Weather on {formattedDate}
+        </h1>
         <Section className={styles.timemachineHeader}>
           <div>
             <Datepicker
@@ -93,7 +95,7 @@ class Timemachine extends Component {
             />
           </div>
           {timemachine.currently ? (
-            <ForecastHeader forecast={timemachine} />
+            <TimemachineHeader forecast={timemachine} narrow />
           ) : null}
         </Section>
         <Section>

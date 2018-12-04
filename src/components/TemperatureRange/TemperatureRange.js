@@ -19,8 +19,14 @@ const TemperatureRange = ({
     <div className={styles.tempRange}>
       <div className={styles.tempRangeBar} style={{ left: `${position}%` }}>
         <div className={styles.range} style={{ width: `${tempRange}%` }}>
-          <Temperature temp={temperatureLow} className={styles.rangeValue} />
-          <Temperature temp={temperatureHigh} className={styles.rangeValue} />
+          <Temperature
+            temperature={temperatureLow}
+            className={styles.rangeValue}
+          />
+          <Temperature
+            temperature={temperatureHigh}
+            className={styles.rangeValue}
+          />
         </div>
       </div>
     </div>

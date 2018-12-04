@@ -42,7 +42,7 @@ const ForecastHour = ({ extremes, forecast, showTemperatures, timezone }) => {
       </time>
       {!showTemperatures ? (
         <div className={styles.secondaryTemperature}>
-          <Temperature temp={forecast.temperature} />
+          <Temperature temperature={forecast.temperature} />
         </div>
       ) : null}
       <Precipitation
