@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import styles from './StatsItem.module.scss';
 
-const StatsItem = ({ children, label, value }) => {
+const StatsItem = ({ children, label, value, title }) => {
   return (
-    <div className={styles.statsItem}>
+    <div className={styles.statsItem} title={title}>
       {children ? (
         children
       ) : (
@@ -21,6 +21,7 @@ const StatsItem = ({ children, label, value }) => {
 StatsItem.propTypes = {
   children: PropTypes.node,
   label: PropTypes.string,
+  title: PropTypes.string,
   value: PropTypes.any
 };
 
