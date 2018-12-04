@@ -59,4 +59,16 @@ $button-size: 2.5rem;
 
 .hourBreakout {
   margin: 0 0 1rem;
+
+  &Row {
+    @include respond-to(medium) {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    p {
+      position: relative;
+      top: -0.25rem;
+    }
+  }
 }

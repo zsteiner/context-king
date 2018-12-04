@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CurrentMeter from '../CurrentMeter/CurrentMeter';
+import FlexRow from '../FlexRow/FlexRow';
 import ForecastDayStats from '../ForecastDayStats/ForecastDayStats';
 import SunStats from '../SunStats/SunStats';
 import Temperature from '../Temperature/Temperature';
+import TemperatureHighLow from '../TemperatureHighLow/TemperatureHighLow';
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
 import styles from './ForecastHeader.module.scss';
@@ -20,7 +22,7 @@ const ForecastHeader = ({ forecast, narrow }) => {
             conditions={forecast.currently.icon}
             className={styles.icon}
           />
-          <div>
+          <div className={styles.forecastConditionsSummary}>
             <h2>{forecast.currently.summary}</h2>
             <p className={styles.forecastText}>
               Feels like{' '}
@@ -34,12 +36,21 @@ const ForecastHeader = ({ forecast, narrow }) => {
           <strong className={styles.forecastSummary}>Today: </strong>
           {today.summary}
         </p>
-        <SunStats
-          sunriseTime={today.sunriseTime}
-          sunsetTime={today.sunsetTime}
-          moonPhase={today.moonPhase}
-          timezone={today.timezone}
-        />
+        <FlexRow>
+          <TemperatureHighLow
+            temperatureHigh={today.temperatureHigh}
+            temperatureHighTime={today.temperatureHighTime}
+            temperatureLow={today.temperatureLow}
+            temperatureLowTime={today.temperatureLowTime}
+            forecast={forecast.timezone}
+          />
+          <SunStats
+            sunriseTime={today.sunriseTime}
+            sunsetTime={today.sunsetTime}
+            moonPhase={today.moonPhase}
+            timezone={today.timezone}
+          />
+        </FlexRow>
       </div>
       <ForecastDayStats
         forecast={today}

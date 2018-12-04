@@ -13,6 +13,8 @@ import WeatherIcon from '../WeatherIcon/WeatherIcon';
 import OpenButton from '../OpenButton/OpenButton';
 import ForecastDayStats from '../ForecastDayStats/ForecastDayStats';
 import SunStats from '../SunStats/SunStats';
+import TemperatureHighLow from '../TemperatureHighLow/TemperatureHighLow';
+import FlexRow from '../FlexRow/FlexRow';
 
 class ForecastDay extends Component {
   constructor(props) {
@@ -62,12 +64,21 @@ class ForecastDay extends Component {
         </section>
         {this.state.breakoutOpen ? (
           <section className={styles.hourBreakout}>
-            <SunStats
-              sunriseTime={forecast.sunriseTime}
-              sunsetTime={forecast.sunsetTime}
-              moonPhase={forecast.moonPhase}
-              timezone={forecast.timezone}
-            />
+            <FlexRow className={styles.hourBreakoutRow}>
+              <TemperatureHighLow
+                temperatureHigh={forecast.temperatureHigh}
+                temperatureHighTime={forecast.temperatureHighTime}
+                temperatureLow={forecast.temperatureLow}
+                temperatureLowTime={forecast.temperatureLowTime}
+                forecast={forecast.timezone}
+              />
+              <SunStats
+                sunriseTime={forecast.sunriseTime}
+                sunsetTime={forecast.sunsetTime}
+                moonPhase={forecast.moonPhase}
+                timezone={forecast.timezone}
+              />
+            </FlexRow>
             <ForecastDayStats forecast={forecast} timezone={timezone} />
             <HourlyForecast hourly={hourly} timezone={timezone} />
           </section>

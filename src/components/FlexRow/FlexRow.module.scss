@@ -1,0 +1,8 @@
+@import "../../styles/variables";
+
+.row {
+  @include respond-to(medium) {
+    display: flex;
+    justify-content: space-between;
+  }
+}

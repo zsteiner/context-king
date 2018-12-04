@@ -4,9 +4,8 @@
   &Header {
     margin: 0 0 3rem;
 
-    @include respond-to(medium) {
+    @include respond-to(large) {
       display: flex;
-      margin: 0 0 3rem -1rem;
       flex-wrap: wrap;
     }
   }
@@ -15,45 +14,33 @@
     margin: 2rem 0;
     flex: 1 1 auto;
 
-    @include respond-to(medium) {
+    @include respond-to(large) {
       margin-top: 0;
 
       &:not(:first-child) {
-        margin-left: 2rem;
+        margin-left: 3rem;
       }
     }
   }
 
   &Conditions {
     display: flex;
-    align-items: flex-start;
+    margin-bottom: 2rem;
+    align-items: center;
 
     h2 {
-      margin: 0 0 0.25rem;
+      margin: 0 0 0.5rem;
       font-weight: 900;
     }
   }
 
   &Text {
-    margin: 0 0 2rem;
+    margin: 0 0 1rem;
   }
 }
 
 .icon {
-  margin-right: 1rem;
-  font-size: 3rem;
+  margin-right: 1.25rem;
+  font-size: 4rem;
   opacity: 0.5;
-}
-
-.range {
-  margin: 0;
-  margin: 0.5rem 0 2rem;
-  font-size: 1.25rem;
-
-  &Icon {
-    position: relative;
-    bottom: 0.125rem;
-    margin: 0 0.5rem;
-    color: $grey-medium;
-  }
 }
