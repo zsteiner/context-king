@@ -41,6 +41,11 @@ const TimemachineHourlyCharts = ({ hourlyConditions }) => {
         title="Atmospheric Pressure"
         format="mb"
       />
+      <Chart
+        data={hourlyConditions.visibility}
+        title="Visibility"
+        format="mi"
+      />
     </React.Fragment>
   );
 };

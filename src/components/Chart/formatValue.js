@@ -13,6 +13,7 @@ export default function formatValue(value, format) {
       formatted = value.toFixed(2);
       break;
     case 'mb':
+    case 'mi':
     case 'mph':
       formatted = `${value} ${format}`;
       break;
