@@ -4,73 +4,67 @@ import PropTypes from 'prop-types';
 import formatValue from './formatValue';
 
 import Section from '../Section/Section';
-import {
-  VictoryAxis,
-  VictoryChart,
-  VictoryLine,
-  VictoryTooltip,
-  VictoryVoronoiContainer
-} from 'victory';
+import { ResponsiveLine } from '@nivo/line';
 
 import styles from './Chart.module.scss';
 
 const Chart = ({ data, title, format }) => {
+  const tooltipFormat = value => {
+    const formatted = formatValue(value, format);
+    return formatted;
+  };
+
   return (
     <Section>
       <h2 className={styles.chartTitle}>{title}</h2>
       <figure className={styles.chart}>
-        <VictoryChart
-          domainPadding={{ x: [32, 32], y: [100, 32] }}
-          data={data}
-          height={350}
-          width={1200}
-          padding={80}
-          style={{
-            parent: { fontSize: 16, fontFamily: 'inherit' }
+        <ResponsiveLine
+          data={[{ data: data }]}
+          margin={{
+            top: 32,
+            right: 16,
+            bottom: 32,
+            left: 16
           }}
-          containerComponent={<VictoryVoronoiContainer />}
-          x="time"
-          y="condition"
-        >
-          <VictoryAxis
-            fixLabelOverlap
-            style={{
-              tickLabels: { fontSize: 16, fontFamily: 'inherit' }
-            }}
-          />
-          <VictoryAxis
-            dependentAxis
-            fixLabelOverlap
-            domain={format === 'percent' ? [0, 1] : null}
-            tickFormat={tick => `${formatValue(tick, format)}`}
-            style={{
-              tickLabels: { fontSize: 16, fontFamily: 'inherit' }
-            }}
-          />
-          <VictoryLine
-            labels={datum =>
-              `${formatValue(datum.condition, format)} at ${datum.time}`
-            }
-            labelComponent={
-              <VictoryTooltip
-                style={{
-                  fontFamily: 'inherit'
-                }}
-                cornerRadius={0}
-              />
-            }
-            data={data}
-            style={{
-              data: {
-                stroke: 'grey',
-                strokeWidth: 6
-              }
-            }}
-            interpolation="natural"
-            x="time"
-            y="condition"
-          />
-        </VictoryChart>
+          xScale={{
+            type: 'time',
+            format: '%d/%m/%Y, %H %p',
+            precision: 'hour'
+          }}
+          yScale={{
+            type: 'linear',
+            stacked: true,
+            min: 'auto',
+            max: 'auto'
+          }}
+          colors="hsl(0, 0%, 50%)"
+          curve="cardinal"
+          axisTop={null}
+          axisRight={null}
+          axisBottom={{
+            orient: 'bottom',
+            tickSize: 5,
+            tickPadding: 5,
+            tickRotation: 0,
+            legend: 'transportation',
+            legendOffset: 36,
+            legendPosition: 'middle',
+            type: 'time',
+            format: '%-I %p',
+            precision: 'hours'
+          }}
+          axisLeft={null}
+          dotSize={8}
+          dotColor="inherit:darker(0.1)"
+          enableGridX={false}
+          enableGridY={false}
+          dotLabel="y"
+          dotLabelYOffset={-12}
+          animate={true}
+          motionStiffness={90}
+          motionDamping={15}
+          tooltipFormat={tooltipFormat}
+        />
       </figure>
     </Section>
   );

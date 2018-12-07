@@ -1,4 +1,4 @@
-import getShortTime from './getShortTime';
+import getDate from './getDate';
 
 export default function buildConditionData(
   conditionList,
@@ -13,11 +13,11 @@ export default function buildConditionData(
 
     hourlyData.map(item => {
       const conditionValue = item[conditionKey];
-      const timeValue = getShortTime(item['time'], timezone);
+      const timeValue = getDate(item['time'], timezone);
 
       specificConditions.push({
-        time: timeValue,
-        condition: conditionValue
+        x: timeValue,
+        y: conditionValue
       });
       return specificConditions;
     });
