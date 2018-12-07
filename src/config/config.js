@@ -11,6 +11,7 @@ const config = {
     'pressure',
     'precipProbability',
     'uvIndex',
+    'visibility',
     'windSpeed'
   ]
 };
