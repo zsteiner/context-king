@@ -8,10 +8,23 @@ import { ResponsiveLine } from '@nivo/line';
 
 import styles from './Chart.module.scss';
 
-const Chart = ({ data, title, format }) => {
+const Chart = ({ data, title, format, timezone }) => {
   const tooltipFormat = value => {
     const formatted = formatValue(value, format);
     return formatted;
+  };
+
+  const tooltip = value => {
+    const condition = formatValue(value.data[0].data.y, format);
+    const time = new Date(value.data[0].data.x);
+    const dateOptions = {
+      hour: 'numeric',
+      timeZone: timezone
+    };
+
+    const formatTime = time.toLocaleTimeString('en-us', dateOptions);
+
+    return `${condition} at ${formatTime}`;
   };
 
   const isZero = format === 'percent' || format === 'mph';
@@ -66,6 +79,7 @@ const Chart = ({ data, title, format }) => {
           motionStiffness={90}
           motionDamping={15}
           tooltipFormat={tooltipFormat}
+          tooltip={tooltip}
         />
       </figure>
     </Section>
@@ -82,7 +96,8 @@ Chart.propTypes = {
     'mb',
     'degrees'
   ]),
-  title: PropTypes.string
+  title: PropTypes.string,
+  timezone: PropTypes.string
 };
 
 export default Chart;

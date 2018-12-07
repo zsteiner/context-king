@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Chart from '../../components/Chart/Chart';
 
-const TimemachineHourlyCharts = ({ hourlyConditions }) => {
+const TimemachineHourlyCharts = ({ hourlyConditions, timezone }) => {
   return (
     <React.Fragment>
       <Chart
@@ -51,7 +51,8 @@ const TimemachineHourlyCharts = ({ hourlyConditions }) => {
 };
 
 TimemachineHourlyCharts.propTypes = {
-  hourlyConditions: PropTypes.object
+  hourlyConditions: PropTypes.object,
+  timezone: PropTypes.string
 };
 
 export default TimemachineHourlyCharts;
