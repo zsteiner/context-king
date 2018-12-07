@@ -109,7 +109,10 @@ class Timemachine extends Component {
           ) : null}
         </Section>
         {hourlyConditions ? (
-          <TimemachineHourlyCharts hourlyConditions={hourlyConditions} />
+          <TimemachineHourlyCharts
+            hourlyConditions={hourlyConditions}
+            timezone={timemachine.timezone}
+          />
         ) : null}
       </React.Fragment>
     );
