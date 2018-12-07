@@ -14,12 +14,14 @@ const Chart = ({ data, title, format }) => {
     return formatted;
   };
 
+  const isZero = format === 'percent' || format === 'mph';
+
   return (
     <Section>
       <h2 className={styles.chartTitle}>{title}</h2>
       <figure className={styles.chart}>
         <ResponsiveLine
-          data={[{ data: data }]}
+          data={data}
           margin={{
             top: 32,
             right: 16,
@@ -34,8 +36,8 @@ const Chart = ({ data, title, format }) => {
           yScale={{
             type: 'linear',
             stacked: true,
-            min: 'auto',
-            max: 'auto'
+            min: isZero ? 0 : 'auto',
+            max: format === 'percent' ? 1 : 'auto'
           }}
           colors="hsl(0, 0%, 50%)"
           curve="cardinal"

@@ -22,7 +22,12 @@ export default function buildConditionData(
       return specificConditions;
     });
 
-    hourlyConditions[conditionKey] = specificConditions;
+    hourlyConditions[conditionKey] = [
+      {
+        id: conditionKey,
+        data: specificConditions
+      }
+    ];
     return hourlyConditions;
   });
 
