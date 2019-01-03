@@ -38,7 +38,7 @@ const Chart = ({ data, title, format, timezone }) => {
           margin={{
             top: 32,
             right: 16,
-            bottom: 32,
+            bottom: 48,
             left: 16
           }}
           xScale={{
@@ -59,11 +59,9 @@ const Chart = ({ data, title, format, timezone }) => {
           axisBottom={{
             orient: 'bottom',
             tickSize: 5,
-            tickPadding: 5,
+            tickPadding: 24,
             tickRotation: 0,
-            legend: 'transportation',
-            legendOffset: 36,
-            legendPosition: 'middle',
+            legendOffset: 0,
             type: 'time',
             format: '%-I %p',
             precision: 'hours'
@@ -94,6 +92,7 @@ Chart.propTypes = {
     'decimal',
     'mph',
     'mb',
+    'mi',
     'degrees'
   ]),
   title: PropTypes.string,
