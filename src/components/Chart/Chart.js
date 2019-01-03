@@ -92,6 +92,7 @@ Chart.propTypes = {
     'decimal',
     'mph',
     'mb',
+    'mi',
     'degrees'
   ]),
   title: PropTypes.string,
