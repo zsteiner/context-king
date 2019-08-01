@@ -2,8 +2,7 @@ import axios from 'axios';
 import setBackground from './setBackground';
 
 export default function getBackground(search, updateBackgroundImage) {
-  const unsplashAccessKey =
-    'da0c3c38dee4d331d700bdaa28239c63527295291b54765ff0612841fd9a8f5c';
+  const unsplashAccessKey = process.env.REACT_APP_UNSPLASH;
 
   const api = `https://api.unsplash.com/photos/random?query=${search}&client_id=${unsplashAccessKey}&orientation=landscape`;
 
