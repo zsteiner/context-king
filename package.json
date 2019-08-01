@@ -4,24 +4,24 @@
   "private": true,
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.6.0",
-    "@nivo/line": "^0.58.0",
+    "@nivo/line": "^0.59.3",
     "axios": "^0.19.0",
-    "axios-jsonp-pro": "^1.1.4",
+    "axios-jsonp-pro": "^1.1.5",
     "classnames": "^2.2.6",
     "color": "^3.1.0",
     "jsonp": "^0.2.1",
-    "lodash": "^4.17.11",
-    "mapbox-gl": "^1.0.0",
+    "lodash": "^4.17.15",
+    "mapbox-gl": "^1.2.0",
     "moment": "^2.22.2",
     "node-sass": "^4.9.4",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-pikaday-datepicker": "^3.0.1",
-    "react-router-dom": "^5.0.0",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "stylelint-order": "^3.0.0",
-    "stylelint-scss": "^3.4.0",
-    "victory": "^32.0.2"
+    "stylelint-order": "^3.0.1",
+    "stylelint-scss": "^3.9.2",
+    "victory": "^32.3.3"
   },
   "scripts": {
     "start": "HTTPS=true react-scripts start",
@@ -39,7 +39,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "stylelint": "^10.0.1",
+    "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.2.0"
   }
 }
