@@ -21,16 +21,16 @@ $label-size: 2rem;
 .range {
   display: block;
   position: relative;
-  height: 1rem;
+  height: 0.5rem;
   min-width: 2%;
   margin: 0 0.325rem;
-  background: $grey;
+  background: lighten($grey, 25%);
   border-radius: 0.5rem;
 }
 
 .rangeValue {
   position: absolute;
-  top: -0.125em;
+  top: -0.325em;
   font-size: 0.875rem;
 
   &:first-child {
