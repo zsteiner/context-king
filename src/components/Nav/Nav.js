@@ -4,20 +4,20 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './Nav.module.scss';
 
+const navLinkClasses = (isActive) => styles.navItem + (isActive ? ` ${styles.active}` : '');
+
 const Nav = () => {
   return (
     <nav className={styles.nav}>
       <NavLink
+        className={({ isActive }) => navLinkClasses(isActive)}
         to="/"
-        className={styles.navItem}
-        // className={({isActive}) => styles.active + (isActive ?' demo' : '')}
       >
         Forecast
       </NavLink>
       <NavLink
+        className={({ isActive }) => navLinkClasses(isActive)}
         to="/timemachine"
-        // activeClassName={styles.active}
-        className={styles.navItem}
       >
         Time Machine
       </NavLink>
