@@ -5,7 +5,7 @@ export default function updateDateString(updateDate) {
 
   const timeOptions = {
     hour: 'numeric',
-    minute: 'numeric'
+    minute: 'numeric',
   };
   const time = formatDate.toLocaleTimeString('en-US', timeOptions);
   let dateString;

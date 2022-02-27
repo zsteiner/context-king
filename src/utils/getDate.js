@@ -5,7 +5,7 @@ export default function getWeekday(time, timezone) {
     month: '2-digit',
     day: '2-digit',
     hour: 'numeric',
-    timeZone: timezone
+    timeZone: timezone,
   };
   const formattedTime = date.toLocaleDateString('en-us', dateOptions);
   return formattedTime;

@@ -8,14 +8,14 @@ export default function getBackground(search, updateBackgroundImage) {
 
   axios
     .get(api)
-    .then(response => {
-      const data = response.data;
+    .then((response) => {
+      const { data } = response;
 
       localStorage.setItem('storedBackground', JSON.stringify(data));
       setBackground(data.urls.full, data.color);
       updateBackgroundImage(data);
     })
-    .catch(err => {
-      console.log('Error happened during fetching!', err);
+    .catch((err) => {
+      console.error('Error happened during fetching!', err);
     });
 }

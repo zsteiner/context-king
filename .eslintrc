@@ -1,6 +1,9 @@
 {
-  "extends": ["react-app"],
+  "extends": [
+    "react-app",
+    "eslint-config-airbnb"
+  ],
   "rules": {
-    "quotes": [2, "single"]
+    "react/jsx-filename-extension": 0,
   }
 }

@@ -1,7 +1,7 @@
 import Color from 'color';
 
 export default function setBackground(image, color) {
-  let root = document.documentElement;
+  const root = document.documentElement;
   const colorObj = Color(color);
   const calcColor = colorObj
     .mix(Color('white'), 0.9)

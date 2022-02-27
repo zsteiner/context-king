@@ -8,11 +8,11 @@ import HourlyForecast from '../components/HourlyForecast/HourlyForecast';
 import Map from '../components/Map/Map';
 import Section from '../components/Section/Section';
 
-const Forecast = () => {
+function Forecast() {
   return (
     <LocationContext.Consumer>
-      {context => (
-        <React.Fragment>
+      {(context) => (
+        <>
           <ForecastHeader forecast={context.forecast} showMeter />
           <Section>
             <Map coordinates={context.coordinates} />
@@ -20,8 +20,8 @@ const Forecast = () => {
           <Section>
             <HourlyForecast
               hourly={context.forecast.hourly.data.slice(1, 25)}
-              showTitle={true}
-              showTemperatures={true}
+              showTitle
+              showTemperatures
               timezone={context.forecast.timezone}
             />
           </Section>
@@ -32,10 +32,10 @@ const Forecast = () => {
               timezone={context.forecast.timezone}
             />
           </Section>
-        </React.Fragment>
+        </>
       )}
     </LocationContext.Consumer>
   );
-};
+}
 
 export default Forecast;

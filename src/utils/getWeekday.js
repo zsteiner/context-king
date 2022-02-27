@@ -4,7 +4,7 @@ export default function getWeekday(time, timezone) {
     weekday: 'short',
     day: 'numeric',
     month: 'short',
-    timeZone: timezone
+    timeZone: timezone,
   };
   const formattedTime = date.toLocaleDateString('en-us', dateOptions);
   return formattedTime;
