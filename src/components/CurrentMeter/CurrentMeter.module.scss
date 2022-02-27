@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "../../styles/variables";
 
 $current-meter: 6rem;
@@ -26,12 +28,14 @@ $current-size: 1rem;
     background: linear-gradient(to right, var(--temp-low), var(--temp-high));
     border-top-left-radius: $current-meter * 2;
     border-top-right-radius: $current-meter * 2;
-    mask: url("/images/meter.svg") 0 0;
+    // mask: url("/images/meter.svg") 0 0;
     mask-repeat: no-repeat;
     mask-size: cover;
   }
 
   &::after {
+    $half-size: math.div($current-size, 2);
+
     display: block;
     position: absolute;
     content: "";
@@ -39,19 +43,19 @@ $current-size: 1rem;
     left: 50%;
     height: $current-size;
     width: $current-size;
-    margin: -($current-size / 2);
+    margin: -($half-size);
     background-color: var(--marker-color);
     border: $current-border solid $white;
     border-radius: 50%;
     transform:
       rotate(var(--current-position))
-      translate($current-meter - ($current-size / 2));
+      translate($current-meter - $half-size);
   }
 
   &Temperature {
     position: relative;
     top: -1em;
-    font-size: $current-meter / 1.75;
+    font-size: math.div($current-meter, 1.75);
     font-weight: 900;
   }
 

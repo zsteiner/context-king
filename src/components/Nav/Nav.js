@@ -9,7 +9,6 @@ const Nav = () => {
     <nav className={styles.nav}>
       <NavLink
         to="/"
-        exact
         className={styles.navItem}
         activeClassName={styles.active}
       >

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './styles/index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import * as V from 'victory'; // eslint-disable-line no-unused-vars
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
