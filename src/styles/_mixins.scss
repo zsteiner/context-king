@@ -1,12 +1,15 @@
+@use "sass:map";
+
 $breakpoints: (
   "small": $small,
   "medium": $medium,
   "large": $large
 );
+
 // http://www.sitepoint.com/managing-responsive-breakpoints-sass/
 @mixin respond-to($breakpoint) {
   // Retrieves the value from the key
-  $value: map-get($breakpoints, $breakpoint);
+  $value: map.get($breakpoints, $breakpoint);
 
   // If the key exists in the map
   @if $value != null {

@@ -1,19 +1,19 @@
 @import "../../styles/variables";
 
 .range {
+  margin: 0 0 1.5rem;
   position: relative;
   top: -0.125em;
-  margin: 0 0 1.5rem;
 
   &Icon {
-    position: relative;
     bottom: 0.125rem;
-    margin: 0 1rem;
     color: $grey-medium;
+    margin: 0 1rem;
+    position: relative;
   }
 }
 
 .temperature {
-  margin-right: 0.25rem;
   font-size: 1.325rem;
+  margin-right: 0.25rem;
 }

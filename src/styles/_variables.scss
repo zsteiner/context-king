@@ -1,31 +1,26 @@
-$black: hsl(0, 0%, 0%);
-$grey: hsl(0, 0%, 25%);
-$grey-medium: hsl(0, 0%, 50%);
-$grey-light: hsl(0, 0%, 85%);
-$white: hsl(0, 0%, 100%);
-
-$blue: hsl(206, 80%, 50%);
-$green: hsl(134, 61%, 50%);
-$red: hsl(12, 85%, 50%);
-$yellow: hsl(56, 100%, 50%);
-$orange: hsl(30, 100%, 50%);
-$purple: hsl(268, 100%, 50%);
-
-$temp-ex-low: hsl(170, 85%, 80%);
-$temp-low: hsl(209, 85%, 50%);
-$temp-med-low: hsl(133, 85%, 50%);
-$temp-med-high: hsl(29, 85%, 50%);
+$black: hsl(0deg 0% 0%);
+$grey: hsl(0deg 0% 25%);
+$grey-medium: hsl(0deg 0% 50%);
+$grey-light: hsl(0deg 0% 85%);
+$white: hsl(0deg 0% 100%);
+$blue: hsl(206deg 80% 50%);
+$green: hsl(134deg 61% 50%);
+$red: hsl(12deg 85% 50%);
+$yellow: hsl(56deg 100% 50%);
+$orange: hsl(30deg 100% 50%);
+$purple: hsl(268deg 100% 50%);
+$temp-ex-low: hsl(170deg 85% 80%);
+$temp-low: hsl(209deg 85% 50%);
+$temp-med-low: hsl(133deg 85% 50%);
+$temp-med-high: hsl(29deg 85% 50%);
 $temp-high: $red;
-
 $avatar-size: 8rem;
-
 $border-width: 0.0625rem;
 $border: 0.0625rem solid $grey-light;
-$font-family: -apple-system, BlinkMacSystemFont, system-ui, Roboto, Segoe UI,
-  Helvetica Neue, Lucida Grande, Helvetica, Arial, sans-serif;
-$font-family-mono: source-code-pro, Menlo, Monaco, Consolas, Courier New,
+$font-family: -apple-system, blinkmacsystemfont, system-ui, roboto, segoe ui,
+  helvetica neue, lucida grande, helvetica, arial, sans-serif;
+$font-family-mono: source-code-pro, menlo, monaco, consolas, courier new,
   monospace;
-
 $small: 24rem;
 $medium: 46rem;
 $large: 62rem;

@@ -1,29 +1,29 @@
 @use "sass:math";
-
 @import "../../styles/variables";
+
 $triangle-size: 0.325em;
 
 .wind {
   display: inline-block;
-  position: relative;
   height: 1em;
-  width: 1em;
   margin-left: 0.25em;
+  position: relative;
+  width: 1em;
 }
 
 .bearing {
   $triangle-size-half: math.div($triangle-size, 2);
 
-  display: block;
-  position: absolute;
-  content: "";
-  top: 50%;
-  left: 50%;
-  height: 0;
-  width: 0;
-  margin-top: -($triangle-size-half);
-  margin-left: -($triangle-size);
-  border-top: $triangle-size solid $red;
-  border-right: $triangle-size solid transparent;
   border-left: $triangle-size solid transparent;
+  border-right: $triangle-size solid transparent;
+  border-top: $triangle-size solid $red;
+  content: "";
+  display: block;
+  height: 0;
+  left: 50%;
+  margin-left: -($triangle-size);
+  margin-top: -($triangle-size-half);
+  position: absolute;
+  top: 50%;
+  width: 0;
 }

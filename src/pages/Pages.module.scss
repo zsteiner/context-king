@@ -1,8 +1,8 @@
 @import "../styles/variables";
 
 .timemachineHeading {
-  margin: 3rem 0 0;
   font-weight: 900;
+  margin: 3rem 0 0;
 }
 
 .timemachineHeader {
@@ -10,7 +10,7 @@
 
   @include respond-to(medium) {
     display: grid;
-    grid-template-columns: min-content 1fr;
     grid-column-gap: 3rem;
+    grid-template-columns: min-content 1fr;
   }
 }

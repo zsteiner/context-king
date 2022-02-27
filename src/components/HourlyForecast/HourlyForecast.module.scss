@@ -1,14 +1,15 @@
 @import "../../styles/variables";
-$day-width: 1/ 12 * 100 * 1%;
+
+$day-width: 1 / 12 * 100 * 1%;
 
 .hourlyForecast {
   margin: 1rem 0;
 
   @include respond-to(medium) {
     display: grid;
+    grid-template-columns: repeat(auto-fit, $day-width);
     padding: 0;
     text-align: center;
-    grid-template-columns: repeat(auto-fit, $day-width);
   }
 
   li:first-of-type & {
@@ -17,6 +18,6 @@ $day-width: 1/ 12 * 100 * 1%;
 }
 
 .forecastSummary {
-  max-width: 30rem;
   margin: 0 0 1rem;
+  max-width: 30rem;
 }

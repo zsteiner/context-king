@@ -1,19 +1,20 @@
 @import "../../styles/variables";
+
 $button-size: 2.5rem;
 
 .forecastDay {
   align-items: center;
   display: grid;
-  position: relative;
-  overflow: hidden;
-  max-width: 100%;
-  padding: 1rem 0;
-  grid-template-columns: 1.25rem 5rem 1fr $button-size;
   grid-column-gap: 0.75rem;
+  grid-template-columns: 1.25rem 5rem 1fr $button-size;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 1rem 0;
+  position: relative;
 
   @include respond-to(small) {
-    grid-template-columns: 2.5rem 8rem 1fr $button-size;
     grid-column-gap: 1rem;
+    grid-template-columns: 2.5rem 8rem 1fr $button-size;
   }
 
   @include respond-to(medium) {
@@ -27,9 +28,9 @@ $button-size: 2.5rem;
 
 .day {
   display: block;
-  margin-bottom: 0.325rem;
   font-size: 0.75rem;
   font-weight: 700;
+  margin-bottom: 0.325rem;
 
   @include respond-to(small) {
     font-size: 1.25rem;
@@ -38,8 +39,8 @@ $button-size: 2.5rem;
 
 .summary {
   display: none;
-  margin: 0 0 0.5rem;
   font-size: 0.75rem;
+  margin: 0 0 0.5rem;
   opacity: 0.85;
 
   @include respond-to(medium) {
@@ -49,9 +50,9 @@ $button-size: 2.5rem;
 }
 
 .icon {
+  align-self: top;
   color: $grey-medium;
   font-size: 1.325rem;
-  align-self: top;
 
   @include respond-to(small) {
     font-size: 2.75rem;

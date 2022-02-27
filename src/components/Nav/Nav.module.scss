@@ -4,11 +4,11 @@
   margin: 1rem 0 2rem;
 
   &Item {
-    padding-bottom: 0.5rem;
     border-bottom: 0.25rem solid transparent;
+    padding-bottom: 0.5rem;
   }
 }
 
 .active {
-  border-color: currentColor;
+  border-color: currentcolor;
 }
