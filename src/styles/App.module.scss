@@ -1,11 +1,11 @@
 @import "../styles/variables";
 
 .app {
-  position: relative;
-  max-width: $large;
-  margin: auto;
-  padding: 1rem 0.5rem;
   background: var(--background-color);
+  margin: auto;
+  max-width: $large;
+  padding: 1rem 0.5rem;
+  position: relative;
 
   @include respond-to(medium) {
     padding: 1rem;

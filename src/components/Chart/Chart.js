@@ -1,25 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ResponsiveLine } from '@nivo/line';
 import formatValue from './formatValue';
 
 import Section from '../Section/Section';
-import { ResponsiveLine } from '@nivo/line';
 
 import styles from './Chart.module.scss';
 
-const Chart = ({ data, title, format, timezone }) => {
-  const tooltipFormat = value => {
+function Chart({
+  data, title, format, timezone,
+}) {
+  const tooltipFormat = (value) => {
     const formatted = formatValue(value, format);
     return formatted;
   };
 
-  const tooltip = value => {
+  const tooltip = (value) => {
     const condition = formatValue(value.data[0].data.y, format);
     const time = new Date(value.data[0].data.x);
     const dateOptions = {
       hour: 'numeric',
-      timeZone: timezone
+      timeZone: timezone,
     };
 
     const formatTime = time.toLocaleTimeString('en-us', dateOptions);
@@ -39,18 +41,18 @@ const Chart = ({ data, title, format, timezone }) => {
             top: 32,
             right: 16,
             bottom: 48,
-            left: 16
+            left: 16,
           }}
           xScale={{
             type: 'time',
             format: '%d/%m/%Y, %H %p',
-            precision: 'hour'
+            precision: 'hour',
           }}
           yScale={{
             type: 'linear',
             stacked: true,
             min: isZero ? 0 : 'auto',
-            max: format === 'percent' ? 1 : 'auto'
+            max: format === 'percent' ? 1 : 'auto',
           }}
           colors="hsl(0, 0%, 50%)"
           curve="cardinal"
@@ -64,7 +66,7 @@ const Chart = ({ data, title, format, timezone }) => {
             legendOffset: 0,
             type: 'time',
             format: '%-I %p',
-            precision: 'hours'
+            precision: 'hours',
           }}
           axisLeft={null}
           dotSize={8}
@@ -73,7 +75,7 @@ const Chart = ({ data, title, format, timezone }) => {
           enableGridY={false}
           dotLabel="y"
           dotLabelYOffset={-12}
-          animate={true}
+          animate
           motionStiffness={90}
           motionDamping={15}
           tooltipFormat={tooltipFormat}
@@ -82,7 +84,7 @@ const Chart = ({ data, title, format, timezone }) => {
       </figure>
     </Section>
   );
-};
+}
 
 Chart.propTypes = {
   data: PropTypes.array,
@@ -93,10 +95,10 @@ Chart.propTypes = {
     'mph',
     'mb',
     'mi',
-    'degrees'
+    'degrees',
   ]),
   title: PropTypes.string,
-  timezone: PropTypes.string
+  timezone: PropTypes.string,
 };
 
 export default Chart;

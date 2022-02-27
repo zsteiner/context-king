@@ -8,7 +8,7 @@ import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
 import styles from './ForecastHeader.module.scss';
 
-const TimemachineHeader = ({ forecast, narrow }) => {
+function TimemachineHeader({ forecast, narrow }) {
   const today = forecast.daily.data[0];
   return (
     <header className={styles.forecastHeader}>
@@ -41,11 +41,11 @@ const TimemachineHeader = ({ forecast, narrow }) => {
       />
     </header>
   );
-};
+}
 
 TimemachineHeader.propTypes = {
   forecast: PropTypes.object,
-  narrow: PropTypes.bool
+  narrow: PropTypes.bool,
 };
 
 export default TimemachineHeader;

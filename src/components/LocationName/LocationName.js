@@ -1,16 +1,16 @@
 import React from 'react';
-
-import updateDateString from '../../utils/updateDateString';
+import PropTypes from 'prop-types';
 
 import styles from './LocationName.module.scss';
+import updateDateString from '../../utils/updateDateString';
 
-const LocationName = ({
+function LocationName({
   coordinates,
   fetchingForecast,
   forecastRefresh,
   locationName,
-  updateDate
-}) => {
+  updateDate,
+}) {
   const dateString = updateDateString(updateDate);
   let refreshLabel;
 
@@ -26,7 +26,7 @@ const LocationName = ({
   }
 
   return (
-    <React.Fragment>
+    <>
       <h1 className={styles.locationName}>{locationName}</h1>
       <small className={styles.locationCoordinates}>
         {coordinates.length > 0
@@ -34,9 +34,20 @@ const LocationName = ({
           : '0.00, 0.00'}
       </small>
       <small className={styles.locationRefresh}>{refreshLabel}</small>
-      <small className={styles.locationRefresh}>Updated {dateString}</small>
-    </React.Fragment>
+      <small className={styles.locationRefresh}>
+        Updated
+        {dateString}
+      </small>
+    </>
   );
+}
+
+LocationName.propTypes = {
+  coordinates: PropTypes.array,
+  fetchingForecast: PropTypes.bool,
+  forecastRefresh: PropTypes.bool,
+  locationName: PropTypes.string,
+  updateDate: PropTypes.string,
 };
 
 export default LocationName;

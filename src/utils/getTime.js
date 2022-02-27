@@ -3,7 +3,7 @@ export default function getTime(time, timezone) {
   const dateOptions = {
     hour: 'numeric',
     minute: 'numeric',
-    timeZone: timezone
+    timeZone: timezone,
   };
   const formattedTime = date.toLocaleTimeString('en-us', dateOptions);
   return formattedTime;

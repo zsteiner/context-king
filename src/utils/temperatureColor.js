@@ -7,7 +7,7 @@ function hueCalc(temp) {
 export default function temperatureColors(
   temperature,
   temperatureHigh,
-  temperatureLow
+  temperatureLow,
 ) {
   const hueLow = colorValue(temperatureLow);
   const colorLow = `hsl(${hueLow}, 85%, ${hueCalc(temperatureLow)})`;
@@ -22,7 +22,7 @@ export default function temperatureColors(
     markerColor = colorLow;
   }
 
-  let root = document.documentElement;
+  const root = document.documentElement;
   root.style.setProperty('--temp-low', colorLow);
   root.style.setProperty('--marker-color', markerColor);
   root.style.setProperty('--temp-high', colorHigh);

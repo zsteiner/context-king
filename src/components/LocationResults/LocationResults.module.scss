@@ -1,27 +1,38 @@
+@use "sass:color";
 @import "../../styles/variables";
 
 .results {
+  // background: transparentize($white, 0.05);
+  background: color.adjust($white, $alpha: 0.05);
+  border: $border;
+  left: 0;
+  margin-top: -$border-width;
+  min-width: 100%;
+  padding: 1rem;
   position: absolute;
   top: 100%;
-  left: 0;
   width: 20rem;
-  min-width: 100%;
-  margin-top: -$border-width;
-  padding: 1rem;
-  background: transparentize($white, 0.05);
-  border: $border;
   z-index: 1000;
 
   &Item {
     margin-bottom: 1rem;
-    cursor: pointer;
-
-    &:hover {
-      color: $blue;
-    }
 
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+
+  &Button {
+    background: none;
+    border: 0;
+    color: currentcolor;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+    text-align: left;
+
+    &:hover {
+      color: $blue;
     }
   }
 }

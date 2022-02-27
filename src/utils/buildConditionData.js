@@ -3,21 +3,21 @@ import getDate from './getDate';
 export default function buildConditionData(
   conditionList,
   hourlyData,
-  timezone
+  timezone,
 ) {
-  let hourlyConditions = {};
+  const hourlyConditions = {};
 
-  conditionList.map(item => {
-    let specificConditions = [];
+  conditionList.map((item) => {
+    const specificConditions = [];
     const conditionKey = item;
 
-    hourlyData.map(item => {
-      const conditionValue = item[conditionKey];
-      const timeValue = getDate(item['time'], timezone);
+    hourlyData.map((hourlyDataItem) => {
+      const conditionValue = hourlyDataItem[conditionKey];
+      const timeValue = getDate(hourlyDataItem.time, timezone);
 
       specificConditions.push({
         x: timeValue,
-        y: conditionValue
+        y: conditionValue,
       });
       return specificConditions;
     });
@@ -25,8 +25,8 @@ export default function buildConditionData(
     hourlyConditions[conditionKey] = [
       {
         id: conditionKey,
-        data: specificConditions
-      }
+        data: specificConditions,
+      },
     ];
     return hourlyConditions;
   });

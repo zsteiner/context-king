@@ -1,20 +1,20 @@
 @import "../../styles/variables";
 
 .dailyForecast {
-  max-width: 100%;
   margin: 1rem 0 0;
+  max-width: 100%;
 
   > li {
     &:not(:last-child) {
+      border-bottom: $border;
       margin-bottom: 1rem;
       padding-bottom: 1rem;
-      border-bottom: $border;
     }
   }
 }
 
 .forecastSummary {
-  max-width: 30rem;
-  margin: 0 0 1rem;
   line-height: 1.5;
+  margin: 0 0 1rem;
+  max-width: 30rem;
 }

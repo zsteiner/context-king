@@ -5,7 +5,7 @@ import axios from 'axios-jsonp-pro';
 import config from '../config/config';
 import buildConditionData from '../utils/buildConditionData';
 
-import { LocationContext } from '../contexts/LocationContext';
+import LocationContext from '../contexts/LocationContext';
 
 import Button from '../components/Button/Button';
 import Datepicker from '../components/Datepicker/Datepicker';
@@ -24,18 +24,26 @@ class Timemachine extends Component {
     this.state = {
       date: currentDate,
       timemachine: {},
-      timemachineLocation: {}
+      timemachineLocation: {},
     };
   }
 
-  static contextType = LocationContext;
+  componentDidMount() {
+    const { timemachineLocation } = this.state;
+    const { location } = this.context;
+
+    if (timemachineLocation.text !== location.text) {
+      this.getForecast();
+    }
+  }
 
   getForecast = () => {
     const apiDarkskyToken = config.darkskyKey;
-    const coordinates = this.context.coordinates;
+    const { coordinates } = this.context;
     const lon = coordinates[0];
     const lat = coordinates[1];
-    const time = Math.round(new Date(this.state.date).getTime() / 1000);
+    const { date } = this.state;
+    const time = Math.round(new Date(date).getTime() / 1000);
 
     const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon},${time}?exclude=minutely,alerts,flags`;
 
@@ -43,51 +51,50 @@ class Timemachine extends Component {
       .jsonp(api, {
         timeout: 5000,
         headers: {
-          'Accept-Encoding': 'gzip'
-        }
+          'Accept-Encoding': 'gzip',
+        },
       })
-      .then(response => {
-        const hourly = response.hourly;
+      .then((response) => {
+        const { hourly } = response;
         const hourlyConditionData = buildConditionData(
           config.conditionList,
           hourly.data,
-          hourly.timezone
+          hourly.timezone,
         );
+
+        const { location } = this.context;
 
         this.setState({
           hourlyConditions: hourlyConditionData,
           timemachine: response,
-          timemachineLocation: this.context.location
+          timemachineLocation: location,
         });
       })
-      .catch(error => console.log(error));
+      // eslint-disable-next-line no-console
+      .catch((error) => console.log(error));
   };
-
-  componentDidMount() {
-    if (this.state.timemachineLocation.text !== this.context.location.text) {
-      this.getForecast();
-    }
-  }
 
   render() {
     const { date, timemachine, hourlyConditions } = this.state;
     const dateOptions = {
       day: 'numeric',
       month: 'short',
-      year: 'numeric'
+      year: 'numeric',
     };
     const formattedDate = date.toLocaleDateString('en-us', dateOptions);
 
     return (
-      <React.Fragment>
+      <>
         <h1 className={styles.timemachineHeading}>
-          Weather on {formattedDate}
+          Weather on
+          {' '}
+          {formattedDate}
         </h1>
         <Section className={styles.timemachineHeader}>
           <div>
             <Datepicker
               date={date}
-              onChange={date => this.setState({ date })}
+              onChange={(newDate) => this.setState({ date: newDate })}
             />
             <Button
               onClick={this.getForecast}
@@ -102,8 +109,8 @@ class Timemachine extends Component {
           {timemachine.hourly ? (
             <HourlyForecast
               hourly={timemachine.hourly.data.slice(1, 25)}
-              showTitle={true}
-              showTemperatures={true}
+              showTitle
+              showTemperatures
               timezone={timemachine.timezone}
             />
           ) : null}
@@ -114,9 +121,11 @@ class Timemachine extends Component {
             timezone={timemachine.timezone}
           />
         ) : null}
-      </React.Fragment>
+      </>
     );
   }
 }
+
+Timemachine.contextType = LocationContext;
 
 export default Timemachine;

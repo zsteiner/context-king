@@ -2,11 +2,11 @@
 
 :root {
   --background-image: none;
-  --background-color: rgba(255, 255, 255, 0.93);
+  --background-color: rgb(255 255 255 / 93%);
   --current-position: 180deg;
-  --temp-low: hsl(209, 85%, 50%);
+  --temp-low: hsl(209deg 85% 50%);
   --marker-color: var(--temp-low);
-  --temp-high: hsl(12, 85%, 50%);
+  --temp-high: hsl(12deg 85% 50%);
 }
 
 *,
@@ -25,18 +25,18 @@ html {
 }
 
 body {
-  position: relative;
-  box-sizing: border-box;
-  min-height: 100%;
-  margin: 0;
-  padding: 0 0 4rem;
-  background-image: var(--background-image);
-  background-size: cover;
   background-attachment: fixed;
+  background-image: var(--background-image);
   background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
   font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  min-height: 100%;
+  padding: 0 0 4rem;
+  position: relative;
 
   @include respond-to(large) {
     padding: 2rem 0 4rem;
@@ -48,8 +48,8 @@ code {
 }
 
 .list-clear {
-  padding: 0;
   list-style: none;
+  padding: 0;
 }
 
 .container {
@@ -66,23 +66,23 @@ a {
 }
 
 .svg-icon {
+  fill: currentcolor;
   height: 1em;
-  width: 1em;
   margin-right: 0.25em;
   vertical-align: middle;
-  fill: currentColor;
+  width: 1em;
 }
 
 .header--strong {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
   font-size: 1.5rem;
   font-weight: 900;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
   text-transform: uppercase;
 
   @include respond-to(medium) {
-    margin-bottom: 0.75rem;
     font-size: 2rem;
+    margin-bottom: 0.75rem;
   }
 }
 

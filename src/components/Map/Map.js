@@ -3,27 +3,27 @@ import PropTypes from 'prop-types';
 
 import styles from './Map.module.scss';
 
-const Map = ({
+function Map({
   coordinates,
   fieldControl,
   mapField,
   timeControl,
   units,
-  zoom
-}) => {
-  const calcUnits = units => {
+  zoom,
+}) {
+  const calcUnits = (newUnits) => {
     switch (mapField) {
       case 'temperature':
       case 'apparent_temperature':
       case 'dew_point':
-        return units === 'metric' ? '_c' : '_f';
+        return newUnits === 'metric' ? '_c' : '_f';
       case 'radar':
-        return units === 'metric' ? '_mmph' : '_inph';
+        return newUnits === 'metric' ? '_mmph' : '_inph';
       case 'wind_gust':
       case 'wind_speed':
-        return units === 'metric' ? '_kmph' : '_mph';
+        return newUnits === 'metric' ? '_kmph' : '_mph';
       case 'sea_level_pressure':
-        return units === 'metric' ? '_hpa' : '_inhg';
+        return newUnits === 'metric' ? '_hpa' : '_inhg';
       case 'ozone':
         return '_du';
       default:
@@ -40,7 +40,7 @@ const Map = ({
       <iframe frameBorder="0" title="Map" src={url} />
     </section>
   );
-};
+}
 
 Map.propTypes = {
   coordinates: PropTypes.array,
@@ -56,11 +56,11 @@ Map.propTypes = {
     'dew_point',
     'uv_index',
     'sea_level_pressure',
-    'ozone'
+    'ozone',
   ]),
   timeControl: PropTypes.bool,
   units: PropTypes.oneOf(['standard', 'metric']),
-  zoom: PropTypes.number
+  zoom: PropTypes.number,
 };
 
 Map.defaultProps = {
@@ -68,7 +68,7 @@ Map.defaultProps = {
   fieldControl: false,
   timeControl: false,
   units: 'standard',
-  zoom: 7
+  zoom: 7,
 };
 
 export default Map;

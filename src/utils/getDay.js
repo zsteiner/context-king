@@ -2,7 +2,7 @@ export default function getDay(date, timezone) {
   const dateOptions = {
     month: 'numeric',
     day: 'numeric',
-    timeZone: timezone
+    timeZone: timezone,
   };
 
   const thisDate = new Date(date * 1000);

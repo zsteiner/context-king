@@ -1,9 +1,10 @@
+@use "sass:color";
 @import "../../styles/variables";
 
 .condition {
   height: 100%;
-  width: 100%;
   opacity: 0.7;
+  width: 100%;
 
   @include respond-to(medium) {
     height: 0.75rem;
@@ -18,18 +19,21 @@
   }
 
   &Sleet {
-    background: mix($white, $blue, 50%);
+    background: color.mix($white, $blue, 50%);
   }
 
   &Clear {
-    background: darken($grey-light, 5%);
+    // background: darken($grey-light, 5%);
+    background: color.adjust($grey-light, $lightness: -5%);
   }
 
   &Overcast {
-    background: darken($grey-medium, 5%);
+    // background: darken($grey-medium, 5%);
+    background: color.adjust($grey-medium, $lightness: -5%);
   }
 
   &PartlyCloudy {
-    background: lighten($grey-medium, 15%);
+    // background: lighten($grey-medium, 15%);
+    background: color.adjust($grey-light, $lightness: 15%);
   }
 }

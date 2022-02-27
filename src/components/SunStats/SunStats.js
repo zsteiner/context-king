@@ -9,7 +9,9 @@ import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
 import styles from './SunStats.module.scss';
 
-const SunStats = ({ sunriseTime, sunsetTime, moonPhase, timezone }) => {
+function SunStats({
+  sunriseTime, sunsetTime, moonPhase, timezone,
+}) {
   return (
     <StatsItem>
       <span className={styles.sunItem}>
@@ -25,13 +27,13 @@ const SunStats = ({ sunriseTime, sunsetTime, moonPhase, timezone }) => {
       </span>
     </StatsItem>
   );
-};
+}
 
 SunStats.propTypes = {
   sunriseTime: PropTypes.number,
   sunsetTime: PropTypes.number,
   moonPhase: PropTypes.number,
-  timezone: PropTypes.string
+  timezone: PropTypes.string,
 };
 
 export default SunStats;

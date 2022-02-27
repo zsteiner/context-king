@@ -5,7 +5,7 @@ import Temperature from '../Temperature/Temperature';
 
 import styles from './TemperatureHour.module.scss';
 
-const TemperatureHour = ({ temperature, temperatureMax, temperatureMin }) => {
+function TemperatureHour({ temperature, temperatureMax, temperatureMin }) {
   const temperatureRange = temperatureMax - temperatureMin;
   const temperatureOffset = temperature - temperatureMin;
   const position = (temperatureOffset / temperatureRange) * 100;
@@ -18,12 +18,12 @@ const TemperatureHour = ({ temperature, temperatureMax, temperatureMin }) => {
       <Temperature temperature={temperature} />
     </span>
   );
-};
+}
 
 TemperatureHour.propTypes = {
   temperature: PropTypes.number,
   temperatureMax: PropTypes.number,
-  temperatureMin: PropTypes.number
+  temperatureMin: PropTypes.number,
 };
 
 export default TemperatureHour;
