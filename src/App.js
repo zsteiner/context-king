@@ -73,6 +73,7 @@ class App extends Component {
 
     if (sinceUpdate < 30 && coordinates[0] === storedCoordinates[0]) {
       const image = this.state.backgroundImage;
+      console.log({image})
       setBackground(image.urls.full, image.color);
 
       this.setState({

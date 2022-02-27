@@ -10,14 +10,13 @@ const Nav = () => {
       <NavLink
         to="/"
         className={styles.navItem}
-        activeClassName={styles.active}
+        // className={({isActive}) => styles.active + (isActive ?' demo' : '')}
       >
         Forecast
       </NavLink>
       <NavLink
         to="/timemachine"
-        strict
-        activeClassName={styles.active}
+        // activeClassName={styles.active}
         className={styles.navItem}
       >
         Time Machine

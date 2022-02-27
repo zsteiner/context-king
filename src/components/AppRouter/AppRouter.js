@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Forecast from '../../pages/Forecast';
 import Timemachine from '../../pages/Timemachine';
@@ -9,8 +9,10 @@ const AppRouter = () => (
   <Router>
     <React.Fragment>
       <Nav />
-      <Route path="/" exact component={Forecast} />
-      <Route path="/timemachine" exact component={Timemachine} />
+      <Routes>
+        <Route path="/" element={<Forecast />} />
+        <Route path="timemachine" element={<Timemachine />} />
+      </Routes>
     </React.Fragment>
   </Router>
 );

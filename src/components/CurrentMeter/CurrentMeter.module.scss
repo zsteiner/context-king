@@ -28,7 +28,7 @@ $current-size: 1rem;
     background: linear-gradient(to right, var(--temp-low), var(--temp-high));
     border-top-left-radius: $current-meter * 2;
     border-top-right-radius: $current-meter * 2;
-    // mask: url("/images/meter.svg") 0 0;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cpath fill='%23979797' d='M150,300 C67.1572875,300 0,232.842712 0,150 C0,67.1572875 67.1572875,0 150,0 C232.842712,0 300,67.1572875 300,150 C300,232.842712 232.842712,300 150,300 Z M150,271.084337 C216.873033,271.084337 271.084337,216.873033 271.084337,150 C271.084337,83.126967 216.873033,28.9156627 150,28.9156627 C83.126967,28.9156627 28.9156627,83.126967 28.9156627,150 C28.9156627,216.873033 83.126967,271.084337 150,271.084337 Z'/%3E%3C/svg%3E%0A") 0 0;
     mask-repeat: no-repeat;
     mask-size: cover;
   }
