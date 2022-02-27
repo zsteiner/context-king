@@ -11,9 +11,9 @@ export default function buildConditionData(
     const specificConditions = [];
     const conditionKey = item;
 
-    hourlyData.map((item) => {
-      const conditionValue = item[conditionKey];
-      const timeValue = getDate(item.time, timezone);
+    hourlyData.map((hourlyDataItem) => {
+      const conditionValue = hourlyDataItem[conditionKey];
+      const timeValue = getDate(hourlyDataItem.time, timezone);
 
       specificConditions.push({
         x: timeValue,

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LocationContext } from '../contexts/LocationContext';
+import LocationContext from '../contexts/LocationContext';
 
 import ForecastHeader from '../components/ForecastHeader/ForecastHeader';
 import DailyForecast from '../components/DailyForecast/DailyForecast';

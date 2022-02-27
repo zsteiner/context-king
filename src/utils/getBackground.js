@@ -16,6 +16,7 @@ export default function getBackground(search, updateBackgroundImage) {
       updateBackgroundImage(data);
     })
     .catch((err) => {
+      // eslint-disable-next-line no-console
       console.error('Error happened during fetching!', err);
     });
 }

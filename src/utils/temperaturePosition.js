@@ -3,14 +3,15 @@ export default function temperaturePosition(
   temperatureHigh,
   temperatureLow,
 ) {
+  let newTemperature;
   if (temperature < temperatureLow) {
-    temperature = temperatureLow;
+    newTemperature = temperatureLow;
   } else if (temperature > temperatureHigh) {
-    temperature = temperatureHigh;
+    newTemperature = temperatureHigh;
   }
 
   const currentRange = temperatureHigh - temperatureLow;
-  const currentDifference = temperature - temperatureLow;
+  const currentDifference = newTemperature - temperatureLow;
 
   const currentPercentage = currentDifference / currentRange;
   const currentAngle = currentPercentage * 180 - 180;

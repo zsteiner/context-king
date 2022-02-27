@@ -5,7 +5,7 @@ import axios from 'axios-jsonp-pro';
 import config from '../config/config';
 import buildConditionData from '../utils/buildConditionData';
 
-import { LocationContext } from '../contexts/LocationContext';
+import LocationContext from '../contexts/LocationContext';
 
 import Button from '../components/Button/Button';
 import Datepicker from '../components/Datepicker/Datepicker';
@@ -28,14 +28,22 @@ class Timemachine extends Component {
     };
   }
 
-  static contextType = LocationContext;
+  componentDidMount() {
+    const { timemachineLocation } = this.state;
+    const { location } = this.context;
+
+    if (timemachineLocation.text !== location.text) {
+      this.getForecast();
+    }
+  }
 
   getForecast = () => {
     const apiDarkskyToken = config.darkskyKey;
     const { coordinates } = this.context;
     const lon = coordinates[0];
     const lat = coordinates[1];
-    const time = Math.round(new Date(this.state.date).getTime() / 1000);
+    const { date } = this.state;
+    const time = Math.round(new Date(date).getTime() / 1000);
 
     const api = `https://api.darksky.net/forecast/${apiDarkskyToken}/${lat},${lon},${time}?exclude=minutely,alerts,flags`;
 
@@ -54,20 +62,17 @@ class Timemachine extends Component {
           hourly.timezone,
         );
 
+        const { location } = this.context;
+
         this.setState({
           hourlyConditions: hourlyConditionData,
           timemachine: response,
-          timemachineLocation: this.context.location,
+          timemachineLocation: location,
         });
       })
+      // eslint-disable-next-line no-console
       .catch((error) => console.log(error));
   };
-
-  componentDidMount() {
-    if (this.state.timemachineLocation.text !== this.context.location.text) {
-      this.getForecast();
-    }
-  }
 
   render() {
     const { date, timemachine, hourlyConditions } = this.state;
@@ -89,7 +94,7 @@ class Timemachine extends Component {
           <div>
             <Datepicker
               date={date}
-              onChange={(date) => this.setState({ date })}
+              onChange={(newDate) => this.setState({ date: newDate })}
             />
             <Button
               onClick={this.getForecast}
@@ -120,5 +125,7 @@ class Timemachine extends Component {
     );
   }
 }
+
+Timemachine.contextType = LocationContext;
 
 export default Timemachine;

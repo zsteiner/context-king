@@ -24,6 +24,7 @@ export default function getBackgroundFlickr(lat, lon) {
       root.style.setProperty('--background-image', `url(${imageSrc})`);
     })
     .catch((err) => {
-      console.log('Error happened during fetching!', err);
+      // eslint-disable-next-line no-console
+      console.error('Error happened during fetching!', err);
     });
 }

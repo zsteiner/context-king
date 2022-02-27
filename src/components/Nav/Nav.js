@@ -6,7 +6,7 @@ import styles from './Nav.module.scss';
 
 const navLinkClasses = (isActive) => styles.navItem + (isActive ? ` ${styles.active}` : '');
 
-const Nav = () => {
+function Nav() {
   return (
     <nav className={styles.nav}>
       <NavLink
@@ -23,6 +23,6 @@ const Nav = () => {
       </NavLink>
     </nav>
   );
-};
+}
 
 export default Nav;
