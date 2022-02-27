@@ -32,6 +32,7 @@
   "scripts": {
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
+    "lint:all": "npm run lint && npm run lint:style",
     "lint": "eslint 'src/*/*.js'",
     "lint:fix": "eslint 'src/*/*.js' --fix",
     "lint:style": "stylelint 'src/**/*.{css,scss}'",
