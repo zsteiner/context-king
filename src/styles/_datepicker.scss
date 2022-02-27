@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .pika-single {
   background: $white;
   border: $border;
@@ -5,17 +7,20 @@
 }
 
 .pika-day {
-  background: transparentize($grey-light, 0.7);
+  // background: transparentize($grey-light, 0.7);
+  background: color.adjust($grey-light, $alpha: 0.7);
   text-align: center;
 
   &:hover {
-    background: transparentize($green, 0.2);
+    // background: transparentize($green, 0.2);
+    background: color.adjust($green, $alpha: 0.2);
     border-radius: 0;
   }
 }
 
 .is-selected .pika-button {
-  background: transparentize($blue, 0.2);
+  // background: transparentize($blue, 0.2);
+  background: color.adjust($green, $blue: 0.2);
   border-radius: 0;
   box-shadow: none;
 }

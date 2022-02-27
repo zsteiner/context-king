@@ -1,7 +1,9 @@
+@use "sass:color";
 @import "../../styles/variables";
 
 .results {
-  background: transparentize($white, 0.05);
+  // background: transparentize($white, 0.05);
+  background: color.adjust($white, $alpha: 0.05);
   border: $border;
   left: 0;
   margin-top: -$border-width;

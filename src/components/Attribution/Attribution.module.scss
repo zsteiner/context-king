@@ -1,7 +1,9 @@
+@use "sass:color";
 @import "../../styles/variables";
 
 .attribution {
-  background: transparentize($white, 0.1);
+  // background: transparentize($white, 0.1);
+  background: color.adjust($white, $alpha: 0.1);
   bottom: 0;
   font-size: 0.875rem;
   padding: 0.25rem 0.5rem;

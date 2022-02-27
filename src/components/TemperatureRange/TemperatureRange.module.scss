@@ -1,3 +1,4 @@
+@use "sass:color";
 @import "../../styles/variables";
 
 $label-size: 2rem;
@@ -20,7 +21,8 @@ $label-size: 2rem;
 }
 
 .range {
-  background: lighten($grey, 25%);
+  // background: lighten($grey, 25%);
+  background: color.adjust($grey, $lightness: 25%);
   border-radius: 0.5rem;
   display: block;
   height: 0.5rem;
