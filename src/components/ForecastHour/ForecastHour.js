@@ -10,17 +10,19 @@ import TemperatureHour from '../TemperatureHour/TemperatureHour';
 
 import styles from './ForecastHour.module.scss';
 
-const ForecastHour = ({ extremes, forecast, showTemperatures, timezone }) => {
+function ForecastHour({
+  extremes, forecast, showTemperatures, timezone,
+}) {
   const date = new Date(forecast.time * 1000);
   const dateOptions = {
     hour: 'numeric',
-    timeZone: timezone
+    timeZone: timezone,
   };
   const formattedTime = date.toLocaleTimeString('en-us', dateOptions);
 
   const forecastClasses = classNames({
     [styles.forecastHour]: true,
-    [styles.forecastHourTemps]: showTemperatures
+    [styles.forecastHourTemps]: showTemperatures,
   });
 
   return (
@@ -51,14 +53,14 @@ const ForecastHour = ({ extremes, forecast, showTemperatures, timezone }) => {
       />
     </li>
   );
-};
+}
 ForecastHour.propTypes = {
   forecast: PropTypes.object,
   extremes: PropTypes.shape({
     max: PropTypes.number,
-    min: PropTypes.number
+    min: PropTypes.number,
   }),
   showTemperatures: PropTypes.bool,
-  timezone: PropTypes.string
+  timezone: PropTypes.string,
 };
 export default ForecastHour;

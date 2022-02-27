@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import makePercent from '../../utils/makePercent';
@@ -11,10 +11,10 @@ import WindBearing from '../WindBearing/WindBearing';
 
 import styles from './ForecastDayStats.module.scss';
 
-const ForecastDayStats = ({ forecast, narrow }) => {
+function ForecastDayStats({ forecast, narrow }) {
   const statsClasses = classNames({
     [styles.stats]: true,
-    [styles.statsNarrow]: narrow
+    [styles.statsNarrow]: narrow,
   });
   return (
     <div className={statsClasses}>
@@ -41,6 +41,11 @@ const ForecastDayStats = ({ forecast, narrow }) => {
       </StatsItem>
     </div>
   );
+}
+
+ForecastDayStats.propTypes = {
+  forecast: PropTypes.object,
+  narrow: PropTypes.bool,
 };
 
 export default ForecastDayStats;

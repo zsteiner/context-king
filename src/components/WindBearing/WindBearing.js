@@ -5,7 +5,7 @@ import StatsItem from '../StatsItem/StatsItem';
 
 import styles from './WindBearing.module.scss';
 
-const WindBearing = ({ windBearing, windSpeed }) => {
+function WindBearing({ windBearing, windSpeed }) {
   let windDirection;
 
   switch (true) {
@@ -43,11 +43,11 @@ const WindBearing = ({ windBearing, windSpeed }) => {
       </span>
     </StatsItem>
   );
-};
+}
 
 WindBearing.propTypes = {
   windBearing: PropTypes.number,
-  windSpeed: PropTypes.number
+  windSpeed: PropTypes.number,
 };
 
 export default WindBearing;

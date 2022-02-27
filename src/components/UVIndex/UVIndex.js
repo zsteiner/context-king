@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import styles from './UVIndex.module.scss';
 
-const UVIndex = ({ uvIndex }) => {
+function UVIndex({ uvIndex }) {
   let level;
 
   switch (true) {
@@ -25,10 +26,14 @@ const UVIndex = ({ uvIndex }) => {
 
   const uvClasses = classNames({
     [styles.uv]: true,
-    [styles[level]]: level
+    [styles[level]]: level,
   });
 
   return <span className={uvClasses}>{Math.round(uvIndex)}</span>;
+}
+
+UVIndex.propTypes = {
+  uvIndex: PropTypes.number,
 };
 
 export default UVIndex;

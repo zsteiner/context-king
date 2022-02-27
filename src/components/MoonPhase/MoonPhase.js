@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 import styles from './MoonPhase.module.scss';
 
-const MoonPhase = ({ moonPhase }) => {
+function MoonPhase({ moonPhase }) {
   let phase = 'New';
   let moonIcon = 'MoonNew';
 
@@ -51,9 +51,9 @@ const MoonPhase = ({ moonPhase }) => {
       {phase}
     </span>
   );
-};
+}
 
 MoonPhase.propTypes = {
-  moonPhase: PropTypes.number
+  moonPhase: PropTypes.number,
 };
 export default MoonPhase;

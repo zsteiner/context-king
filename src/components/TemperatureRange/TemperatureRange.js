@@ -5,12 +5,12 @@ import Temperature from '../Temperature/Temperature';
 
 import styles from './TemperatureRange.module.scss';
 
-const TemperatureRange = ({
+function TemperatureRange({
   temperatureHigh,
   temperatureLow,
   temperatureMax,
-  temperatureMin
-}) => {
+  temperatureMin,
+}) {
   const overallRange = temperatureMax - temperatureMin;
   const tempRange = ((temperatureHigh - temperatureLow) / overallRange) * 100;
   const position = ((temperatureLow - temperatureMin) / overallRange) * 100;
@@ -31,13 +31,13 @@ const TemperatureRange = ({
       </div>
     </div>
   );
-};
+}
 
 TemperatureRange.propTypes = {
   temperatureLow: PropTypes.number,
   temperatureHigh: PropTypes.number,
   temperatureMax: PropTypes.number,
-  temperatureMin: PropTypes.number
+  temperatureMin: PropTypes.number,
 };
 
 export default TemperatureRange;

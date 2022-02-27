@@ -1,27 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Temperature from '../Temperature/Temperature';
 import temperaturePosition from '../../utils/temperaturePosition';
 import temperatureColor from '../../utils/temperatureColor';
 
-import Temperature from '../Temperature/Temperature';
-
 import styles from './CurrentMeter.module.scss';
 
-const CurrentMeter = ({ forecast }) => {
+function CurrentMeter({ forecast }) {
   const today = forecast.daily.data[0];
 
-  const temperature = forecast.currently.temperature;
-  const temperatureMin = today.temperatureMin;
-  const temperatureMax = today.temperatureMax;
-  let temperatureLow = today.temperatureLow;
-  let temperatureHigh = today.temperatureHigh;
+  const { temperature } = forecast.currently;
+  const { temperatureMin } = today;
+  const { temperatureMax } = today;
+  let { temperatureLow } = today;
+  let { temperatureHigh } = today;
 
   if (temperature) {
-    temperatureHigh =
-      temperatureMax > temperatureHigh ? temperatureMax : temperatureMax;
-    temperatureLow =
-      temperatureMin < temperatureLow ? temperatureMin : temperatureLow;
+    temperatureHigh = temperatureMax > temperatureHigh ? temperatureMax : temperatureMax;
+    temperatureLow = temperatureMin < temperatureLow ? temperatureMin : temperatureLow;
 
     temperaturePosition(temperature, temperatureHigh, temperatureLow);
     temperatureColor(temperature, temperatureHigh, temperatureLow);
@@ -31,24 +28,22 @@ const CurrentMeter = ({ forecast }) => {
     <div className={styles.currentContainer}>
       <div className={styles.current}>
         <div className={styles.currentTrack} />
-        <label className={styles.currentLabel}>
+        <span className={styles.currentLabel}>
           <Temperature temperature={temperatureLow} />
-        </label>
+        </span>
         <span className={styles.currentTemperature}>
           <Temperature temperature={temperature} />
         </span>
-        <label className={styles.currentLabel}>
+        <span className={styles.currentLabel}>
           <Temperature temperature={temperatureHigh} />
-        </label>
+        </span>
       </div>
     </div>
   );
-};
+}
 
 CurrentMeter.propTypes = {
-  temperature: PropTypes.number,
-  temperatureHigh: PropTypes.number,
-  temperatureLow: PropTypes.number
+  forecast: PropTypes.object,
 };
 
 export default CurrentMeter;

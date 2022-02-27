@@ -11,8 +11,8 @@ const config = {
     'precipProbability',
     'uvIndex',
     'visibility',
-    'windSpeed'
-  ]
+    'windSpeed',
+  ],
 };
 
 export default config;

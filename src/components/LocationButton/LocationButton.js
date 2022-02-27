@@ -5,17 +5,21 @@ import styles from './LocationButton.module.scss';
 
 import { ReactComponent as Location } from '../../assets/location.svg';
 
-const LocationButton = ({ onClick }) => {
+function LocationButton({ onClick }) {
   return (
-    <button onClick={onClick} className={styles.button}>
+    <button
+      className={styles.button}
+      onClick={onClick}
+      type="button"
+    >
       <Location className={styles.icon} />
       find current location
     </button>
   );
-};
+}
 
 LocationButton.propTypes = {
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export default LocationButton;

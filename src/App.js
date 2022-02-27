@@ -1,3 +1,5 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable react/no-unused-state */
 import React, { Component } from 'react';
 
 import axios from 'axios-jsonp-pro';
@@ -13,7 +15,7 @@ import Loading from './components/Loading/Loading';
 import Location from './components/Location/Location';
 import { ReactComponent as IconSet } from './assets/WeatherIcons.svg';
 
-import { LocationContext } from './contexts/LocationContext';
+import LocationContext from './contexts/LocationContext';
 
 import styles from './styles/App.module.scss';
 
@@ -56,59 +58,58 @@ class App extends Component {
       updateBackgroundImage: this.updateBackgroundImage,
       setLoading: this.setLoading,
       setLocation: this.setLocation,
-      sinceUpdate: sinceUpdate,
-      updateDate: updateDate
+      sinceUpdate,
+      updateDate,
     };
   }
 
   setLoading = () => {
     this.setState({
-      fetchingForecast: true
+      fetchingForecast: true,
     });
   };
 
-  setLocation = (location, locationName, coordinates) => {
-    const { sinceUpdate } = this.state;
-    const storedCoordinates = this.state.coordinates;
+  setLocation = (location, locationName, newCoordinates) => {
+    const { backgroundImage, coordinates, sinceUpdate } = this.state;
 
-    if (sinceUpdate < 30 && coordinates[0] === storedCoordinates[0]) {
-      const image = this.state.backgroundImage;
+    if (sinceUpdate < 30 && newCoordinates[0] === coordinates[0]) {
+      const image = backgroundImage;
       setBackground(image.urls.full, image.color);
 
       this.setState({
         fetchingForecast: false,
         forecastRefresh: false,
-        locationName: locationName,
-        sinceUpdate: sinceUpdate
+        locationName,
+        sinceUpdate,
       });
     } else {
       const updateDate = new Date();
 
-      localStorage.setItem('storedCoordinates', JSON.stringify(coordinates));
+      localStorage.setItem('storedCoordinates', JSON.stringify(newCoordinates));
       localStorage.setItem('storedLocation', JSON.stringify(location));
       localStorage.setItem('updateDate', updateDate);
 
       getBackground(locationName, this.updateBackgroundImage);
-      this.getForecast(coordinates);
+      this.getForecast(newCoordinates);
 
       this.setState({
-        coordinates: coordinates,
+        coordinates: newCoordinates,
         forecastRefresh: true,
-        location: location,
-        locationName: locationName,
-        sinceUpdate: sinceUpdate,
-        updateDate: updateDate
+        location,
+        locationName,
+        sinceUpdate,
+        updateDate,
       });
     }
   };
 
-  updateBackgroundImage = backgroundImage => {
+  updateBackgroundImage = (backgroundImage) => {
     this.setState({
-      backgroundImage: backgroundImage
+      backgroundImage,
     });
   };
 
-  getForecast = coordinates => {
+  getForecast = (coordinates) => {
     const lon = coordinates[0];
     const lat = coordinates[1];
     const apiDarkskyToken = config.darkskyKey;
@@ -118,21 +119,22 @@ class App extends Component {
       .jsonp(api, {
         timeout: 5000,
         headers: {
-          'Accept-Encoding': 'gzip'
-        }
+          'Accept-Encoding': 'gzip',
+        },
       })
-      .then(response => {
+      .then((response) => {
         localStorage.setItem('storedForecast', JSON.stringify(response));
         this.setState({
           forecast: response,
-          fetchingForecast: false
+          fetchingForecast: false,
         });
       })
-      .catch(error => console.log(error));
+      // eslint-disable-next-line no-console
+      .catch((error) => console.error(error));
   };
 
   render() {
-    const state = this.state;
+    const { state } = this;
 
     return [
       <IconSet key={0} />,
@@ -144,7 +146,7 @@ class App extends Component {
       </article>,
       state.backgroundImage.user ? (
         <Attribution key={3} user={state.backgroundImage.user} />
-      ) : null
+      ) : null,
     ];
   }
 }

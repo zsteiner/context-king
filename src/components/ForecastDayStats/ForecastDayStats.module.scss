@@ -1,20 +1,20 @@
 @import "../../styles/variables";
 
 .stats {
+  column-gap: 1.5rem;
   display: grid;
-  margin-bottom: 1.5rem;
   flex: 0 0 100%;
   grid-template-columns: repeat(2, 50%);
-  grid-row-gap: 1rem;
-  grid-column-gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  row-gap: 1rem;
 
   @include respond-to(medium) {
     grid-template-columns: repeat(4, max-content);
   }
 
   @include respond-to(large) {
-    padding-left: 0;
     grid-template-columns: repeat(7, max-content);
+    padding-left: 0;
   }
 
   &Narrow {

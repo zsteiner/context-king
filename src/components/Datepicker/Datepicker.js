@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import * as PikaDate from 'react-pikaday-datepicker';
 
 import styles from './Datepicker.module.scss';
 
-const Datepicker = ({ date, onChange }) => {
+function Datepicker({ date, onChange }) {
   return (
     <div className={styles.date}>
       <PikaDate
@@ -14,6 +16,11 @@ const Datepicker = ({ date, onChange }) => {
       />
     </div>
   );
+}
+
+Datepicker.propTypes = {
+  date: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default Datepicker;

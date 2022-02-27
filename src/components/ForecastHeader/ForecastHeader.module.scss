@@ -11,8 +11,8 @@
   }
 
   &Info {
-    margin: 2rem 0;
     flex: 1 1 auto;
+    margin: 2rem 0;
 
     @include respond-to(large) {
       margin-top: 0;
@@ -24,13 +24,13 @@
   }
 
   &Conditions {
+    align-items: center;
     display: flex;
     margin-bottom: 2rem;
-    align-items: center;
 
     h2 {
-      margin: 0 0 0.5rem;
       font-weight: 900;
+      margin: 0 0 0.5rem;
     }
   }
 
@@ -40,7 +40,7 @@
 }
 
 .icon {
-  margin-right: 1.25rem;
   font-size: 4rem;
+  margin-right: 1.25rem;
   opacity: 0.5;
 }

@@ -1,11 +1,11 @@
 @import "../../styles/variables";
 
 .input {
-  padding: 0.5em;
-  font-size: 1.125em;
   border: $border;
   border-radius: 0;
   box-shadow: none;
+  font-size: 1.125em;
+  padding: 0.5em;
 
   &Form {
     margin-right: 1rem;

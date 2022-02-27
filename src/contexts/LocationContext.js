@@ -1,3 +1,5 @@
 import React from 'react';
 
-export const LocationContext = React.createContext();
+const LocationContext = React.createContext();
+
+export default LocationContext;

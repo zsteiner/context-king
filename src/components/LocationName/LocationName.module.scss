@@ -2,9 +2,9 @@
 
 .location {
   &Name {
-    margin: 2rem 0 1rem;
     font-size: 2.5rem;
     font-weight: 900;
+    margin: 2rem 0 1rem;
   }
 
   &Coordinates {
@@ -13,12 +13,12 @@
 
   &Refresh {
     display: inline-block;
-    opacity: 0.75;
     margin-left: 0.5rem;
+    opacity: 0.75;
 
     &::before {
-      display: inline-block;
       content: "\2022";
+      display: inline-block;
       margin-right: 0.5rem;
     }
   }
