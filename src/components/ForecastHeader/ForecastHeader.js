@@ -11,7 +11,7 @@ import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
 import styles from './ForecastHeader.module.scss';
 
-const ForecastHeader = ({ forecast, narrow }) => {
+function ForecastHeader({ forecast, narrow }) {
   const today = forecast.daily.data[0];
   return (
     <header className={styles.forecastHeader}>
@@ -25,7 +25,8 @@ const ForecastHeader = ({ forecast, narrow }) => {
           <div className={styles.forecastConditionsSummary}>
             <h2>{forecast.currently.summary}</h2>
             <p className={styles.forecastText}>
-              Feels like{' '}
+              Feels like
+              {' '}
               <Temperature
                 temperature={forecast.currently.apparentTemperature}
               />
@@ -60,11 +61,11 @@ const ForecastHeader = ({ forecast, narrow }) => {
       />
     </header>
   );
-};
+}
 
 ForecastHeader.propTypes = {
   forecast: PropTypes.object,
-  narrow: PropTypes.bool
+  narrow: PropTypes.bool,
 };
 
 export default ForecastHeader;

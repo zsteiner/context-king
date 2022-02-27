@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import styles from './Input.module.scss';
 
-const Input = ({ onSubmit, onChange, onFocus, placeholder, value }) => {
+function Input({
+  onSubmit, onChange, onFocus, placeholder, value,
+}) {
   return (
     <form onSubmit={onSubmit} className={styles.inputForm}>
       <input
@@ -15,14 +17,14 @@ const Input = ({ onSubmit, onChange, onFocus, placeholder, value }) => {
       />
     </form>
   );
-};
+}
 
 Input.propTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onSubmit: PropTypes.func,
   placeholder: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.string,
 };
 
 export default Input;

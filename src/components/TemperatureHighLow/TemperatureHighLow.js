@@ -8,36 +8,40 @@ import Temperature from '../Temperature/Temperature';
 
 import styles from './TemperatureHighLow.module.scss';
 
-const TemperatureHighLow = ({
+function TemperatureHighLow({
   temperatureHigh,
   temperatureHighTime,
   temperatureLow,
   temperatureLowTime,
-  timezone
-}) => {
+  timezone,
+}) {
   return (
     <p className={styles.range}>
       <Temperature
         temperature={temperatureLow}
         className={styles.temperature}
       />
-      at {getShortTime(temperatureLowTime, timezone)}
+      at
+      {' '}
+      {getShortTime(temperatureLowTime, timezone)}
       <ArrowRight className={`${styles.rangeIcon} svg-icon`} />
       <Temperature
         temperature={temperatureHigh}
         className={styles.temperature}
       />
-      at {getShortTime(temperatureHighTime, timezone)}
+      at
+      {' '}
+      {getShortTime(temperatureHighTime, timezone)}
     </p>
   );
-};
+}
 
 TemperatureHighLow.propTypes = {
   temperatureHigh: PropTypes.number,
   temperatureHighTime: PropTypes.number,
   temperatureLow: PropTypes.number,
   temperatureLowTime: PropTypes.number,
-  timezone: PropTypes.string
+  timezone: PropTypes.string,
 };
 
 export default TemperatureHighLow;

@@ -8,32 +8,30 @@ import ForecastDay from '../ForecastDay/ForecastDay';
 
 import styles from './DailyForecast.module.scss';
 
-const DailyForecast = ({ daily, hourly, timezone }) => {
+function DailyForecast({ daily, hourly, timezone }) {
   let extremes = {
     max: 0,
-    min: 100
+    min: 100,
   };
 
-  const dailyForecast = daily.data.map((item, index) => {
-    const low =
-      item.temperatureMin < item.temperatureLow
-        ? item.temperatureMin
-        : item.temperatureLow;
+  const dailyForecast = daily.data.map((item) => {
+    const low = item.temperatureMin < item.temperatureLow
+      ? item.temperatureMin
+      : item.temperatureLow;
 
-    const high =
-      item.temperatureMax > item.temperatureHigh
-        ? item.temperatureMax
-        : item.temperatureHigh;
+    const high = item.temperatureMax > item.temperatureHigh
+      ? item.temperatureMax
+      : item.temperatureHigh;
 
     extremes = calcExtremes(extremes, high, low);
     const day = getDay(item.time, timezone);
     const hourlyForecast = hourly.filter(
-      item => getDay(item.time, timezone) === day
+      (newItem) => getDay(newItem.time, timezone) === day,
     );
 
     return (
       <ForecastDay
-        key={index}
+        key={item.time}
         forecast={item}
         hourly={hourlyForecast}
         timezone={timezone}
@@ -43,18 +41,18 @@ const DailyForecast = ({ daily, hourly, timezone }) => {
   });
 
   return (
-    <React.Fragment>
+    <>
       <h3 className="header--strong">This Week</h3>
       <p className={styles.forecastSummary}>{daily.summary}</p>
       <ul className={`${styles.dailyForecast} list-clear`}>{dailyForecast}</ul>
-    </React.Fragment>
+    </>
   );
-};
+}
 
 DailyForecast.propTypes = {
   daily: PropTypes.object,
   hourly: PropTypes.array,
-  timezone: PropTypes.string
+  timezone: PropTypes.string,
 };
 
 export default DailyForecast;

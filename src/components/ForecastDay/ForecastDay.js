@@ -21,18 +21,25 @@ class ForecastDay extends Component {
     super(props);
 
     this.state = {
-      breakoutOpen: false
+      breakoutOpen: false,
     };
   }
 
   toggleBreakout = () => {
+    const { breakoutOpen } = this.state;
     this.setState({
-      breakoutOpen: !this.state.breakoutOpen
+      breakoutOpen: !breakoutOpen,
     });
   };
 
   render() {
-    const { extremes, forecast, hourly, timezone } = this.props;
+    const {
+      extremes,
+      forecast,
+      hourly,
+      timezone,
+    } = this.props;
+    const { breakoutOpen } = this.state;
     const formattedTime = getWeekday(forecast.time, timezone);
     const fullDate = getFullDate(forecast.time, timezone);
 
@@ -59,10 +66,10 @@ class ForecastDay extends Component {
 
           <OpenButton
             onClick={this.toggleBreakout}
-            isOpen={this.state.breakoutOpen}
+            isOpen={breakoutOpen}
           />
         </section>
-        {this.state.breakoutOpen ? (
+        {breakoutOpen ? (
           <section className={styles.hourBreakout}>
             <FlexRow className={styles.hourBreakoutRow}>
               <TemperatureHighLow
@@ -92,10 +99,10 @@ ForecastDay.propTypes = {
   forecast: PropTypes.object,
   extremes: PropTypes.shape({
     max: PropTypes.number,
-    min: PropTypes.number
+    min: PropTypes.number,
   }),
   hourly: PropTypes.array,
-  timezone: PropTypes.string
+  timezone: PropTypes.string,
 };
 
 export default ForecastDay;
