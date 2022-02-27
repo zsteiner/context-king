@@ -69,13 +69,11 @@ class App extends Component {
     });
   };
 
-  setLocation = (location, locationName, coordinates) => {
-    const { sinceUpdate } = this.state;
-    const storedCoordinates = this.state.coordinates;
+  setLocation = (location, locationName, newCoordinates) => {
+    const { backgroundImage, coordinates, sinceUpdate } = this.state;
 
-    if (sinceUpdate < 30 && coordinates[0] === storedCoordinates[0]) {
-      const image = this.state.backgroundImage;
-      console.log({ image });
+    if (sinceUpdate < 30 && newCoordinates[0] === coordinates[0]) {
+      const image = backgroundImage;
       setBackground(image.urls.full, image.color);
 
       this.setState({
@@ -87,15 +85,15 @@ class App extends Component {
     } else {
       const updateDate = new Date();
 
-      localStorage.setItem('storedCoordinates', JSON.stringify(coordinates));
+      localStorage.setItem('storedCoordinates', JSON.stringify(newCoordinates));
       localStorage.setItem('storedLocation', JSON.stringify(location));
       localStorage.setItem('updateDate', updateDate);
 
       getBackground(locationName, this.updateBackgroundImage);
-      this.getForecast(coordinates);
+      this.getForecast(newCoordinates);
 
       this.setState({
-        coordinates,
+        coordinates: newCoordinates,
         forecastRefresh: true,
         location,
         locationName,
@@ -131,7 +129,8 @@ class App extends Component {
           fetchingForecast: false,
         });
       })
-      .catch((error) => console.log(error));
+      // eslint-disable-next-line no-console
+      .catch((error) => console.error(error));
   };
 
   render() {

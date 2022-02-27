@@ -25,12 +25,16 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.0",
     "sass": "^1.49.9",
-    "stylelint-order": "^3.0.1",
-    "stylelint-scss": "^3.9.2"
+    "stylelint-config-standard-scss": "^3.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-scss": "^4.1.0"
   },
   "scripts": {
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
+    "lint": "eslint",
+    "lint:style": "stylelint 'src/**/*.{css,scss}'",
+    "lint:style:fix": "stylelint 'src/**/*.{css,scss}' -- --fix",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -44,7 +48,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "stylelint": "^10.1.0",
-    "stylelint-config-standard": "^18.2.0"
+    "stylelint": "^14.5.3",
+    "stylelint-config-standard": "^25.0.0"
   }
 }
